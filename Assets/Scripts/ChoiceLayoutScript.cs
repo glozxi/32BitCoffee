@@ -4,7 +4,6 @@ using Ink.Runtime;
 
 public class ChoiceLayoutScript : MonoBehaviour
 {
-    private InkManager inkManager;
     private VerticalLayoutGroup choiceButtonContainer;
 
     [SerializeField]
@@ -12,7 +11,6 @@ public class ChoiceLayoutScript : MonoBehaviour
 
     private void Start()
     {
-        inkManager = FindObjectOfType<InkManager>();
         choiceButtonContainer = gameObject.GetComponent<VerticalLayoutGroup>();
     }
 

@@ -1,6 +1,6 @@
 TODO // Just for testing, can change
-Hey, what's going on?
-It's dark.
+Hey, what's going on? #speaker_name: ???
+It's dark. #speaker_name: You #character_image: default
 -> start
 === start ===
 *   [Look left] -> option

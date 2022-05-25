@@ -7,9 +7,7 @@ public class ChoiceButtonScript : MonoBehaviour
 {
     private Story story;
     private InkManager inkManager;
-    private Button thisButton;
     private Choice thisChoice;
-
     public Choice ThisChoice
     {
         set => thisChoice = value;
@@ -19,8 +17,7 @@ public class ChoiceButtonScript : MonoBehaviour
     {
         inkManager = FindObjectOfType<InkManager>();
         story = inkManager.ThisStory;
-        inkManager = FindObjectOfType<InkManager>();
-        thisButton = gameObject.GetComponent<Button>();
+        Button thisButton = gameObject.GetComponent<Button>();
 
         thisButton.onClick.AddListener(TaskOnClick);
 
@@ -28,11 +25,10 @@ public class ChoiceButtonScript : MonoBehaviour
         buttonText.text = thisChoice.text;
     }
 
-    public void TaskOnClick()
+    private void TaskOnClick()
     {
         story.ChooseChoiceIndex(thisChoice.index);
         inkManager.DisplayNextLine();
-
         inkManager.RefreshChoiceView();
     }
 }
