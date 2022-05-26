@@ -98,11 +98,13 @@ public class Cup : MonoBehaviour
         SpriteRenderer contentSpriteRenderer = cupContent.gameObject.GetComponent<SpriteRenderer>();
         contentSpriteRenderer.color = color;
         float contentHeight = cupContent.GetComponent<SpriteRenderer>().bounds.size.y;
-        float yPos = cupContent.transform.position.y 
+        float yPos = //cupContent.transform.position.y 
+            this.transform.position.y - contentHeight
             + contentHeight * (contents.Count - 1);
         GameObject newContent = Instantiate(cupContent,
             new Vector3(
-                cupContent.transform.position.x,
+                //cupContent.transform.position.x,
+                this.transform.position.x,
                 yPos,
                 0),
             Quaternion.identity);
