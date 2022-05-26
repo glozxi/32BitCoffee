@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class ClickerIngredient : MonoBehaviour
+public abstract class DragOutItem : MonoBehaviour
 {
     [SerializeField]
     private Sprite newSprite;

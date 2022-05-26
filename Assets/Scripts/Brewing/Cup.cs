@@ -3,12 +3,13 @@ using UnityEngine;
 
 public class Cup : MonoBehaviour
 {
-    public List<GameObject> contents = new List<GameObject>();
+    private string INGREDIENT_TAG = "Ingredient";
+    public List<Ingredient> contents = new List<Ingredient>();
 
     private string drinkMade;
     private Customer customer;
 
-    private string CUPCONTENTTAG = "cupContent";
+    private string CUP_CONTENT_TAG = "cupContent";
 
     [SerializeField]
     private GameObject cupContent;
@@ -20,16 +21,22 @@ public class Cup : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Destroy(collision.gameObject);
-        add(cupContent);
+        GameObject collidedObject = collision.gameObject;
+        if (collidedObject.tag == INGREDIENT_TAG)
+        {
+            Ingredient ingredient = collidedObject.GetComponent<Ingredient>();
+            
+            Add(ingredient);
+            Destroy(collidedObject);
+            
+        }
         
     }
 
-
     // Clears contents and displayed cup contents
-    void clear()
+    void Clear()
     {
-        foreach (GameObject obj in GameObject.FindGameObjectsWithTag(CUPCONTENTTAG))
+        foreach (GameObject obj in GameObject.FindGameObjectsWithTag(CUP_CONTENT_TAG))
         {
             Destroy(obj);
         }
@@ -41,11 +48,11 @@ public class Cup : MonoBehaviour
         // customer.serve(contents, drinkMade);
         // drinkMade = "";
         points.UpdatePoints(1);
-        clear();
+        Clear();
     }
 
     // Adds an item to the cup and displays it
-    void add(GameObject cupContent)
+    void Add(Ingredient ingredient)
     {
         /*
         if (contents.Count + 1 > MAX_CONTENT)
@@ -55,8 +62,8 @@ public class Cup : MonoBehaviour
         }
         */
 
-        contents.Add(cupContent);
-        display_content(cupContent);
+        contents.Add(ingredient);
+        DisplayContent(ingredient);
         if (contents.Count == MAX_CONTENT)
         {
             reward();
@@ -64,13 +71,41 @@ public class Cup : MonoBehaviour
     }
 
     // Shows what it inside
-    void display_content(GameObject cupContent)
+    void DisplayContent(Ingredient ingredient)
     {
-        Instantiate(cupContent,
+        string ingredientType = ingredient.IngredientType;
+        string ingredientName = ingredient.IngredientName;
+        // Better to switch to enums
+        switch (ingredientType)
+        {
+            case "Base":
+                switch (ingredientName)
+                {
+                    case "Espresso":
+                        InstantiateContent(Color.black);
+                        break;
+                    case "Milo":
+                        InstantiateContent(Color.blue);
+                        break;
+                }
+                break;
+        }
+        
+    }
+
+    void InstantiateContent(Color color)
+    {
+        SpriteRenderer contentSpriteRenderer = cupContent.gameObject.GetComponent<SpriteRenderer>();
+        contentSpriteRenderer.color = color;
+        float contentHeight = cupContent.GetComponent<SpriteRenderer>().bounds.size.y;
+        float yPos = cupContent.transform.position.y 
+            + contentHeight * (contents.Count - 1);
+        GameObject newContent = Instantiate(cupContent,
             new Vector3(
                 cupContent.transform.position.x,
-                cupContent.transform.position.y + cupContent.GetComponent<SpriteRenderer>().bounds.size.y * cupContent.transform.localScale.y * contents.Count,
+                yPos,
                 0),
             Quaternion.identity);
+        newContent.transform.parent = gameObject.transform;
     }
 }
