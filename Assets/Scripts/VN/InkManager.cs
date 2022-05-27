@@ -1,4 +1,5 @@
 using Ink.Runtime;
+using UnityEngine.Events;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -8,10 +9,6 @@ using System.Collections.Generic;
 public class InkManager : MonoBehaviour
 {
     private Story story;
-    public Story ThisStory
-    {
-        get => story;
-    }
 
     [SerializeField]
     private TextAsset inkJsonAsset;
@@ -60,9 +57,9 @@ public class InkManager : MonoBehaviour
         }
     }
 
-    public void DisplayChoices()
+    private void DisplayChoices()
     {   
-        // Already displayed
+        // Choices already displayed
         if (choiceButtonContainer.GetComponentsInChildren<Button>().Length > 0)
         {
             return;
@@ -70,13 +67,24 @@ public class InkManager : MonoBehaviour
 
         foreach (Choice choice in story.currentChoices)
         {
-            // only tiem choiceLyoutcript needed
-            choicesLayoutScript.CreateChoiceButton(choice);
+            choicesLayoutScript.CreateChoiceButton(ChoicePicked(choice), choice);
 
         }
     }
 
-    public void RefreshChoiceView()
+    // What to do for a choice when picked
+    private UnityAction ChoicePicked(Choice choice)
+    {
+        return () =>
+        {
+            story.ChooseChoiceIndex(choice.index);
+            DisplayNextLine();
+            RefreshChoiceView();
+        };
+        
+    }
+
+    private void RefreshChoiceView()
     {
         foreach (Button button in choiceButtonContainer.GetComponentsInChildren<Button>())
         {

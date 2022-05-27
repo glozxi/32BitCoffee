@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using Ink.Runtime;
+using UnityEngine.Events;
 
 public class ChoiceButtonScript : MonoBehaviour
 {
@@ -12,18 +12,15 @@ public class ChoiceButtonScript : MonoBehaviour
         button = gameObject.GetComponent<Button>();
     }
 
-    public void SetTask(InkManager inkManager, Choice choice)
+    public void SetText(string text)
     {
         TMP_Text buttonText = button.GetComponentInChildren<TMP_Text>();
-        buttonText.text = choice.text;
+        buttonText.text = text;
+    }
 
-        button.onClick.AddListener(() => 
-        {
-            inkManager.ThisStory.ChooseChoiceIndex(choice.index);
-            inkManager.DisplayNextLine();
-            inkManager.RefreshChoiceView();
-        });
-            
+    public void SetTask(UnityAction task)
+    {
+        button.onClick.AddListener(task);
     }
 
 }
