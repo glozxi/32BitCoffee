@@ -16,7 +16,7 @@ public class ChoiceLayoutScript : MonoBehaviour
     }
 
     // Creates new choice button in layout
-    public Button CreateChoiceButton(UnityAction task, Choice choice)
+    public void CreateChoiceButton(UnityAction task, Choice choice)
     {
         Button button = Instantiate(choiceButtonPrefab);
         button.transform.SetParent(choiceButtonContainer.transform);
@@ -24,7 +24,5 @@ public class ChoiceLayoutScript : MonoBehaviour
         ChoiceButtonScript buttonScript = button.GetComponent<ChoiceButtonScript>();
         buttonScript.SetText(choice.text);
         buttonScript.SetTask(task);
-
-        return button;
     }
 }
