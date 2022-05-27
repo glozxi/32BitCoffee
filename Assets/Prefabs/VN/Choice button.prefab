@@ -147,7 +147,7 @@ GameObject:
   - component: {fileID: 3609612829481773197}
   - component: {fileID: 3609612829481773194}
   - component: {fileID: 3609612829481773195}
-  - component: {fileID: 7605459402826424969}
+  - component: {fileID: 2219608175606142188}
   m_Layer: 5
   m_Name: Choice button
   m_TagString: Untagged
@@ -258,7 +258,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &7605459402826424969
+--- !u!114 &2219608175606142188
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

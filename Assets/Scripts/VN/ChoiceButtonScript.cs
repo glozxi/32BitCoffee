@@ -5,30 +5,25 @@ using Ink.Runtime;
 
 public class ChoiceButtonScript : MonoBehaviour
 {
-    private Story story;
-    private InkManager inkManager;
-    private Choice thisChoice;
-    public Choice ThisChoice
+    private Button button;
+
+    void Awake()
     {
-        set => thisChoice = value;
+        button = gameObject.GetComponent<Button>();
     }
 
-    private void Start()
+    public void SetTask(InkManager inkManager, Choice choice)
     {
-        inkManager = FindObjectOfType<InkManager>();
-        story = inkManager.ThisStory;
-        Button thisButton = gameObject.GetComponent<Button>();
+        TMP_Text buttonText = button.GetComponentInChildren<TMP_Text>();
+        buttonText.text = choice.text;
 
-        thisButton.onClick.AddListener(TaskOnClick);
-
-        TMP_Text buttonText = thisButton.GetComponentInChildren<TMP_Text>();
-        buttonText.text = thisChoice.text;
+        button.onClick.AddListener(() => 
+        {
+            inkManager.ThisStory.ChooseChoiceIndex(choice.index);
+            inkManager.DisplayNextLine();
+            inkManager.RefreshChoiceView();
+        });
+            
     }
 
-    private void TaskOnClick()
-    {
-        story.ChooseChoiceIndex(thisChoice.index);
-        inkManager.DisplayNextLine();
-        inkManager.RefreshChoiceView();
-    }
 }

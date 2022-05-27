@@ -6,7 +6,7 @@ public class NextButtonScript : MonoBehaviour
     private InkManager inkManager;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         inkManager = FindObjectOfType<InkManager>();
         Button thisButton = gameObject.GetComponent<Button>();

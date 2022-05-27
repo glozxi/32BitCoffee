@@ -32,7 +32,7 @@ public class InkManager : MonoBehaviour
     private const string SPEAKER_NAME = "speaker_name";
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         choiceButtonContainer = FindObjectOfType<VerticalLayoutGroup>();
         choicesLayoutScript = choiceButtonContainer.GetComponent<ChoiceLayoutScript>();
@@ -61,13 +61,16 @@ public class InkManager : MonoBehaviour
     }
 
     public void DisplayChoices()
-    {   if (choiceButtonContainer.GetComponentsInChildren<Button>().Length > 0)
+    {   
+        // Already displayed
+        if (choiceButtonContainer.GetComponentsInChildren<Button>().Length > 0)
         {
             return;
         }
 
         foreach (Choice choice in story.currentChoices)
         {
+            // only tiem choiceLyoutcript needed
             choicesLayoutScript.CreateChoiceButton(choice);
 
         }

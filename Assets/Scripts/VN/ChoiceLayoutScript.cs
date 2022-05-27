@@ -5,12 +5,14 @@ using Ink.Runtime;
 public class ChoiceLayoutScript : MonoBehaviour
 {
     private VerticalLayoutGroup choiceButtonContainer;
+    private InkManager inkManager;
 
     [SerializeField]
     private Button choiceButtonPrefab;
 
-    private void Start()
+    private void Awake()
     {
+        inkManager = FindObjectOfType<InkManager>();
         choiceButtonContainer = gameObject.GetComponent<VerticalLayoutGroup>();
     }
 
@@ -20,8 +22,8 @@ public class ChoiceLayoutScript : MonoBehaviour
         Button button = Instantiate(choiceButtonPrefab);
         button.transform.SetParent(choiceButtonContainer.transform);
 
-        // get the button to contain a choice
-        button.GetComponent<ChoiceButtonScript>().ThisChoice = choice;
+        ChoiceButtonScript buttonScript = button.GetComponent<ChoiceButtonScript>();
+        buttonScript.SetTask(inkManager, choice);
 
         return button;
     }
