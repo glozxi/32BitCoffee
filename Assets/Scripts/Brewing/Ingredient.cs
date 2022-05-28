@@ -1,17 +1,18 @@
 using UnityEngine;
+
 public class Ingredient : DragOutItem
 {
     [SerializeField]
-    private string ingredientType;
+    private string _ingredientType;
     public string IngredientType
     {
-        get => ingredientType;
+        get => _ingredientType;
     }
 
     [SerializeField]
-    private string ingredientName;
+    private string _ingredientName;
     public string IngredientName
     {
-        get => ingredientName;
+        get => _ingredientName;
     }
 }

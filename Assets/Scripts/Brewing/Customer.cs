@@ -4,7 +4,7 @@ using UnityEngine;
 
 internal class Customer
 {
-    internal void serve(List<GameObject> contents, string drinkMade)
+    internal void Serve(List<GameObject> contents, string drinkMade)
     {
         throw new NotImplementedException();
     }

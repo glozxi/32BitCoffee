@@ -3,32 +3,31 @@ using UnityEngine;
 
 public class Cup : MonoBehaviour
 {
-    private string INGREDIENT_TAG = "Ingredient";
-    public List<Ingredient> contents = new List<Ingredient>();
+    private const string IngredientTag = "Ingredient";
+    private const int MaxContent = 4;
+    private const string CupContentTag = "cupContent";
 
-    private string drinkMade;
-    private Customer customer;
-
-    private string CUP_CONTENT_TAG = "cupContent";
+    private List<Ingredient> Contents = new();
 
     [SerializeField]
-    private GameObject cupContent;
-
-    private int MAX_CONTENT = 4;
+    private GameObject _cupContent;
 
     [SerializeField]
-    private Points points;
+    private Points _points;
+
+
+    // private string drinkMade;
+    // private Customer customer;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         GameObject collidedObject = collision.gameObject;
-        if (collidedObject.tag == INGREDIENT_TAG)
+        if (collidedObject.CompareTag(IngredientTag))
         {
             Ingredient ingredient = collidedObject.GetComponent<Ingredient>();
             
             Add(ingredient);
             Destroy(collidedObject);
-            
         }
         
     }
@@ -36,41 +35,34 @@ public class Cup : MonoBehaviour
     // Clears contents and displayed cup contents
     void Clear()
     {
-        foreach (GameObject obj in GameObject.FindGameObjectsWithTag(CUP_CONTENT_TAG))
+        foreach (GameObject obj in GameObject.FindGameObjectsWithTag(CupContentTag))
         {
             Destroy(obj);
         }
-        contents.Clear();
+        Contents.Clear();
     }
 
-    void reward()
+    // Rewards player
+    void Reward()
     {
         // customer.serve(contents, drinkMade);
         // drinkMade = "";
-        points.UpdatePoints(1);
+        _points.UpdatePoints();
         Clear();
     }
 
     // Adds an item to the cup and displays it
     void Add(Ingredient ingredient)
     {
-        /*
-        if (contents.Count + 1 > MAX_CONTENT)
-        {
-            Debug.Log("Cup is now overflowing.");
-            return;
-        }
-        */
-
-        contents.Add(ingredient);
+        Contents.Add(ingredient);
         DisplayContent(ingredient);
-        if (contents.Count == MAX_CONTENT)
+        if (Contents.Count == MaxContent)
         {
-            reward();
+            Reward();
         }
     }
 
-    // Shows what it inside
+    // Display additional cup content
     void DisplayContent(Ingredient ingredient)
     {
         string ingredientType = ingredient.IngredientType;
@@ -84,7 +76,7 @@ public class Cup : MonoBehaviour
                     case "Espresso":
                         InstantiateContent(Color.black);
                         break;
-                    case "Milo":
+                    case "Chocolate":
                         InstantiateContent(Color.blue);
                         break;
                 }
@@ -95,16 +87,17 @@ public class Cup : MonoBehaviour
 
     void InstantiateContent(Color color)
     {
-        SpriteRenderer contentSpriteRenderer = cupContent.gameObject.GetComponent<SpriteRenderer>();
+        SpriteRenderer contentSpriteRenderer = _cupContent.GetComponent<SpriteRenderer>();
         contentSpriteRenderer.color = color;
-        float contentHeight = cupContent.GetComponent<SpriteRenderer>().bounds.size.y;
-        float yPos = //cupContent.transform.position.y 
-            this.transform.position.y - contentHeight
-            + contentHeight * (contents.Count - 1);
-        GameObject newContent = Instantiate(cupContent,
+
+        // Finding position of new content
+        float contentHeight = _cupContent.GetComponent<SpriteRenderer>().bounds.size.y;
+        float yPos =
+            transform.position.y - contentHeight
+            + contentHeight * (Contents.Count - 1);
+        GameObject newContent = Instantiate(_cupContent,
             new Vector3(
-                //cupContent.transform.position.x,
-                this.transform.position.x,
+                transform.position.x,
                 yPos,
                 0),
             Quaternion.identity);
