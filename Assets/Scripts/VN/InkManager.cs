@@ -1,5 +1,4 @@
 using Ink.Runtime;
-using UnityEngine.Events;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -8,6 +7,9 @@ using System.Collections.Generic;
 // Changes dialogue and characters
 public class InkManager : MonoBehaviour
 {
+    public delegate void ChoicesEncountered(List<Choice> choices);
+    public static event ChoicesEncountered Choices;
+
     private Story story;
 
     [SerializeField]
@@ -22,8 +24,7 @@ public class InkManager : MonoBehaviour
     [SerializeField]
     private Animator characterAnimator;
 
-    private VerticalLayoutGroup choiceButtonContainer;
-    private ChoiceLayoutScript choicesLayoutScript;
+    private VerticalLayoutGroup _choiceButtonContainer;
 
     private const string CHARACTER_IMAGE = "character_image";
     private const string SPEAKER_NAME = "speaker_name";
@@ -31,16 +32,30 @@ public class InkManager : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        choiceButtonContainer = FindObjectOfType<VerticalLayoutGroup>();
-        choicesLayoutScript = choiceButtonContainer.GetComponent<ChoiceLayoutScript>();
+        _choiceButtonContainer = FindObjectOfType<VerticalLayoutGroup>();
+
+        ChoiceButtonScript.Choices += OnChoicePicked;
 
         StartStory();
+    }
+
+    private void OnDisable()
+    {
+        ChoiceButtonScript.Choices -= OnChoicePicked;
     }
 
     private void StartStory()
     {
         story = new Story(inkJsonAsset.text);
         DisplayNextLine();
+    }
+
+    // Called when a choice button is clicked
+    private void OnChoicePicked(Choice choice)
+    {
+        story.ChooseChoiceIndex(choice.index);
+        DisplayNextLine();
+        RefreshChoiceView();
     }
 
     public void DisplayNextLine()
@@ -59,34 +74,12 @@ public class InkManager : MonoBehaviour
 
     private void DisplayChoices()
     {   
-        // Choices already displayed
-        if (choiceButtonContainer.GetComponentsInChildren<Button>().Length > 0)
-        {
-            return;
-        }
-
-        foreach (Choice choice in story.currentChoices)
-        {
-            choicesLayoutScript.CreateChoiceButton(ChoicePicked(choice), choice);
-
-        }
-    }
-
-    // What to do for a choice when picked
-    private UnityAction ChoicePicked(Choice choice)
-    {
-        return () =>
-        {
-            story.ChooseChoiceIndex(choice.index);
-            DisplayNextLine();
-            RefreshChoiceView();
-        };
-        
+            Choices?.Invoke(story.currentChoices);
     }
 
     private void RefreshChoiceView()
     {
-        foreach (Button button in choiceButtonContainer.GetComponentsInChildren<Button>())
+        foreach (Button button in _choiceButtonContainer.GetComponentsInChildren<Button>())
         {
             Destroy(button.gameObject);
         }
