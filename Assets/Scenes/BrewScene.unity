@@ -595,9 +595,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2603257469492371424, guid: 9c99e5e0f2a7e7d46aed0d34e6f81301, type: 3}
+      propertyPath: m_SortingOrder
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4662508751023429028, guid: 9c99e5e0f2a7e7d46aed0d34e6f81301, type: 3}
       propertyPath: m_Name
       value: LAMarzoccoStradaAV
+      objectReference: {fileID: 0}
+    - target: {fileID: 5812943458484669977, guid: 9c99e5e0f2a7e7d46aed0d34e6f81301, type: 3}
+      propertyPath: m_SortingOrder
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6409560432180463160, guid: 9c99e5e0f2a7e7d46aed0d34e6f81301, type: 3}
       propertyPath: m_RootOrder

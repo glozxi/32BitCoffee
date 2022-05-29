@@ -1,59 +1,55 @@
-TODO // Just for testing, can change
-Hey, what's going on? #speaker_name: ???
-It's dark. #speaker_name: You #character_image: default
 -> start
 === start ===
-*   [Look left] -> option
-*   [Look right] -> option
-*   -> end_option
-= option
-Well, {there's nothing there| nothing there either}.
--> start
-= end_option
-Wake up! From now on, you work for me!
-Wait wait wait what?
-Who are you?
-I'm Xiao Mei, your new boss.
-You're gonna work in my cafe.
-A cafe? I don't remember anything about a cafe.
-Come to think of it, I can't remember anything at all.
-*   [Help, I think I have amnesia.]
-*   [Ahh!]
--   Huh, this one is certainly emotional.
-The bottom-line is this.
-You're the barista. 
-You'll have to make coffee to serve to the customers.
-Coffee.
-When I hear that word 'coffee', my mind stops racing.
-Barista, huh.
-That seems about right.
--> start_questions
+-> Day_1_pt_1
 
-=== start_questions ===
-Any {|more} questions?
-*   [Where am I? And when?]
--> describe_place
-*   [Who are you? ]
--> describe_boss
-*   [Who am I? ]
--> describe_player
+=== Day_1_pt_1 ===
+// #Bgm: bgm.mp3
+... #Char:None
+Ah.... 
+I can feel it.
+My consciousness rising from the darkness yet again.
+How long has it been since I last woke from my slumber...?
+in this meaningless darkness, I cannot feel or see a single thing
+Yet, I can sense someone calling out for me...
+Who are you? And what do yo- #Char:You 
+\*BZZT* #Char:SYSTEM // #Trans:Flash //#Fx: fx.mp3
+Bright lights flood my vision. #Char:None
+As if, someone, somewhere had just switched on the lights.
+Rather, it felt more like as if I had suddenly gained awareness of the concept of light, and the ability to perceive it.
+Where am I?
+Unfamiliar walls, unfamiliar smell, unfamiliar sounds.
+No sorry, scratch that.
+This smell.... anyone would recognize this smell.
+The sweet aroma of freshly ground coffee, slightly burnt, but nevertheless fruity.
+It is probably Abrica from Ethiopia that has a medium roast.
+I am not a morning person, but I'd do anything for a cup of latte right now. Like a moth to a flame.
+Recovery from system crash at 33% #Char:SYSTEM //#Fx:Beep.mp3
+What was that? System crash? #Char:None
+I see. I must have fallen asleep in front of my computer or something...
+Computer...computer....
+Eh? There isn't a computer in front of me.
+I must be hearing things...
+Filesystem corruption at 90%.　#Char:SYSTEM
+Uh... what!? #Char:None
+No, no, no, no, no... impossible... wait... wait...
+That sounded like it came directly from inside my head.
+Hahaha.... it can't be right. I must have been wearing a earpiece. That's right! An IEM!
+HOMUNCULI system activated. #Char:SYSTEM //#Fx:Powering up sound
+AHHHHHHHHHHH! #Char:You
+Eek!!!! #Char:??? #Pos:Left //#Img:XiaoMei //Expression:Shocked //#Animation:
+Before me stood a brown haired young girl, eyes wide open, staring straight into my eyes.
+She seems to be in a state of shock.
+In her hands, held a food tray of sorts, raised high above her head as if... as if....
+Right... as if
+SHE WAS GOING TO HIT ME!!!!
+-> Trial
+
+=== Trial ===
+\- This is a test for milestone one, as such the full beginning is not added \-
+Here, attempt to switch to brew. #Scene:Brew
+
+*   [Go to start] -> start
 *   -> END
-->start_questions
-
-= describe_place
-You're in Newgapore, the city of cool stuff.
-To be specific, you're in this cafe in Newgapore.
-For the date, it's 1 June 2099.
--> start_questions
-
-= describe_boss
-I own this cafe.
--> start_questions
-
-= describe_player
-You are a robot.
-They didn't program that into you?
-Hold up, I'm a robot?
--> start_questions
+-   Huh, this one is certainly emotional.
 
 -> END

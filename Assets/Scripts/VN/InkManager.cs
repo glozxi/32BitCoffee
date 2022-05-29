@@ -21,13 +21,31 @@ public class InkManager : MonoBehaviour
     [SerializeField]
     private TMP_Text nameTextField;
 
-    [SerializeField]
-    private Animator characterAnimator;
+    // [SerializeField]
+    // private Animator characterAnimator;
+
+    private Image PosL;
+    private Image PosM;
+    private Image PosR;
+
+    private Image currentlyOn;
 
     private VerticalLayoutGroup _choiceButtonContainer;
 
-    private const string CHARACTER_IMAGE = "character_image";
-    private const string SPEAKER_NAME = "speaker_name";
+    //For Tags 
+    // Needs to have a better way to do this. If not this means I need to keep track of POS, before i can load IMG, and expression.
+    // And animation should be applied to Expression
+    private const string POSITION = "Pos"; // INK rule: Always start with POS, IMG, EXPR 
+    private const string CHARACTER_IMAGE = "Img";
+    private const string CHARACTER_EXPRESSION = "Expression";
+
+    private const string SPEAKER_NAME = "Char";
+    private const string BACKGROUND = "Bg";
+    private const string SOUND_FX = "Fx";
+
+    // private const string EFFECTS = "SpecialFx"; //Also related to Camera
+
+    //private const 
 
     // Start is called before the first frame update
     void Awake()
@@ -89,17 +107,35 @@ public class InkManager : MonoBehaviour
     {
         foreach (string tag in currentTags)
         {
+            
             string[] splitTag = tag.Split(':');
             string tagKey = splitTag[0].Trim();
             string tagValue = splitTag[1].Trim();
 
+            Debug.Log("TAg is "+ splitTag);
+
             switch (tagKey)
             {
                 case SPEAKER_NAME:
-                    nameTextField.text = tagValue;
+                    if (tagValue == "None")
+                    {
+                        nameTextField.text = "";
+                        nameTextField.transform.parent.gameObject.GetComponent<Image>().enabled = false;
+                        // nameTextField.GetComponent<Canvas>().enabled = false;
+                    } else
+                    {
+                        nameTextField.transform.parent.gameObject.GetComponent<Image>().enabled = true;
+                        nameTextField.text = tagValue;
+                    }
                     break;
+
+        
                 case CHARACTER_IMAGE:
-                    characterAnimator.Play(tagValue);
+                    // characterAnimator.Play(tagValue); //Removed maybe used in future idk
+                    break;
+
+                case SOUND_FX:
+                    // audio.PlayOneShot((AudioClip)Resources.Load("music.mp3"));
                     break;
 
             }
