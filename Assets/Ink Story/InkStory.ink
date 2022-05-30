@@ -1,4 +1,4 @@
--> Day_1_pt_1_1
+->start
 === start ===
 -> Day_1_pt_1_1
 === Day_1_pt_1_1 ===
@@ -80,7 +80,7 @@ Haahhhhh....!#Char:Sherlyn
 Does this mean that it's fixed?#Char:Xiao Mei 
 Yep. Three full days girl... three!#Char:Sherlyn 
 She raises her arms and stretches...#Char:None 
-Like a cat stretching under the sun#Char:None 
+Like a cat stretching under the sun.#Char:None 
 Time to clean up this area then...#Char:Sherlyn #Sprite:Clear 
 Actually, did they just say fixed? Is she some kind of doctor or something?#Char:None 
 Wait then why am I in a cafe?#Char:None 
@@ -133,6 +133,104 @@ I said so. This AI is acting weirdly.#Char:Xiao Mei
 What what!?!? I- I'm a robot? Since when?#Char:None 
 AI?#Char:None 
 Haha.... Let me explain everything. #Char:Xiao Mei 
+-> Day_1_pt_1_1_ch 
+
+=== Day_1_pt_1_1_ch ===
+Let's see...#Char:You 
+* [Where am I?] -> Day_1_pt_1_1_WAI
+* [Who are you?] -> Day_1_pt_1_1_WAY
+* [Previous Personality] -> Day_1_pt_1_1_PP
+* [I know everything] -> Day_1_pt_1_1_SKIP
+* -> Day_1_pt_1_1_cnt
+
+=== Day_1_pt_1_1_WAI ===
+Where am I?#Char:You 
+On the counter top?#Char:Xiao Mei #Sprite:Xiao Mei #Pos:LL #Expr:Confused 
+Aside from that?#Char:You 
+Hummingbird Cafe.#Char:Xiao Mei #Sprite:Xiao Mei #Pos:LL #Expr:Normal 
+Ah right it doesn't have a GPS chip.#Char:Sherlyn #Sprite:Sherlyn #Pos:RR #Expr:Normal 
+We are located just beside the largest AI research and robot manufacturing company, OMEGA.#Char:Sherlyn 
+Quite a number of customers who works there come here for coffee.#Char:Sherlyn 
+And also students from the nearby University and businessmen who come here for confrences.#Char:Sherlyn 
+Sometimes I am just glad that we are located in a business park.#Char:Sherlyn 
+But sometimes it can get pretty crowded, so we need a helping hand.#Char:Sherlyn 
+Helping hand. Get it?#Char:Sherlyn #Sprite:Sherlyn #Pos:RR #Expr:Smirk 
+I can't help but to feel like she ridiculing me.#Char:None 
+-> Day_1_pt_1_1_ch
+
+=== Day_1_pt_1_1_WAY ===
+It's kinda weird saying this now and you have probably already registered our names in your database already.#Char:Sherlyn #Sprite:Sherlyn #Pos:RR #Expr:Normal 
+I'm Sheryln and she is Xiao Mei.#Char:Sherlyn 
+Technically we are sisters, though not related by blood.#Char:Xiao Mei 
+Dadd- #Char:Xiao Mei 
+She pauses, before giving a shooting a quick glance at Sherlyn.#Char:None #Sprite:Sherlyn #Pos:RR #Expr:Sad 
+At the corner of my eyes, I can see Sheryln bitting her lips and clenching her first slighty.#Char:None 
+My dad, the owner of the Cafe, adopted her.#Char:Xiao Mei 
+Ah... The owner... isn't in today.#Char:Xiao Mei 
+He is hospitalized after a car accident.#Char:Xiao Mei #Sprite:XiaoMei #Pos:LL #Expr:Sad 
+It seems like a difficult topic for the two of them to talk about.#Char:None 
+Well, to sum it up.#Char:Xiao Mei 
+The hospitalization fees were pretty expensive, and we are now short of hands.#Char:Xiao Mei 
+No one seemed to want to take up this job, and we can't replace Master.#Char:Xiao Mei 
+Why not? The two of you seem capable enough.#Char:You 
+Putting aside Xiao Mei's coffee, I go to school so...#Char:Sherlyn 
+Hey hey. What do you mean by that!?#Char:Xiao Mei 
+Sherlyn sighs.#Char:None 
+For a young girl of her age, she sure does sigh a lot.#Char:None 
+You'll get wrinkles. It's bad for you.#Char:None 
+Then what's the difference between a Latte and a Cappuccino?#Char:Sherlyn 
+T...thats......#Char:Xiao Mei 
+Xiao Mei panicks.#Char:None 
+You could literally see the hair on her skin stand on its ends.#Char:None 
+... One has art and the other doesnt?#Char:Xiao Mei 
+Seriously...?#Char:You 
+Yep. That confirms it. Please stay away from the coffee maker please and let the robot do it's job.#Char:Sherlyn 
+-> Day_1_pt_1_1_ch
+
+=== Day_1_pt_1_1_PP ===
+You mentioned previous personality. What's up with that?#Char:You 
+Uhh... I'd like to know too.#Char:Sherlyn 
+I've never heard an AI suddenly getting a different personality without a full cold reset.#Char:Sherlyn 
+All of a sudden, her facial expression became serious#Char:None #Sprite:XiaoMei #Pos:LL #Expr:Normal 
+She lightly graps her chin, and seemingly gets lost in thought.#Char:None 
+Copied over? But... it was completely off the network...#Char:Sherlyn #Sprite:Sherlyn #Pos:RR #Expr:Thinking 
+A bug? Can something as sophiscated as this have been a bug...?#Char:Sherlyn 
+Ah! Right! What about a malware attack? Sounds like something MAGI would do....#Char:Sherlyn 
+Somehow I have a feeling that she is lost in deep thoughts.#Char:None 
+Earth to Sherlyn! Earth to Sherlyn! Do you respond?#Char:You 
+Ah, there she goes again....#Char:Xiao Mei 
+What if it was the act of the FBI or... #Char:Sherlyn 
+Sherlyn! Sherlyn!!#Char:Xiao Mei 
+Xiao Mei shakes our dear mrs lost in thought vigiously.#Char:None #Sprite:XiaoMei #Pos:LL #Expr:Unbelief 
+W-Whu- wha?#Char:Sherlyn 
+Sherlyn, you've done it again.#Char:Xiao Mei 
+Ah....o-oops....#Char:Sherlyn 
+A-a-anyway what were we talking about again?#Char:Sherlyn #Sprite:Sherlyn #Pos:RR #Expr:Flustered 
+It's previous personality.#Char:Xiao Mei #Sprite:XiaoMei #Pos:LL #Expr:Wry 
+Ah right....#Char:Sherlyn #Sprite:Sherlyn #Pos:RR #Expr:Flustered 
+Yeah, anyway, previously you were more like a normal robot.#Char:Xiao Mei 
+
+Like. You. Speak. Like. This.#Char:Xiao Mei 
+Eh? Huh? What?#Char:None #Sprite:XiaoMei #Pos:LL #Expr:Normal 
+I. Speak. Like. This?#Char:You #Sprite:Sherlyn #Pos:RR #Expr:Normal 
+\* pfft \*#Char:Xiao Mei 
+Gyahahahaha!#Char:Xiao Mei 
+Sorry, I was just teasing you.#Char:Xiao Mei 
+Hahh..... I see....#Char:You #Sprite:XiaoMei #Pos:LL #Expr:Laugh 
+I..... I'll get back at you one day.#Char:None 
+Well, she isn't really wrong.#Char:Sherlyn 
+You were indeed more like a normal robot. #Char:Sherlyn 
+Never speaking to anyone, only taking orders, and would have definitely#Char:Sherlyn 
+definitely never thought that you were a human.#Char:Sherlyn 
+I see.#Char:You 
+It would seem like my previous personality was a pretty boring one.#Char:None 
+Rather, more like a normal robot than who I am now.#Char:None 
+-> Day_1_pt_1_1_ch
+
+=== Day_1_pt_1_1_SKIP ===
+-> Day_1_pt_1_1_cnt
+
+=== Day_1_pt_1_1_cnt ===
 #Char:None #Sprite:CLEAR #SpecialFx:Transition 
 #Sprite:Xiao Mei  #Pos:RR #Expr:Normal 
 #Sprite:Sherlyn #Pos:RR #Expr:Normal 
@@ -209,35 +307,38 @@ What is it?#Char:You
 The Analyze feature. I don't actually remember installing this feature inside, but I didn't want to brick you so I didn't uninstall it.#Char:Sherlyn 
 Brick me?#Char:You 
 Anyway. I'll try it.#Char:You 
-* [Start brewing]
 -> Tutorial
 
 === Tutorial ===
-VAR Outcome = 0
+VAR Outcome = ""
+VAR Drink = "Latte"
 //Go to brew
 //Comeback
 #Sprite:Clear 
 Soo, you done staring at me?#Char:Sherlyn #Sprite:Sherlyn #Pos:MM #Expr:Normal #Bgm:Some_Bgm.mp3 
-Here you go, <DRINK>#Char:You #Sprite:FX: Serve Cup #Fx:Serve.mp3 
-{ 
+Here you go, {Drink}#Char:You #Sprite:FX: Serve Cup #Fx:Serve.mp3 
+"{ 
 - Outcome == 1 : -> Tutorial_Pos
 - Outcome == 0 : -> Tutorial_Nor
 - Outcome == -1 : -> Tutorial_Bad
-}
+}"
+
+
+
 === Tutorial_Pos ===
 #Sprite:Clear 
-Woah... A <DRINK> eh...#Char:Sherlyn #Sprite:Sherlyn #Pos:MM #Expr:Normal 
+Woah... A {Drink} eh...#Char:Sherlyn #Sprite:Sherlyn #Pos:MM #Expr:Normal 
 She picks up the cup.#Char:None 
-And takes a mouthful of <DRINK>.#Char:None #Fx:Sip.mp3 
+And takes a mouthful of {Drink}.#Char:None #Fx:Sip.mp3 
 Her eyes light up, as if sparkling#Char:None #Sprite:Sherlyn #Pos:MM #Expr:Happy 
 Mmmm... Delicious!#Char:Sherlyn 
 Yup, you passed.#Char:Sherlyn 
-<DRINK> is nice once in a while eh.#Char:Sherlyn 
+{Drink} is nice once in a while eh.#Char:Sherlyn 
 ->Day_1_pt_1_2 
 
 === Tutorial_Nor ===
 #Sprite:Clear 
-Looks like a standard <DRINK>#Char:Sherlyn #Sprite:Sherlyn #Pos:MM #Expr:Normal 
+Looks like a standard {Drink}#Char:Sherlyn #Sprite:Sherlyn #Pos:MM #Expr:Normal 
 She picks up the cup.#Char:None 
 And takes a sip#Char:None #Fx:Sip.mp3 
 It taste like one too.#Char:Sherlyn #Sprite:Sherlyn #Pos:MM #Expr:Happy 
@@ -314,5 +415,4 @@ Yes! Xiao Mei!#Char:You
 
 //Note: Once you begin serving Jayden coffee, the minigame will continue and not stop.
 === Day_1_pt_1_3 ===
-* [End of current part]
 -> END
