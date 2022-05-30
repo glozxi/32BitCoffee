@@ -317,6 +317,8 @@ VAR Drink = "Latte"
 #Sprite:Clear 
 Soo, you done staring at me?#Char:Sherlyn #Sprite:Sherlyn #Pos:MM #Expr:Normal #Bgm:Some_Bgm.mp3 
 Here you go, {Drink}#Char:You #Sprite:FX: Serve Cup #Fx:Serve.mp3 
+END OF STORY
+->END
 "{ 
 - Outcome == 1 : -> Tutorial_Pos
 - Outcome == 0 : -> Tutorial_Nor
