@@ -8,20 +8,20 @@ public class ChoiceButtonScript : MonoBehaviour
     public delegate void ChoicePicked(Choice choice);
     public static event ChoicePicked Choices;
 
-    private Button button;
+    private Button _button;
 
     void Awake()
     {
-        button = gameObject.GetComponent<Button>();
+        _button = gameObject.GetComponent<Button>();
         ChoiceLayoutScript.ButtonMade += SetButton;
     }
 
     private void SetButton(Choice choice)
     {
-        TMP_Text buttonText = button.GetComponentInChildren<TMP_Text>();
+        TMP_Text buttonText = _button.GetComponentInChildren<TMP_Text>();
         buttonText.text = choice.text;
 
-        button.onClick.AddListener(() => Choices?.Invoke(choice));
+        _button.onClick.AddListener(() => Choices?.Invoke(choice));
 
         ChoiceLayoutScript.ButtonMade -= SetButton;
     }

@@ -7,7 +7,7 @@ public class Cup : MonoBehaviour
     private const int MaxContent = 4;
     private const string CupContentTag = "cupContent";
 
-    private List<Ingredient> Contents = new();
+    private List<Ingredient> _contents = new();
 
     [SerializeField]
     private GameObject _cupContent;
@@ -33,17 +33,17 @@ public class Cup : MonoBehaviour
     }
 
     // Clears contents and displayed cup contents
-    void Clear()
+    private void Clear()
     {
         foreach (GameObject obj in GameObject.FindGameObjectsWithTag(CupContentTag))
         {
             Destroy(obj);
         }
-        Contents.Clear();
+        _contents.Clear();
     }
 
     // Rewards player
-    void Reward()
+    private void Reward()
     {
         // customer.serve(contents, drinkMade);
         // drinkMade = "";
@@ -52,18 +52,18 @@ public class Cup : MonoBehaviour
     }
 
     // Adds an item to the cup and displays it
-    void Add(Ingredient ingredient)
+    private void Add(Ingredient ingredient)
     {
-        Contents.Add(ingredient);
+        _contents.Add(ingredient);
         DisplayContent(ingredient);
-        if (Contents.Count == MaxContent)
+        if (_contents.Count == MaxContent)
         {
             Reward();
         }
     }
 
     // Display additional cup content
-    void DisplayContent(Ingredient ingredient)
+    private void DisplayContent(Ingredient ingredient)
     {
         string ingredientType = ingredient.IngredientType;
         string ingredientName = ingredient.IngredientName;
@@ -85,7 +85,7 @@ public class Cup : MonoBehaviour
         
     }
 
-    void InstantiateContent(Color color)
+    private void InstantiateContent(Color color)
     {
         SpriteRenderer contentSpriteRenderer = _cupContent.GetComponent<SpriteRenderer>();
         contentSpriteRenderer.color = color;
@@ -94,7 +94,7 @@ public class Cup : MonoBehaviour
         float contentHeight = _cupContent.GetComponent<SpriteRenderer>().bounds.size.y;
         float yPos =
             transform.position.y - contentHeight
-            + contentHeight * (Contents.Count - 1);
+            + contentHeight * (_contents.Count - 1);
         GameObject newContent = Instantiate(_cupContent,
             new Vector3(
                 transform.position.x,

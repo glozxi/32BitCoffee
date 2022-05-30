@@ -8,14 +8,14 @@ public class ChoiceLayoutScript : MonoBehaviour
     public delegate void ChoiceButtonMade(Choice choice);
     public static event ChoiceButtonMade ButtonMade;
 
-    private VerticalLayoutGroup choiceButtonContainer;
+    private VerticalLayoutGroup _choiceButtonContainer;
 
     [SerializeField]
-    private Button choiceButtonPrefab;
+    private Button _choiceButtonPrefab;
 
     private void Awake()
     {
-        choiceButtonContainer = gameObject.GetComponent<VerticalLayoutGroup>();
+        _choiceButtonContainer = gameObject.GetComponent<VerticalLayoutGroup>();
         InkManager.Choices += OnChoices;
     }
 
@@ -27,7 +27,7 @@ public class ChoiceLayoutScript : MonoBehaviour
     private void OnChoices(List<Choice> choices)
     {
         // Choices already displayed
-        if (choiceButtonContainer.GetComponentsInChildren<Button>().Length > 0)
+        if (_choiceButtonContainer.GetComponentsInChildren<Button>().Length > 0)
         {
             return;
         }
@@ -39,10 +39,10 @@ public class ChoiceLayoutScript : MonoBehaviour
     }
 
     // Creates new choice button in layout
-    public void CreateChoiceButton(Choice choice)
+    private void CreateChoiceButton(Choice choice)
     {
-        Button button = Instantiate(choiceButtonPrefab);
-        button.transform.SetParent(choiceButtonContainer.transform);
+        Button button = Instantiate(_choiceButtonPrefab);
+        button.transform.SetParent(_choiceButtonContainer.transform);
 
         ButtonMade?.Invoke(choice);
     }

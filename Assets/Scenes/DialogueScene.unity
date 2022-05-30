@@ -161,8 +161,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 5.0301, y: 153.64}
-  m_SizeDelta: {x: 1114.0748, y: 254.72}
+  m_AnchoredPosition: {x: 14.843, y: 122.0204}
+  m_SizeDelta: {x: 1133.7006, y: 191.4809}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &162552148
 MonoBehaviour:
@@ -439,8 +439,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: -139, y: 191}
-  m_SizeDelta: {x: 800, y: 91.71649}
+  m_AnchoredPosition: {x: 8.82, y: 88.381}
+  m_SizeDelta: {x: 1095.7, y: 176.7621}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &343843916
 GameObject:
@@ -477,7 +477,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 520.66504, y: -90.985}
+  m_AnchoredPosition: {x: 520.67, y: -59.74}
   m_SizeDelta: {x: 72, y: 72}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &343843918
@@ -765,7 +765,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: -444.60257, y: 325.2349}
+  m_AnchoredPosition: {x: -444.61, y: 260.32}
   m_SizeDelta: {x: 214.8016, y: 54.2268}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &423929559
@@ -1180,9 +1180,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 831b4154cff98b547877e39898dd2d11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inkJsonAsset: {fileID: 4900000, guid: 4ffcd7b64fec46e438850f030b792045, type: 3}
-  dialogueTextField: {fileID: 259428634}
-  nameTextField: {fileID: 406205186}
+  _inkJsonAsset: {fileID: 4900000, guid: 4ffcd7b64fec46e438850f030b792045, type: 3}
+  _dialogueTextField: {fileID: 259428634}
+  _nameTextField: {fileID: 406205186}
 --- !u!4 &1716854190
 Transform:
   m_ObjectHideFlags: 0
@@ -1578,11 +1578,11 @@ RectTransform:
   m_Father: {fileID: 206109481}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.50625, y: 0.564}
-  m_AnchorMax: {x: 0.50625, y: 0.564}
-  m_AnchoredPosition: {x: -1.3210983, y: 43.413193}
-  m_SizeDelta: {x: 636.137, y: 461.5002}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 7.1473866, y: -40}
+  m_SizeDelta: {x: 632.9867, y: 357.24}
+  m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &2009549056
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1621,4 +1621,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6108fe99e6b564745a1c6d2373599020, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  choiceButtonPrefab: {fileID: 3609612829481773195, guid: dd0fbc576c118cd4d8727d368f477f5c, type: 3}
+  _choiceButtonPrefab: {fileID: 3609612829481773195, guid: dd0fbc576c118cd4d8727d368f477f5c, type: 3}

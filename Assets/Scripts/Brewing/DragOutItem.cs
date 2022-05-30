@@ -6,18 +6,18 @@ public abstract class DragOutItem : MonoBehaviour
     [SerializeField]
     private Sprite _newSprite;
 
-    public void OnMouseDown()
+    private void OnMouseDown()
     {
         GameObject clone = Instantiate(gameObject, transform.position, transform.rotation);
         clone.name = this.name;
         GetComponent<SpriteRenderer>().sprite = _newSprite;
         GetComponent<SpriteRenderer>().sortingOrder = 2;
     }
-    public void OnMouseUp()
+    private void OnMouseUp()
     {
         Destroy(gameObject);
     }
-    public void OnMouseDrag()
+    private void OnMouseDrag()
     {
         Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
         transform.Translate(mousePosition);

@@ -10,49 +10,54 @@ public class InkManager : MonoBehaviour
     public delegate void ChoicesEncountered(List<Choice> choices);
     public static event ChoicesEncountered Choices;
 
-    private Story story;
+    private Story _story;
 
     [SerializeField]
-    private TextAsset inkJsonAsset;
+    private TextAsset _inkJsonAsset;
 
     [SerializeField]
-    private TMP_Text dialogueTextField;
+    private TMP_Text _dialogueTextField;
 
     [SerializeField]
-    private TMP_Text nameTextField;
+    private TMP_Text _nameTextField;
 
     // [SerializeField]
     // private Animator characterAnimator;
 
+    // TO USE IN FUTURE
+    /*
     private Image PosL;
     private Image PosM;
     private Image PosR;
 
     private Image currentlyOn;
+    */
 
     private VerticalLayoutGroup _choiceButtonContainer;
 
     //For Tags 
     // Needs to have a better way to do this. If not this means I need to keep track of POS, before i can load IMG, and expression.
     // And animation should be applied to Expression
-    private const string POSITION = "Pos"; // INK rule: Always start with POS, IMG, EXPR 
-    private const string CHARACTER_IMAGE = "Img";
-    private const string CHARACTER_EXPRESSION = "Expression";
+    // TO USE IN FUTURE
+    /*
+    private const string Position = "Pos"; // INK rule: Always start with POS, IMG, EXPR 
+    private const string CharacterImage = "Img";
+    private const string CharacterExpression = "Expression";
 
-    private const string SPEAKER_NAME = "Char";
-    private const string BACKGROUND = "Bg";
-    private const string SOUND_FX = "Fx";
+    private const string Background = "Bg";
+    private const string SoundFx = "Fx";
+    */
+
+    private const string SpeakerName = "Char";
 
     // private const string EFFECTS = "SpecialFx"; //Also related to Camera
 
-    //private const 
-
-    // Start is called before the first frame update
     void Awake()
     {
         _choiceButtonContainer = FindObjectOfType<VerticalLayoutGroup>();
 
         ChoiceButtonScript.Choices += OnChoicePicked;
+        NextButtonScript.Next += OnNext;
 
         StartStory();
     }
@@ -60,31 +65,38 @@ public class InkManager : MonoBehaviour
     private void OnDisable()
     {
         ChoiceButtonScript.Choices -= OnChoicePicked;
+        NextButtonScript.Next -= OnNext;
     }
 
     private void StartStory()
     {
-        story = new Story(inkJsonAsset.text);
+        _story = new Story(_inkJsonAsset.text);
         DisplayNextLine();
     }
 
     // Called when a choice button is clicked
     private void OnChoicePicked(Choice choice)
     {
-        story.ChooseChoiceIndex(choice.index);
+        _story.ChooseChoiceIndex(choice.index);
         DisplayNextLine();
         RefreshChoiceView();
     }
 
-    public void DisplayNextLine()
+    // Called when next button clicked
+    private void OnNext()
     {
-        if (story.canContinue)
+        DisplayNextLine();
+    }
+
+    private void DisplayNextLine()
+    {
+        if (_story.canContinue)
         {
-            string text = story.Continue();
-            dialogueTextField.text = text.Trim();
-            HandleTags(story.currentTags);
+            string text = _story.Continue();
+            _dialogueTextField.text = text.Trim();
+            HandleTags(_story.currentTags);
         }
-        else if (story.currentChoices.Count > 0)
+        else if (_story.currentChoices.Count > 0)
         {
             DisplayChoices();
         }
@@ -92,7 +104,7 @@ public class InkManager : MonoBehaviour
 
     private void DisplayChoices()
     {   
-            Choices?.Invoke(story.currentChoices);
+            Choices?.Invoke(_story.currentChoices);
     }
 
     private void RefreshChoiceView()
@@ -112,31 +124,34 @@ public class InkManager : MonoBehaviour
             string tagKey = splitTag[0].Trim();
             string tagValue = splitTag[1].Trim();
 
-            Debug.Log("TAg is "+ splitTag);
+            // Debug.Log("Tag is "+ splitTag);
 
             switch (tagKey)
             {
-                case SPEAKER_NAME:
+                case SpeakerName:
                     if (tagValue == "None")
                     {
-                        nameTextField.text = "";
-                        nameTextField.transform.parent.gameObject.GetComponent<Image>().enabled = false;
+                        _nameTextField.text = "";
+                        _nameTextField.transform.parent.gameObject.GetComponent<Image>().enabled = false;
                         // nameTextField.GetComponent<Canvas>().enabled = false;
                     } else
                     {
-                        nameTextField.transform.parent.gameObject.GetComponent<Image>().enabled = true;
-                        nameTextField.text = tagValue;
+                        _nameTextField.transform.parent.gameObject.GetComponent<Image>().enabled = true;
+                        _nameTextField.text = tagValue;
                     }
                     break;
 
         
-                case CHARACTER_IMAGE:
+                // TO USE IN FUTURE
+                /*
+                case CharacterImage:
                     // characterAnimator.Play(tagValue); //Removed maybe used in future idk
                     break;
 
-                case SOUND_FX:
+                case SoundFx:
                     // audio.PlayOneShot((AudioClip)Resources.Load("music.mp3"));
                     break;
+                */
 
             }
         }
