@@ -310,7 +310,7 @@ Anyway. I'll try it.#Char:You
 -> Tutorial
 
 === Tutorial ===
-VAR Outcome = ""
+VAR Outcome = 0
 VAR Drink = "Latte"
 //Go to brew
 //Comeback

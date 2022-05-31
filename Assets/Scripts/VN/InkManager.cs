@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System.Collections.Generic;
+using System;
 
 // Changes dialogue and characters
 public class InkManager : MonoBehaviour
@@ -11,6 +12,7 @@ public class InkManager : MonoBehaviour
     public static event ChoicesEncountered Choices;
 
     private Story _story;
+    private static string _loadedState;
 
     [SerializeField]
     private TextAsset _inkJsonAsset;
@@ -54,11 +56,11 @@ public class InkManager : MonoBehaviour
 
     void Awake()
     {
-        _choiceButtonContainer = FindObjectOfType<VerticalLayoutGroup>();
+       _choiceButtonContainer = FindObjectOfType<VerticalLayoutGroup>();
 
         ChoiceButtonScript.Choices += OnChoicePicked;
         NextButtonScript.Next += OnNext;
-
+        
         StartStory();
     }
 
@@ -71,7 +73,15 @@ public class InkManager : MonoBehaviour
     private void StartStory()
     {
         _story = new Story(_inkJsonAsset.text);
+
+        if (!string.IsNullOrEmpty(_loadedState))
+        {
+            _story?.state?.LoadJson(_loadedState);
+        }
+
         DisplayNextLine();
+        
+        
     }
 
     // Called when a choice button is clicked
@@ -155,5 +165,15 @@ public class InkManager : MonoBehaviour
 
             }
         }
+    }
+
+    public string GetStoryState()
+    {
+        return _story.state.ToJson();
+    }
+
+    internal void LoadState(string inkStoryState)
+    {
+        _loadedState = inkStoryState;
     }
 }
