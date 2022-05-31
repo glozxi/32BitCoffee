@@ -99,9 +99,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ada75b95f2d77904a81c09697181c513, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  contents: []
-  cupContent: {fileID: 1187471152476066636, guid: d78fb5de9ef9ace488e0e3fb450b006f, type: 3}
-  points: {fileID: 0}
+  _cupContent: {fileID: 1187471152476066636, guid: d78fb5de9ef9ace488e0e3fb450b006f, type: 3}
+  _points: {fileID: 0}
+  _order: {fileID: 0}
 --- !u!61 &8208270137533798455
 BoxCollider2D:
   m_ObjectHideFlags: 0

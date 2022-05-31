@@ -7,14 +7,13 @@ public class Cup : MonoBehaviour
     private const int MaxContent = 4;
     private const string CupContentTag = "cupContent";
 
-    private List<Ingredient> _contents = new();
+    private List<Recipes.Ingredients> _contents = new();
 
     [SerializeField]
     private GameObject _cupContent;
 
     [SerializeField]
-    private Points _points;
-
+    private Order _order;
 
     // private string drinkMade;
     // private Customer customer;
@@ -42,19 +41,10 @@ public class Cup : MonoBehaviour
         _contents.Clear();
     }
 
-    // Rewards player
-    private void Reward()
-    {
-        // customer.serve(contents, drinkMade);
-        // drinkMade = "";
-        _points.UpdatePoints();
-        Clear();
-    }
-
     // Adds an item to the cup and displays it
     private void Add(Ingredient ingredient)
     {
-        _contents.Add(ingredient);
+        _contents.Add(ingredient.IngredientType);
         DisplayContent(ingredient);
         if (_contents.Count == MaxContent)
         {
@@ -62,25 +52,29 @@ public class Cup : MonoBehaviour
         }
     }
 
+    // Rewards player
+    private void Reward()
+    {
+        // customer.serve(contents, drinkMade);
+        // drinkMade = "";
+        _order.MatchDrink(_contents);
+        
+        Clear();
+    }
+
     // Display additional cup content
     private void DisplayContent(Ingredient ingredient)
     {
-        string ingredientType = ingredient.IngredientType;
-        string ingredientName = ingredient.IngredientName;
-        // Better to switch to enums
+        Recipes.Ingredients ingredientType = ingredient.IngredientType;
         switch (ingredientType)
         {
-            case "Base":
-                switch (ingredientName)
-                {
-                    case "Espresso":
-                        InstantiateContent(Color.black);
-                        break;
-                    case "Chocolate":
-                        InstantiateContent(Color.blue);
-                        break;
-                }
+            case Recipes.Ingredients.Espresso:
+                InstantiateContent(Color.black);
                 break;
+            case Recipes.Ingredients.Chocolate:
+                InstantiateContent(Color.blue);
+                break;
+
         }
         
     }
