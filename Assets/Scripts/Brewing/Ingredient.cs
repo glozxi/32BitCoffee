@@ -9,4 +9,12 @@ public class Ingredient : DragOutItem
         get => _ingredientType;
     }
 
+    [SerializeField]
+    private Color32 _contentColor;
+    public Color32 ContentColor
+    {
+        get => _contentColor;
+    }
+
+
 }

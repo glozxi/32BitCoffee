@@ -65,24 +65,14 @@ public class Cup : DragItem
     // Display additional cup content
     private void DisplayContent(Ingredient ingredient)
     {
-        Recipes.Ingredients ingredientType = ingredient.IngredientType;
-        switch (ingredientType)
-        {
-            case Recipes.Ingredients.Espresso:
-                InstantiateContent(Color.black);
-                break;
-            case Recipes.Ingredients.Chocolate:
-                InstantiateContent(Color.blue);
-                break;
+        InstantiateContent(ingredient);
 
-        }
-        
     }
 
-    private void InstantiateContent(Color color)
+    private void InstantiateContent(Ingredient ingredient)
     {
         SpriteRenderer contentSpriteRenderer = _cupContent.GetComponent<SpriteRenderer>();
-        contentSpriteRenderer.color = color;
+        contentSpriteRenderer.color = ingredient.ContentColor;
 
         // Finding position of new content
         float contentHeight = _cupContent.GetComponent<SpriteRenderer>().bounds.size.y;

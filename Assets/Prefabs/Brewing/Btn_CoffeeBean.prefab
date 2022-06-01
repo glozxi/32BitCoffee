@@ -101,6 +101,9 @@ MonoBehaviour:
   _newSprite: {fileID: 21300000, guid: 4a4b896ba81a5ee4d9dccc6dcd38fed0, type: 3}
   draggedOutTag: Ingredient
   _ingredientType: 0
+  _contentColor:
+    serializedVersion: 2
+    rgba: 4278190080
 --- !u!61 &6648988421897541840
 BoxCollider2D:
   m_ObjectHideFlags: 0
