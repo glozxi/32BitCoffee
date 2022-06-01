@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 691386443111422328}
   m_Layer: 0
   m_Name: Btn_Chocolate
-  m_TagString: Ingredient
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -99,6 +99,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _newSprite: {fileID: 21300000, guid: d18397ad36e96c24498d72b68241528a, type: 3}
+  draggedOutTag: Ingredient
   _ingredientType: 1
 --- !u!61 &691386443111422328
 BoxCollider2D:

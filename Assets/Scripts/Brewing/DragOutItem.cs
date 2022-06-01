@@ -6,12 +6,16 @@ public abstract class DragOutItem : MonoBehaviour
     [SerializeField]
     private Sprite _newSprite;
 
+    [SerializeField]
+    private string draggedOutTag;
+
     private void OnMouseDown()
     {
         GameObject clone = Instantiate(gameObject, transform.position, transform.rotation);
         clone.name = this.name;
         GetComponent<SpriteRenderer>().sprite = _newSprite;
         GetComponent<SpriteRenderer>().sortingOrder = 2;
+        transform.tag = draggedOutTag;
     }
     private void OnMouseUp()
     {

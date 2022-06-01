@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Cup : MonoBehaviour
+public class Cup : DragItem
 {
     private const string IngredientTag = "Ingredient";
     private const int MaxContent = 4;
