@@ -1,11 +1,10 @@
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
 
-public class MenuButtonScript : MonoBehaviour
+public class ExitMenuButtonScript : MonoBehaviour
 {
     [SerializeField]
-    GameObject menu;
+    private GameObject _menu;
 
     void Awake()
     {
@@ -15,7 +14,9 @@ public class MenuButtonScript : MonoBehaviour
 
     private void OnClick()
     {
-        menu.SetActive(!menu.activeSelf);
-        GetComponentInChildren<TMP_Text>().text = menu.activeSelf ? "Back" : "Menu";
+        if (_menu.activeSelf)
+        {
+            _menu.SetActive(false);
+        }
     }
 }

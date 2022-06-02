@@ -12,7 +12,7 @@ public class InkManager : MonoBehaviour
     public static event ChoicesEncountered Choices;
 
     private Story _story;
-    private static string _loadedState;
+    private string _loadedState;
 
     [SerializeField]
     private TextAsset _inkJsonAsset;
@@ -22,6 +22,9 @@ public class InkManager : MonoBehaviour
 
     [SerializeField]
     private TMP_Text _nameTextField;
+
+    [SerializeField]
+    private TextLog _textLog;
 
     // [SerializeField]
     // private Animator characterAnimator;
@@ -56,7 +59,7 @@ public class InkManager : MonoBehaviour
 
     void Awake()
     {
-       _choiceButtonContainer = FindObjectOfType<VerticalLayoutGroup>();
+        _choiceButtonContainer = FindObjectOfType<VerticalLayoutGroup>();
 
         ChoiceButtonScript.Choices += OnChoicePicked;
         NextButtonScript.Next += OnNext;
@@ -88,6 +91,7 @@ public class InkManager : MonoBehaviour
     private void OnChoicePicked(Choice choice)
     {
         _story.ChooseChoiceIndex(choice.index);
+        _textLog.RecordAndDisplay(choice);
         DisplayNextLine();
         RefreshChoiceView();
     }
@@ -95,6 +99,7 @@ public class InkManager : MonoBehaviour
     // Called when next button clicked
     private void OnNext()
     {
+        _textLog.RecordAndDisplay(_nameTextField, _dialogueTextField);
         DisplayNextLine();
     }
 
@@ -102,8 +107,8 @@ public class InkManager : MonoBehaviour
     {
         if (_story.canContinue)
         {
-            string text = _story.Continue();
-            _dialogueTextField.text = text.Trim();
+            string text = _story.Continue().Trim();
+            _dialogueTextField.text = text;
             HandleTags(_story.currentTags);
         }
         else if (_story.currentChoices.Count > 0)
@@ -139,16 +144,7 @@ public class InkManager : MonoBehaviour
             switch (tagKey)
             {
                 case SpeakerName:
-                    if (tagValue == "None")
-                    {
-                        _nameTextField.text = "";
-                        _nameTextField.transform.parent.gameObject.GetComponent<Image>().enabled = false;
-                        // nameTextField.GetComponent<Canvas>().enabled = false;
-                    } else
-                    {
-                        _nameTextField.transform.parent.gameObject.GetComponent<Image>().enabled = true;
-                        _nameTextField.text = tagValue;
-                    }
+                    SetName(tagValue);
                     break;
 
         
@@ -167,6 +163,21 @@ public class InkManager : MonoBehaviour
         }
     }
 
+    private void SetName(string name)
+    {
+        if (name == "None")
+        {
+            _nameTextField.text = "";
+            _nameTextField.transform.parent.gameObject.GetComponent<Image>().enabled = false;
+            // nameTextField.GetComponent<Canvas>().enabled = false;
+        }
+        else
+        {
+            _nameTextField.transform.parent.gameObject.GetComponent<Image>().enabled = true;
+            _nameTextField.text = name;
+        }
+    }
+
     public string GetStoryState()
     {
         return _story.state.ToJson();
@@ -175,5 +186,6 @@ public class InkManager : MonoBehaviour
     internal void LoadState(string inkStoryState)
     {
         _loadedState = inkStoryState;
+        StartStory();
     }
 }

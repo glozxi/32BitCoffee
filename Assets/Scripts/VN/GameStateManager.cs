@@ -35,7 +35,7 @@ public class GameStateManager : MonoBehaviour
         string savePath = Application.persistentDataPath + "/savedata.save";
         if (File.Exists(savePath))
         {
-            BinaryFormatter bf = new BinaryFormatter();
+            BinaryFormatter bf = new();
             FileStream file = File.Open(savePath, FileMode.Open);
 
             // Start reading byte sequence from start
@@ -44,8 +44,6 @@ public class GameStateManager : MonoBehaviour
             file.Close();
 
             _inkManager.LoadState(saveData.InkStoryState);
-
-            StartGame();
         }
     }
 
