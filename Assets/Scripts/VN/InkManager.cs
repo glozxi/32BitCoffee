@@ -3,7 +3,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System.Collections.Generic;
-using System;
 
 // Changes dialogue and characters
 public class InkManager : MonoBehaviour
@@ -38,6 +37,7 @@ public class InkManager : MonoBehaviour
     private Image currentlyOn;
     */
 
+    [SerializeField]
     private VerticalLayoutGroup _choiceButtonContainer;
 
     //For Tags 
@@ -59,8 +59,6 @@ public class InkManager : MonoBehaviour
 
     void Awake()
     {
-        _choiceButtonContainer = FindObjectOfType<VerticalLayoutGroup>();
-
         ChoiceButtonScript.Choices += OnChoicePicked;
         NextButtonScript.Next += OnNext;
         
@@ -84,14 +82,13 @@ public class InkManager : MonoBehaviour
 
         DisplayNextLine();
         
-        
     }
 
     // Called when a choice button is clicked
     private void OnChoicePicked(Choice choice)
     {
         _story.ChooseChoiceIndex(choice.index);
-        _textLog.RecordAndDisplay(choice);
+        _textLog.RecordAndChangeTextField(choice);
         DisplayNextLine();
         RefreshChoiceView();
     }
@@ -99,7 +96,11 @@ public class InkManager : MonoBehaviour
     // Called when next button clicked
     private void OnNext()
     {
-        _textLog.RecordAndDisplay(_nameTextField, _dialogueTextField);
+        if (_choiceButtonContainer.GetComponentsInChildren<Button>().Length == 0)
+        {
+            _textLog.RecordAndChangeTextField(_nameTextField, _dialogueTextField);
+        }
+
         DisplayNextLine();
     }
 

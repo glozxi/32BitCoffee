@@ -6,7 +6,10 @@ public class TextLog : MonoBehaviour
 {
 
     [SerializeField]
-    private TMP_Text textField;
+    private TMP_Text _textField;
+
+    [SerializeField]
+    private GameObject _content;
 
     // Currently the text log is stored in a string,
     // but might need to change it.
@@ -15,19 +18,26 @@ public class TextLog : MonoBehaviour
 
     private void Awake()
     {
-        DisplayLog();
+        ChangeTextField();
     }
 
-    public void RecordAndDisplay(TMP_Text name, TMP_Text dialogue)
+    private void OnEnable()
+    {
+        Vector2 newVector = _content.GetComponent<RectTransform>().anchoredPosition;
+        newVector.y = 0;
+        _content.GetComponent<RectTransform>().anchoredPosition = newVector;
+    }
+
+    public void RecordAndChangeTextField(TMP_Text name, TMP_Text dialogue)
     {
         RecordText(name.text, dialogue.text);
-        DisplayLog();
+        ChangeTextField();
     }
 
-    public void RecordAndDisplay(Choice choice)
+    public void RecordAndChangeTextField(Choice choice)
     {
-        RecordText("You chose: ", choice.text);
-        DisplayLog();
+        RecordText("Your choice", choice.text);
+        ChangeTextField();
     }
 
     private void RecordText(string name, string dialogue)
@@ -42,9 +52,9 @@ public class TextLog : MonoBehaviour
         }
     }
 
-    private void DisplayLog()
+    private void ChangeTextField()
     {
-        textField.text = Log;
+        _textField.text = Log;
     }
 
 }
