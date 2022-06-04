@@ -19,7 +19,12 @@ public class GameStateManager : MonoBehaviour
     }
     public void SaveGame()
     {
-        SaveData saveData = new() { InkStoryState = _inkManager.GetStoryState() };
+        SaveData saveData = new() 
+        { 
+            InkStoryState = _inkManager.GetStoryState(),
+            TextLog = _inkManager.GetTextLog()
+        };
+
         BinaryFormatter bf = new();
         string savePath = Application.persistentDataPath + "/savedata.save";
         FileStream file = File.Create(savePath);
@@ -43,7 +48,7 @@ public class GameStateManager : MonoBehaviour
             SaveData saveData = (SaveData)bf.Deserialize(file);
             file.Close();
 
-            _inkManager.LoadState(saveData.InkStoryState);
+            _inkManager.LoadState(saveData.InkStoryState, saveData.TextLog);
         }
     }
 

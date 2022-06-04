@@ -5,6 +5,7 @@ using TMPro;
 using System.Collections.Generic;
 
 // Changes dialogue and characters
+// TODO: Split into smaller classes
 public class InkManager : MonoBehaviour
 {
     public delegate void ChoicesEncountered(List<Choice> choices);
@@ -88,7 +89,7 @@ public class InkManager : MonoBehaviour
     private void OnChoicePicked(Choice choice)
     {
         _story.ChooseChoiceIndex(choice.index);
-        _textLog.RecordAndChangeTextField(choice);
+        RecordChoiceInLog(choice);
         DisplayNextLine();
         RefreshChoiceView();
     }
@@ -96,11 +97,7 @@ public class InkManager : MonoBehaviour
     // Called when next button clicked
     private void OnNext()
     {
-        if (_choiceButtonContainer.GetComponentsInChildren<Button>().Length == 0)
-        {
-            _textLog.RecordAndChangeTextField(_nameTextField, _dialogueTextField);
-        }
-
+        RecordLineInLog();
         DisplayNextLine();
     }
 
@@ -140,8 +137,6 @@ public class InkManager : MonoBehaviour
             string tagKey = splitTag[0].Trim();
             string tagValue = splitTag[1].Trim();
 
-            // Debug.Log("Tag is "+ splitTag);
-
             switch (tagKey)
             {
                 case SpeakerName:
@@ -179,14 +174,34 @@ public class InkManager : MonoBehaviour
         }
     }
 
+    private void RecordLineInLog()
+    {
+        if (_choiceButtonContainer.GetComponentsInChildren<Button>().Length == 0)
+        {
+            _textLog.RecordAndChangeTextField(_nameTextField, _dialogueTextField);
+        }
+    }
+
+    private void RecordChoiceInLog(Choice choice)
+    {
+        _textLog.RecordAndChangeTextField(choice);
+    }
+
     public string GetStoryState()
     {
         return _story.state.ToJson();
     }
 
-    internal void LoadState(string inkStoryState)
+    public void LoadState(string inkStoryState, string textLog)
     {
         _loadedState = inkStoryState;
+        _textLog.SetTextLog(textLog);
         StartStory();
+    }
+
+    public string GetTextLog()
+    {
+        RecordLineInLog();
+        return _textLog.GetTextLog();
     }
 }

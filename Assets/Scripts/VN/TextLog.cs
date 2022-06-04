@@ -57,4 +57,13 @@ public class TextLog : MonoBehaviour
         _textField.text = Log;
     }
 
+    public string GetTextLog()
+    {
+        return Log;
+    }
+
+    public void SetTextLog(string log)
+    {
+        Log = log;
+    }
 }
