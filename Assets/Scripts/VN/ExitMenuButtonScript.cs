@@ -12,6 +12,14 @@ public class ExitMenuButtonScript : MonoBehaviour
         thisButton.onClick.AddListener(OnClick);
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            OnClick();
+        }
+    }
+
     private void OnClick()
     {
         if (_menu.activeSelf)
