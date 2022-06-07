@@ -17,12 +17,22 @@ public class Recipes : MonoBehaviour
 
     public static Dictionary<Drinks, List<Ingredients>> recipes = new Dictionary<Drinks, List<Ingredients>>()
     {
-        { Drinks.Latte, new()
+        { 
+            Drinks.Latte, new()
             {
                 Ingredients.Espresso,
                 Ingredients.Espresso,
                 Ingredients.Espresso,
                 Ingredients.Espresso
+            }
+        },
+        {
+            Drinks.Chocolate, new()
+            {
+                Ingredients.Chocolate,
+                Ingredients.Chocolate,
+                Ingredients.Chocolate,
+                Ingredients.Chocolate
             }
         }
     };

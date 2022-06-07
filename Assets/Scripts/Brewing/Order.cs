@@ -3,33 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
-public class Order : MonoBehaviour
+public class Order
 {
     [SerializeField]
     private Recipes.Drinks _drink;
 
-    [SerializeField]
-    private TMP_Text _orderText;
-
-    [SerializeField]
-    private Points _points;
-
-    private void Start()
+    public Order(Recipes.Drinks drink)
     {
-        string text = _drink.ToString() + "\n";
-        foreach (var ingredient in Recipes.recipes[_drink])
-        {
-            text += ingredient.ToString() + "\n";
-        }
-        _orderText.text = text;
+        _drink = drink;
     }
 
-    public void MatchDrink(List<Recipes.Ingredients> actualIngredients)
+    public bool MatchDrink(List<Recipes.Ingredients> actualIngredients)
     {
-        if (Recipes.recipes[_drink].SequenceEqual(actualIngredients))
-        {
-            _points.UpdatePoints();
-        }
+        return Recipes.recipes[_drink].SequenceEqual(actualIngredients);
     }
 
 }

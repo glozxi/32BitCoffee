@@ -8,6 +8,10 @@ public class Cup : DragItem
     private const string CupContentTag = "cupContent";
 
     private List<Recipes.Ingredients> _contents = new();
+    public List<Recipes.Ingredients> Contents
+    {
+        get => _contents;
+    }
 
     [SerializeField]
     private GameObject _cupContent;
@@ -41,25 +45,15 @@ public class Cup : DragItem
         _contents.Clear();
     }
 
-    // Adds an item to the cup and displays it
+    // Adds an item to the cup if possible and displays it
     private void Add(Ingredient ingredient)
     {
-        _contents.Add(ingredient.IngredientType);
-        DisplayContent(ingredient);
-        if (_contents.Count == MaxContent)
+        if (_contents.Count < MaxContent)
         {
-            Reward();
+            _contents.Add(ingredient.IngredientType);
+            DisplayContent(ingredient);
         }
-    }
-
-    // Rewards player
-    private void Reward()
-    {
-        // customer.serve(contents, drinkMade);
-        // drinkMade = "";
-        _order.MatchDrink(_contents);
         
-        Clear();
     }
 
     // Display additional cup content
