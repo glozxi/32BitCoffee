@@ -141,7 +141,6 @@ Let's see...#Char:You
 * [Who are you?] -> Day_1_pt_1_1_WAY
 * [Previous Personality] -> Day_1_pt_1_1_PP
 * [I know everything] -> Day_1_pt_1_1_SKIP
-* -> Day_1_pt_1_1_cnt
 
 === Day_1_pt_1_1_WAI ===
 Where am I?#Char:You 

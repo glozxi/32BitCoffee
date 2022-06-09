@@ -76,13 +76,18 @@ public class InkManager : MonoBehaviour
     {
         _story = new Story(_inkJsonAsset.text);
 
+        // Loaded story
         if (!string.IsNullOrEmpty(_loadedState))
         {
             _story?.state?.LoadJson(_loadedState);
+            DisplayThisLine();
+        }
+        // New story
+        else
+        {
+            DisplayNextLine();
         }
 
-        DisplayNextLine();
-        
     }
 
     // Called when a choice button is clicked
@@ -105,19 +110,29 @@ public class InkManager : MonoBehaviour
     {
         if (_story.canContinue)
         {
-            string text = _story.Continue().Trim();
-            _dialogueTextField.text = text;
-            HandleTags(_story.currentTags);
+            _story.Continue();
+            DisplayThisLine();
         }
-        else if (_story.currentChoices.Count > 0)
+        else
         {
-            DisplayChoices();
+            HandleChoices();
         }
     }
 
-    private void DisplayChoices()
-    {   
+    private void DisplayThisLine()
+    {
+        string text = _story.currentText.Trim();
+        _dialogueTextField.text = text;
+        HandleTags(_story.currentTags);
+        HandleChoices();
+    }
+
+    private void HandleChoices()
+    {
+        if (_story.currentChoices.Count > 0)
+        {
             Choices?.Invoke(_story.currentChoices);
+        }
     }
 
     private void RefreshChoiceView()
@@ -196,12 +211,12 @@ public class InkManager : MonoBehaviour
     {
         _loadedState = inkStoryState;
         _textLog.SetTextLog(textLog);
+
         StartStory();
     }
 
     public string GetTextLog()
     {
-        RecordLineInLog();
         return _textLog.GetTextLog();
     }
 }
