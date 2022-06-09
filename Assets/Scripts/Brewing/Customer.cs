@@ -17,45 +17,38 @@ public class Customer : MonoBehaviour
     private Order _dislikedOrder;
 
     [SerializeField]
-    private OrderName _orderName;
+    private WantedOrderText _wantedText;
+    [SerializeField]
+    private NeededOrderText _neededText;
 
-    private Collider2D _collider;
-
-    private bool _isServed = false;
+    [SerializeField]
+    private Servebox _servebox;
 
     private void Awake()
     {
-        _collider = GetComponent<Collider2D>();
         _wantedOrder = new Order(_wantedDrink);
         _neededOrder = new Order(_neededDrink);
         _dislikedOrder = new Order(_dislikedDrink);
 
-        _orderName.Wanted = _wantedDrink;
-        _orderName.Needed = _neededDrink;
     }
 
-    private void OnTriggerStay2D(Collider2D collision)
+    private void OnEnable()
     {
-        if (_isServed)
-        {
-            return;
-        }
+        _servebox.CupCollision += OnServed;
 
-        if (_collider.bounds.Contains(collision.bounds.max) 
-            && _collider.bounds.Contains(collision.bounds.min))
-        {
-            GameObject collidedObject = collision.gameObject;
-            Cup cup = collidedObject.GetComponent<Cup>();
-            CheckDrink(cup.Contents);
-            _isServed = true;
-            Destroy(collidedObject);
+        _wantedText.Drink = _wantedDrink;
+        _neededText.Drink = _neededDrink;
 
-        }
     }
 
-     private void OnMouseDown()
+    private void OnDisable()
     {
-        _orderName.ToggleOrder();
+        _servebox.CupCollision -= OnServed;
+    }
+
+    private void OnServed(Cup cup)
+    {
+        CheckDrink(cup.Contents);
     }
 
     private void CheckDrink(List<Recipes.Ingredients> contents)
@@ -78,8 +71,4 @@ public class Customer : MonoBehaviour
         print("none");
     }
 
-    internal void Serve(List<GameObject> contents, string drinkMade)
-    {
-        throw new NotImplementedException();
-    }
 }
