@@ -26,8 +26,9 @@ public class CharacterManager : MonoBehaviour
     }
 
     public Character GetCharacter(string characterName)
-    {
+    {      
         int index = -1;
+        Debug.Log(characterDictionary.TryGetValue(characterName, out index));
         if (characterDictionary.TryGetValue(characterName, out index))
         {
             return onScreen[index];
@@ -36,11 +37,39 @@ public class CharacterManager : MonoBehaviour
         return CreateCharacter(characterName);
     }
 
-    public Character CreateCharacter(string _name)
+    public Character CreateCharacter(string characterName)
     {
-        Character newChar = new Character(_name);
-        characterDictionary.Add(name, onScreen.Count);
+        Character newChar = new Character(characterName);
+        characterDictionary.Add(characterName, onScreen.Count);
         onScreen.Add(newChar);
         return newChar;
+    }
+
+    public void CMChar(string characterName, string body, string expr, Vector2 pos, bool enabled = true)
+    {
+        float speed = 1f;
+
+        Character character = GetCharacter(characterName);
+        character.TransitBoth(character.GetSprite(body), character.GetSprite(expr), speed, true);
+        character.MoveTo(pos);
+        character.enabled = enabled;
+    }
+
+    public void CMChar(string characterName, string body, string expr, string pos, bool enabled = true)
+    {
+        float speed = 1f;
+
+        Character character = GetCharacter(characterName);
+        character.TransitBoth(character.GetSprite(body), character.GetSprite(expr), speed, true);
+        character.MoveTo(pos);
+        character.enabled = enabled;
+    }
+
+    public void CMHideAll()
+    {
+        for (int i = 0; i < onScreen.Count; i++)
+        {
+            onScreen[i].enabled = false;
+        }
     }
 }

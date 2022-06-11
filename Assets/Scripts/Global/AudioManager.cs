@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
+    //https://www.raywenderlich.com/532-audio-tutorial-for-unity-the-audio-mixer might be better idea
+
     public static AudioManager instance;
     public static BGM activeBGM = null; 
 
@@ -11,11 +13,14 @@ public class AudioManager : MonoBehaviour
     public float bgmTransitionSpeed = 2f;
     public bool bgmTransitionSmooth = true;
 
+    public static Dictionary<string, string> lib;
+    
+
     // note if creating master sound, should be a multiplier because may set pitch or volume diff for particular fx.
     // two fx might have different volume or pitch
     void Awake()
     {
-        if (instance == null)
+         if (instance == null)
         {
             instance = this;
             DontDestroyOnLoad(gameObject);
@@ -23,12 +28,26 @@ public class AudioManager : MonoBehaviour
         else {
             DontDestroyOnLoad(gameObject);
         }
+    }
+
+    private void Start()
+    {
+        lib = new Dictionary<string, string>() {
+            {"buzzer", "Sound/FX/lisc_checked_unknown/166030__vinrax__metal-item-drop"}
+        };
+    }
+
+    public void PlaySFX(string file, float volume = 1f, float pitch = 1f)
+    {
+        Debug.Log(lib[file]);
         
+        PlaySFX(Resources.Load(lib[file]) as AudioClip, volume, pitch);
     }
 
     // two fx might have different volume or pitch
     public void PlaySFX(AudioClip file, float volume = 1f, float pitch = 1f)
     {
+        //Appears on prefab.
         AudioSource source = CreateNewSource(string.Format("SFX_[{0}]", file.name));
         source.clip = file;
         source.volume = volume;

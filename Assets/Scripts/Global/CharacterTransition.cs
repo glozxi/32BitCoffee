@@ -4,13 +4,19 @@ using UnityEngine;
 using UnityEngine.UI;
 
 // To rename, not appropriate name. 
-public class VNTransitions : MonoBehaviour
+public class CharacterTransition : MonoBehaviour
 {
     // Start is called before the first frame update
     public static bool TransitionImages(ref Image active, ref List<Image> allImg, float speed, bool smooth)
     {
         bool hasChange = false;
+        smooth = false;
 
+        //Smoothstep https://chicounity3d.wordpress.com/2014/05/23/how-to-lerp-like-a-pro/
+        //speed *= Time.deltaTime / 1f;
+        //speed *= speed * (3f - 2f * speed);
+
+        //Some kind of lerp
         speed *= Time.deltaTime;
         for (int i = allImg.Count - 1; i >= 0; i--)
         {
@@ -19,6 +25,7 @@ public class VNTransitions : MonoBehaviour
             Image image = allImg[i];
             if (image == active && image.color.a < 1f)
             {
+                //image.color = SetAlpha(image.color, smooth ? Mathf.SmoothDamp(image.color.a, 1f, ref speed, 0f) : Mathf.MoveTowards(image.color.a, 1f, speed));
                 image.color = SetAlpha(image.color, smooth ? Mathf.Lerp(image.color.a, 1f, speed) : Mathf.MoveTowards(image.color.a, 1f, speed));
                 hasChange = true;
             }

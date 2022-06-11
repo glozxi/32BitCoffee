@@ -5,11 +5,13 @@ using UnityEngine.UI;
 
 [System.Serializable]
 public class Character
+    // TO IMPLEMENT: RAndom Character Generation
 {  
     [HideInInspector] 
     public RectTransform root; //root of characer img.
     public string charaName;
-
+    public string globalPath = "Images/Characters/";
+    
     /* Positional related variables/stuff
      */
     //Position
@@ -17,11 +19,14 @@ public class Character
     Coroutine moving;
 
     // To add specific location (anchor percentage)
-    Vector2 LL;
-    Vector2 ML;
-    Vector2 MM;
-    Vector2 MR;
-    Vector2 RR;
+    public Dictionary<string, Vector2> fixedPos = new Dictionary<string, Vector2>()
+    {
+        {"LL", new Vector2(0.1f,0f) },
+        {"ML", new Vector2(0.25f,0f) },
+        {"MM", new Vector2(0.5f,0f) },
+        {"MR", new Vector2(0.75f,0f) },
+        {"RR", new Vector2(0.9f,0f) }
+    };
 
     public bool enabled
     {
@@ -36,21 +41,25 @@ public class Character
     public Vector2 anchorPadding { get { return root.anchorMax - root.anchorMin; } }
 
     /** For displaying character */
-    Renderers renderers = new Renderers(); 
+    Renderers renderers = new Renderers();
 
     /** Force set position, not a gradual movement. Insta-tele */
-    private void SetPosition(Vector2 target)
+    public void SetPosition(Vector2 target)
     {
         Vector2 padding = anchorPadding;
         float maxX = 1f - padding.x;
         float maxY = 1f - padding.y;
+
         Vector2 minAnchorTarget = new Vector2(maxX * targetPos.x, maxY * targetPos.y);
         root.anchorMin = minAnchorTarget;
         root.anchorMax = root.anchorMin + padding;
     }
 
-    /** Created to provision for better animated transitioning*/
-    /*
+    public void MoveTo(string Target)
+    {
+        MoveTo(fixedPos[Target]);
+    }
+
     public void MoveTo(Vector2 Target)
     {
         stopMoving();
@@ -72,16 +81,15 @@ public class Character
 
         //Move min because Max will follow
         Vector2 minAnchorTarget = new Vector2(maxX * targetPos.x, maxY * targetPos.y);
-        root.anchorMin = Vector2.MoveTowards(root.anchorMin, minAnchorTarget, 1f);
-        root.anchorMax = root.anchorMin + padding;
-
         while (root.anchorMin != minAnchorTarget)
         {
+            root.anchorMin = Vector2.MoveTowards(root.anchorMin, minAnchorTarget, 1f);
+            root.anchorMax = root.anchorMin + padding;
             yield return new WaitForEndOfFrame();
         }
         stopMoving();
     }
-    */
+    
 
     /** Character class is where we get the items needed
      */
@@ -91,17 +99,17 @@ public class Character
 
         // Get canvas image prefab containing sprite
         // IMPORTANT TO ADJUST PREFAB LOCATION <-----------------------------
-        string location = "Images/Characters/"+name+"/";
-        string temporaryFormat = location + "prefab_" + name;
+        string temporaryFormat = globalPath + name + "/" + name;
         GameObject prefab = Resources.Load(temporaryFormat) as GameObject;
 
         CharacterManager cm = CharacterManager.instance;
         GameObject ob = GameObject.Instantiate(prefab, cm.characterPanel);
+        //ob.transform.SetParent(cm.transform);
 
         // Save renderer
         root = ob.GetComponent<RectTransform>();
-        renderers.bodyRenderer = ob.transform.Find("Body").GetComponentInChildren<Image>();
-        renderers.expresionRenderer = ob.transform.Find("Expression").GetComponentInChildren<Image>();
+        renderers.bodyRenderer = ob.transform.Find("BodyLayer").GetComponentInChildren<Image>();
+        renderers.expresionRenderer = ob.transform.Find("ExpressionLayer").GetComponentInChildren<Image>();
 
         // Add to Master List
         renderers.allBodyRenderer.Add(renderers.bodyRenderer);
@@ -121,43 +129,64 @@ public class Character
 
     /** Retrieving Sprites */
 
-    //Future upgrade to GetSprite(Happy)
-    public Sprite GetSprite(int index = 0)
+    //Removed in preference of not using sprite sheet
+    /**
+    public void SetExpresion(int index)
     {
-        //Sprite sprite = Resources.Load<Sprite>(path + nameof + expression); return sprite;
+        renderers.expresionRenderer.sprite = GetSprite(index);
+    }*/
 
+    public Sprite GetSprite(string retrieve)
+    {
+        string temporaryFormat = globalPath + charaName + "/";
+        Sprite sprite = Resources.Load<Sprite>(temporaryFormat + retrieve); 
+        return sprite;
+
+        /**
+        // For spite sheets
         //Sprite location needs to be the same as for body (or at most one directory different)
-        string path = "";
+        
         Sprite[] sprites = Resources.LoadAll<Sprite>(path + charaName);
 
         return sprites[index];
+        */
     }
 
-    public void setBody(Sprite input)
+    // SetBody(GetSprite());
+    /**
+    public void SetSprite(string body, string expr)
     {
-        renderers.bodyRenderer.sprite = input;
+        SetBody(body);
+        SetExpresion(expr);
+    }
+    public void SetBody(string retrieve)
+    {
+        renderers.bodyRenderer.sprite = GetSprite(retrieve);
     }
     // No body swapping, only expresion rn.
-    public void setExpresion(Sprite input)
+    public void SetExpresion(string retrieve)
     {
-        renderers.expresionRenderer.sprite = input;
+        renderers.expresionRenderer.sprite = GetSprite(retrieve);
     }
-    public void setExpresion(int index)
-    {
-        renderers.expresionRenderer.sprite = GetSprite(index);
-    }
-
+    **/
+    
     //body trans
     Coroutine transitioningBody = null;
     bool isTransitBody { get { return transitioningBody != null; } }
 
-    public void Transitionbody(Sprite sprite, float speed, bool smooth)
+    public void TransitBoth(Sprite body, Sprite expr, float speed, bool smooth)
+    {
+        TransitionBody(body, speed, smooth);
+        TransitionExpr(expr, speed, smooth);
+    }
+
+    public void TransitionBody(Sprite sprite, float speed, bool smooth)
     {
         if (renderers.bodyRenderer.sprite == sprite) return;
-        stopTransitionBody();
+        StopTransitionBody();
         transitioningBody = CharacterManager.instance.StartCoroutine(TransitioningBody(sprite, speed, smooth));
     }
-    void stopTransitionBody()
+    void StopTransitionBody()
     {
         if (isTransitBody) { CharacterManager.instance.StopCoroutine(transitioningBody); }
         transitioningBody = null;
@@ -180,14 +209,14 @@ public class Character
             Image image = GameObject.Instantiate(renderers.bodyRenderer.gameObject, renderers.bodyRenderer.transform.parent).GetComponent<Image>();
             renderers.bodyRenderer = image;
             renderers.allBodyRenderer.Add(image);
-            image.color = VNTransitions.SetAlpha(image.color, 0f); //spawn invisible
+            image.color = CharacterTransition.SetAlpha(image.color, 0f); //spawn invisible
             image.sprite = sprite;
         }
-        while (VNTransitions.TransitionImages(ref renderers.bodyRenderer, ref renderers.allBodyRenderer, speed, smooth))
+        while (CharacterTransition.TransitionImages(ref renderers.bodyRenderer, ref renderers.allBodyRenderer, speed, smooth))
         {
             yield return new WaitForEndOfFrame();
         }
-        stopTransitionBody();
+        StopTransitionBody();
     }
     //end of body trans
 
@@ -223,10 +252,10 @@ public class Character
             Image image = GameObject.Instantiate(renderers.expresionRenderer.gameObject, renderers.expresionRenderer.transform.parent).GetComponent<Image>();
             renderers.expresionRenderer = image;
             renderers.allExpresionRenderer.Add(image);
-            image.color = VNTransitions.SetAlpha(image.color, 0f); //spawn invisible
+            image.color = CharacterTransition.SetAlpha(image.color, 0f); //spawn invisible
             image.sprite = sprite;
         }
-        while (VNTransitions.TransitionImages(ref renderers.expresionRenderer, ref renderers.allExpresionRenderer, speed, smooth))
+        while (CharacterTransition.TransitionImages(ref renderers.expresionRenderer, ref renderers.allExpresionRenderer, speed, smooth))
         {
             yield return new WaitForEndOfFrame();
         }

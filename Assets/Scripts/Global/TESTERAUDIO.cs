@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class TESTERAUDIO : MonoBehaviour
 {
+    public Vector2 position;
     public float volume, pitch;
     public AudioClip[] clips;
     void Start()
     {
-        
     }
 
     // Update is called once per frame
@@ -16,8 +16,9 @@ public class TESTERAUDIO : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            AudioManager.instance.PlaySFX(clips[Random.Range(0, clips.Length)], volume, pitch);
+            CharacterManager.instance.CMChar("PERSON2", "person_pose", "happy", "MM");
+            CharacterManager.instance.CMChar("PERSON3", "person_default", "shocked", "MR");
+            AudioManager.instance.PlaySFX("buzzer", 1, 1);
         }
-        
     }
 }
