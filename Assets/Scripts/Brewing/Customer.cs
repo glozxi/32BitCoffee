@@ -1,18 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class Customer : MonoBehaviour
 {
-    [SerializeField]
     private Recipes.Drinks _wantedDrink;
     private Order _wantedOrder;
 
-    [SerializeField]
     private Recipes.Drinks _neededDrink;
     private Order _neededOrder;
 
-    [SerializeField]
     private Recipes.Drinks _dislikedDrink;
     private Order _dislikedOrder;
 
@@ -24,20 +20,10 @@ public class Customer : MonoBehaviour
     [SerializeField]
     private Servebox _servebox;
 
-    private void Awake()
-    {
-        _wantedOrder = new Order(_wantedDrink);
-        _neededOrder = new Order(_neededDrink);
-        _dislikedOrder = new Order(_dislikedDrink);
-
-    }
 
     private void OnEnable()
     {
         _servebox.CupCollision += OnServed;
-
-        _wantedText.Drink = _wantedDrink;
-        _neededText.Drink = _neededDrink;
 
     }
 
@@ -46,9 +32,23 @@ public class Customer : MonoBehaviour
         _servebox.CupCollision -= OnServed;
     }
 
+    public void SetDrinks(Recipes.Drinks wantedDrink, Recipes.Drinks neededDrink, Recipes.Drinks dislikedDrink)
+    {
+        _wantedDrink = wantedDrink;
+        _neededDrink = neededDrink;
+        _dislikedDrink = dislikedDrink;
+        _wantedOrder = new Order(_wantedDrink);
+        _neededOrder = new Order(_neededDrink);
+        _dislikedOrder = new Order(_dislikedDrink);
+
+        _wantedText.Drink = _wantedDrink;
+        _neededText.Drink = _neededDrink;
+    }
+
     private void OnServed(Cup cup)
     {
         CheckDrink(cup.Contents);
+        gameObject.SetActive(false);
     }
 
     private void CheckDrink(List<Recipes.Ingredients> contents)

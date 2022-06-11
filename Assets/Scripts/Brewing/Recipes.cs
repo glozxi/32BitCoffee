@@ -12,7 +12,8 @@ public class Recipes : MonoBehaviour
     public enum Drinks
     {
         Latte,
-        Chocolate
+        Chocolate,
+        ChocoLatte
     }
 
     public static Dictionary<Drinks, List<Ingredients>> recipes = new Dictionary<Drinks, List<Ingredients>>()
@@ -33,6 +34,15 @@ public class Recipes : MonoBehaviour
                 Ingredients.Chocolate,
                 Ingredients.Chocolate,
                 Ingredients.Chocolate
+            }
+        },
+        {
+            Drinks.ChocoLatte, new()
+            {
+                Ingredients.Chocolate,
+                Ingredients.Chocolate,
+                Ingredients.Espresso,
+                Ingredients.Espresso
             }
         }
     };
