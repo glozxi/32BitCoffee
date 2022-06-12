@@ -7,36 +7,55 @@ using System;
 public class CustomerManager : MonoBehaviour
 {
     [SerializeField]
-    private GameObject _customerGameObject;
+    private List<Customer> _customerList;
     private Queue<CustomerData> _queue;
-    private Customer _customer;
 
     // Start is called before the first frame update
     void Start()
     {
         _queue = CustomersData.GetQueue(1);
-        _customer = _customerGameObject.GetComponent<Customer>();
-        _customer.CustomerServed += OnCustomerServed;
+        foreach (Customer customer in _customerList)
+        {
+            customer.CustomerServed += OnCustomerServed;
+            customer.SetObjectActive(false);
+            DisplayNextCustomer(customer);
 
-        DisplayNextCustomer();
+        }
+
     }
 
     private void OnDisable()
     {
-        _customer.CustomerServed -= OnCustomerServed;
+        foreach (Customer customer in _customerList)
+        {
+            customer.CustomerServed -= OnCustomerServed;
+        }
     }
 
 
-    private void OnCustomerServed()
+    private void OnCustomerServed(Customer customer)
     {
         // _customerGameObject.SetActive(false);
-        DisplayNextCustomer();
+        DisplayNextCustomer(customer);
     }
 
-    private void DisplayCustomer(CustomerData customerData)
+    private void DisplayNextCustomer(Customer customer)
     {
-        _customer.SetDrinks(customerData.Wanted, customerData.Needed, customerData.Disliked);
-        _customerGameObject.SetActive(true);
+        try
+        {
+            DisplayCustomer(NextCustomer(), customer);
+        }
+        catch (InvalidOperationException)
+        {
+            print("No more customers.");
+            customer.SetObjectActive(false);
+        }
+    }
+
+    private void DisplayCustomer(CustomerData customerData, Customer customer)
+    {
+        customer.SetDrinks(customerData.Wanted, customerData.Needed, customerData.Disliked);
+        customer.SetObjectActive(true);
     }
 
     private CustomerData NextCustomer()
@@ -44,16 +63,6 @@ public class CustomerManager : MonoBehaviour
         return _queue.Dequeue();
     }
 
-    private void DisplayNextCustomer()
-    {
-        try
-        {
-            DisplayCustomer(NextCustomer());
-        }
-        catch (InvalidOperationException)
-        {
-            print("No more customers.");
-            _customerGameObject.SetActive(false);
-        }
-    }
+
+ 
 }

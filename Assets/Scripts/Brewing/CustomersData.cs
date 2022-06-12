@@ -7,6 +7,9 @@ public class CustomersData
 {
     private static List<CustomerData> list1 = new() {
         new CustomerData(Drinks.Latte, Drinks.Latte, Drinks.Latte),
+        new CustomerData(Drinks.Chocolate, Drinks.ChocoLatte, Drinks.ChocoLatte),
+        new CustomerData(Drinks.Chocolate, Drinks.Latte, Drinks.ChocoLatte),
+        new CustomerData(Drinks.Latte, Drinks.Latte, Drinks.Latte),
         new CustomerData(Drinks.Chocolate, Drinks.ChocoLatte, Drinks.ChocoLatte)
     };
 

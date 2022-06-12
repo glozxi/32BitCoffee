@@ -4,4 +4,9 @@ public class NeededOrderText : OrderText
     {
         _orderText.text = "This guy needs " + Drink;
     }
+
+    public void SetObjectInactive()
+    {
+        gameObject.SetActive(false);
+    }
 }

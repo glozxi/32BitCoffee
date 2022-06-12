@@ -4,7 +4,7 @@ using Assets.Scripts.Brewing;
 
 public class Customer : MonoBehaviour
 {
-    public delegate void Served();
+    public delegate void Served(Customer sender);
     public event Served CustomerServed;
 
     private Drinks _wantedDrink;
@@ -46,12 +46,14 @@ public class Customer : MonoBehaviour
 
         _wantedText.Drink = _wantedDrink;
         _neededText.Drink = _neededDrink;
+
+        _neededText.SetObjectInactive();
     }
 
     private void OnServed(Cup cup)
     {
         CheckDrink(cup.Contents);
-        CustomerServed?.Invoke();
+        CustomerServed?.Invoke(this);
 
     }
 
@@ -73,6 +75,11 @@ public class Customer : MonoBehaviour
             return;
         }
         print("none");
+    }
+
+    public void SetObjectActive(bool value)
+    {
+        gameObject.SetActive(value);
     }
 
 }
