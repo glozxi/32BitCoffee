@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using Assets.Scripts.Brewing;
 
 public class Cup : DragItem
 {
@@ -7,8 +8,8 @@ public class Cup : DragItem
     private const int MaxContent = 4;
     private const string CupContentTag = "cupContent";
 
-    private List<Recipes.Ingredients> _contents = new();
-    public List<Recipes.Ingredients> Contents
+    private List<Ingredients> _contents = new();
+    public List<Ingredients> Contents
     {
         get => _contents;
     }

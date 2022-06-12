@@ -1,15 +1,19 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using Assets.Scripts.Brewing;
 
 public class Customer : MonoBehaviour
 {
-    private Recipes.Drinks _wantedDrink;
+    public delegate void Served();
+    public event Served CustomerServed;
+
+    private Drinks _wantedDrink;
     private Order _wantedOrder;
 
-    private Recipes.Drinks _neededDrink;
+    private Drinks _neededDrink;
     private Order _neededOrder;
 
-    private Recipes.Drinks _dislikedDrink;
+    private Drinks _dislikedDrink;
     private Order _dislikedOrder;
 
     [SerializeField]
@@ -24,7 +28,6 @@ public class Customer : MonoBehaviour
     private void OnEnable()
     {
         _servebox.CupCollision += OnServed;
-
     }
 
     private void OnDisable()
@@ -32,7 +35,7 @@ public class Customer : MonoBehaviour
         _servebox.CupCollision -= OnServed;
     }
 
-    public void SetDrinks(Recipes.Drinks wantedDrink, Recipes.Drinks neededDrink, Recipes.Drinks dislikedDrink)
+    public void SetDrinks(Drinks wantedDrink, Drinks neededDrink, Drinks dislikedDrink)
     {
         _wantedDrink = wantedDrink;
         _neededDrink = neededDrink;
@@ -48,10 +51,11 @@ public class Customer : MonoBehaviour
     private void OnServed(Cup cup)
     {
         CheckDrink(cup.Contents);
-        gameObject.SetActive(false);
+        CustomerServed?.Invoke();
+
     }
 
-    private void CheckDrink(List<Recipes.Ingredients> contents)
+    private void CheckDrink(List<Ingredients> contents)
     {
         if (_wantedOrder.MatchDrink(contents))
         {

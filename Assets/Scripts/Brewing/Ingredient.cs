@@ -1,10 +1,11 @@
 using UnityEngine;
+using Assets.Scripts.Brewing;
 
 public class Ingredient : DragOutItem
 {
     [SerializeField]
-    private Recipes.Ingredients _ingredientType;
-    public Recipes.Ingredients IngredientType
+    private Ingredients _ingredientType;
+    public Ingredients IngredientType
     {
         get => _ingredientType;
     }

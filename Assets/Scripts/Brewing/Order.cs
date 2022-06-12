@@ -2,18 +2,19 @@ using TMPro;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using Assets.Scripts.Brewing;
 
 public class Order
 {
     [SerializeField]
-    private Recipes.Drinks _drink;
+    private Drinks _drink;
 
-    public Order(Recipes.Drinks drink)
+    public Order(Drinks drink)
     {
         _drink = drink;
     }
 
-    public bool MatchDrink(List<Recipes.Ingredients> actualIngredients)
+    public bool MatchDrink(List<Ingredients> actualIngredients)
     {
         return Recipes.recipes[_drink].SequenceEqual(actualIngredients);
     }

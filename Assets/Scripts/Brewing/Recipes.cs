@@ -1,21 +1,9 @@
 using System.Collections.Generic;
 using UnityEngine;
+using Assets.Scripts.Brewing;
 
 public class Recipes : MonoBehaviour
 {
-    public enum Ingredients
-    {
-        Espresso,
-        Chocolate
-    }
-
-    public enum Drinks
-    {
-        Latte,
-        Chocolate,
-        ChocoLatte
-    }
-
     public static Dictionary<Drinks, List<Ingredients>> recipes = new Dictionary<Drinks, List<Ingredients>>()
     {
         { 

@@ -1,13 +1,14 @@
 using UnityEngine;
 using TMPro;
+using Assets.Scripts.Brewing;
 
 public abstract class OrderText : MonoBehaviour
 {
     [SerializeField]
     protected TMP_Text _orderText;
 
-    protected Recipes.Drinks _drink;
-    public Recipes.Drinks Drink
+    protected Drinks _drink;
+    public Drinks Drink
     {
         get => _drink; 
         set
