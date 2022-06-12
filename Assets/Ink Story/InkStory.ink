@@ -2,7 +2,13 @@
 === start ===
 -> Day_1_pt_1_1
 === Day_1_pt_1_1 ===
+
+
+TO UPDATE SHEET AND UPDATE HERE.
+
 ...#Char:None #Bg:black_screen #Bgm:space_void.mp3 
+
+#Rock:hey
 Ah....#Char:None 
 I can feel it.#Char:None 
 My consciousness rising from the darkness yet again.#Char:None 
@@ -12,6 +18,7 @@ yet, I can sense someone calling out for me...#Char:None
 Who are you? And what do yo-#Char:You 
 \*BZZT\*#Char:SYSTEM #Fx:aux_cable_out.mp3 #SpecialFx:transition:flash_to_white #Bg:cafe_day #Bgm:None 
 Bright lights flood my vision.#Char:None 
+#Demon:XiaoMei,Default,LL
 As if, someone, somewhere had just switched on the lights.#Char:None 
 Rather, it felt more like as if I had suddenly gained awareness of the concept of light, and the ability to perceive it.#Char:None 
 Where am I?#Char:None 

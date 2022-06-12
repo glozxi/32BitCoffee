@@ -28,7 +28,6 @@ public class CharacterManager : MonoBehaviour
     public Character GetCharacter(string characterName)
     {      
         int index = -1;
-        Debug.Log(characterDictionary.TryGetValue(characterName, out index));
         if (characterDictionary.TryGetValue(characterName, out index))
         {
             return onScreen[index];
@@ -45,12 +44,18 @@ public class CharacterManager : MonoBehaviour
         return newChar;
     }
 
+
+    public void CMPreLoadChar(string characterName)
+    {
+        Character character = CreateCharacter(characterName);
+        character.enabled = false;
+    }
     public void CMChar(string characterName, string body, string expr, Vector2 pos, bool enabled = true)
     {
         float speed = 1f;
 
         Character character = GetCharacter(characterName);
-        character.TransitBoth(character.GetSprite(body), character.GetSprite(expr), speed, true);
+        character.TransitBoth(character.GetSprite(body), character.GetSprite(expr), speed, false);
         character.MoveTo(pos);
         character.enabled = enabled;
     }
@@ -60,7 +65,7 @@ public class CharacterManager : MonoBehaviour
         float speed = 1f;
 
         Character character = GetCharacter(characterName);
-        character.TransitBoth(character.GetSprite(body), character.GetSprite(expr), speed, true);
+        character.TransitBoth(character.GetSprite(body), character.GetSprite(expr), speed, false);
         character.MoveTo(pos);
         character.enabled = enabled;
     }
