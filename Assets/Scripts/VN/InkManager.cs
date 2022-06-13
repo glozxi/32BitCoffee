@@ -142,13 +142,14 @@ public class InkManager : MonoBehaviour
                     break;
 
                 case BGM:
+                    float startingVolume = 0.8f;
+                    bool playOnStart = true;
                     bool loop = true;
-                    // Fix to allow playbgm to use tagvaue
-                    //AudioManager.instance.PlayBGM(tagValue,volume,pitch,0,true,loop);
+                    AudioManager.instance.PlayBGM(tagValue, volume, pitch, startingVolume,playOnStart,loop);
                     break;
 
                 case BACKGROUND:
-                    //TOIMPLEMENT
+                    BackgroundManager.instance.CMChangeBackground(tagValue);
                     break;
             }
         }

@@ -13,8 +13,19 @@ public class AudioManager : MonoBehaviour
     public float bgmTransitionSpeed = 2f;
     public bool bgmTransitionSmooth = true;
 
-    public static Dictionary<string, string> lib;
-    
+    public static string globalPathFX = "Sound/FX/";
+    public static Dictionary<string, string>  dictEfx = new Dictionary<string, string>()
+    {
+        {"buzzer", globalPathFX+"lisc_checked_unknown/166030__vinrax__metal-item-drop" }
+    };
+
+    public static string globalPathBG = "Sound/BGM/";
+    public static Dictionary<string, string> dictBgm = new Dictionary<string, string>()
+    {
+        {"menu", globalPathBG+"Orange_Highway - Fukagawa" },
+        {"two", globalPathBG+"Sunday_breakfast -  yuhei komatsu" }
+    };
+
 
     // note if creating master sound, should be a multiplier because may set pitch or volume diff for particular fx.
     // two fx might have different volume or pitch
@@ -30,18 +41,9 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    private void Start()
-    {
-        lib = new Dictionary<string, string>() {
-            {"buzzer", "Sound/FX/lisc_checked_unknown/166030__vinrax__metal-item-drop"}
-        };
-    }
-
     public void PlaySFX(string file, float volume = 1f, float pitch = 1f)
-    {
-        Debug.Log(lib[file]);
-        
-        PlaySFX(Resources.Load(lib[file]) as AudioClip, volume, pitch);
+    {      
+        PlaySFX(Resources.Load(dictEfx[file]) as AudioClip, volume, pitch);
     }
 
     // two fx might have different volume or pitch
@@ -57,9 +59,14 @@ public class AudioManager : MonoBehaviour
         Destroy(source.gameObject, file.length); //auto destroy self after finish 
     }
 
+    public void PlayBGM(string file, float maxVolume = 1f, float pitch = 1f, float startingVolume = 0f, bool playOnStart = true, bool loop = true)
+    {
+        PlayBGM(Resources.Load(dictBgm[file]) as AudioClip, maxVolume, pitch, startingVolume, playOnStart, loop);
+    }
+
     public void PlayBGM(AudioClip file, float maxVolume = 1f, float pitch = 1f, float startingVolume = 0f, bool playOnStart = true, bool loop = true)
     {
-        if (file != null) //helps to clear ALL sound if playbgm(null);
+        if (file != null) 
         {
             for (int i = 0; i < allBGM.Count; i++)
             {
@@ -73,6 +80,7 @@ public class AudioManager : MonoBehaviour
             //if song is not active or not the song we want to play
             if (activeBGM == null || activeBGM.clip != file )
             {
+                if (activeBGM != null) activeBGM.Stop(); 
                 activeBGM = new BGM(file, maxVolume, pitch, startingVolume, playOnStart, loop);
             }
         }

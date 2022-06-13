@@ -16,18 +16,21 @@ How long has it been since I last woke from my slumber...?#Char:None
 In this meaningless darkness, I cannot feel or see a single thing,#Char:None 
 yet, I can sense someone calling out for me...#Char:None 
 Who are you? And what do yo-#Char:You 
-\*BZZT\*#Char:SYSTEM #Fx:aux_cable_out.mp3 #SpecialFx:transition:flash_to_white #Bg:cafe_day #Bgm:None 
+\*BZZT\*#Char:SYSTEM #Fx:aux_cable_out.mp3 #SpecialFx:transition:flash_to_white #BG:day #BGM:menu 
 Bright lights flood my vision.#Char:None 
-#Demon:XiaoMei,Default,LL
 As if, someone, somewhere had just switched on the lights.#Char:None 
 Rather, it felt more like as if I had suddenly gained awareness of the concept of light, and the ability to perceive it.#Char:None 
-Where am I?#Char:None 
+Where am I?#Char:None #BG:evening #BGM:two
+
+#MODEL:PERSON,person_default,crying,MM 
+
 Unfamiliar walls, unfamiliar smell, unfamiliar sounds.#Char:None 
 No sorry, scratch that.#Char:None 
 This smell.... anyone would recognize this smell.#Char:None 
+#MODEL:PERSON,person_default,crying,LL 
 The sweet aroma of freshly ground coffee, slightly burnt, but nevertheless fruity.#Char:None 
 It is probably a medium roast Abrica from Ethiopia.#Char:None 
-I am not a morning person, but this smell..... makes me wanna get a cup of Latte.#Char:None 
+I am not a morning person, but this smell..... makes me wanna get a cup of Latte.#MODEL:PERSON,person_default,happy,RR 
 In fact, I'd do anything for a cup of Latte right now. Like a moth to a flame.#Char:None 
 System Crash recovery at 33%.#Char:SYSTEM #Fx:beep.mp3 
 What was that? System crash?#Char:None 
