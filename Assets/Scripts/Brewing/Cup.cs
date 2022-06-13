@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Assets.Scripts.Brewing;
@@ -7,6 +8,9 @@ public class Cup : DragItem
     private const string IngredientTag = "Ingredient";
     private const int MaxContent = 4;
     private const string CupContentTag = "cupContent";
+
+    public Vector2 SpawnPosition
+    { get; set; }
 
     private List<Ingredients> _contents = new();
     public List<Ingredients> Contents
@@ -20,8 +24,11 @@ public class Cup : DragItem
     [SerializeField]
     private Order _order;
 
-    // private string drinkMade;
-    // private Customer customer;
+    private void Start()
+    {
+        SpawnPosition = transform.position;
+        Clear();
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -36,8 +43,15 @@ public class Cup : DragItem
         
     }
 
+    public void ResetCup()
+    {
+        Instantiate(gameObject, SpawnPosition, Quaternion.identity);
+        Destroy(gameObject);
+    }
+
+
     // Clears contents and displayed cup contents
-    private void Clear()
+    public void Clear()
     {
         foreach (GameObject obj in GameObject.FindGameObjectsWithTag(CupContentTag))
         {
@@ -61,7 +75,6 @@ public class Cup : DragItem
     private void DisplayContent(Ingredient ingredient)
     {
         InstantiateContent(ingredient);
-
     }
 
     private void InstantiateContent(Ingredient ingredient)

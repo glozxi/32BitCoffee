@@ -19,9 +19,7 @@ public class CustomerManager : MonoBehaviour
             customer.CustomerServed += OnCustomerServed;
             customer.SetObjectActive(false);
             DisplayNextCustomer(customer);
-
         }
-
     }
 
     private void OnDisable()
@@ -54,7 +52,7 @@ public class CustomerManager : MonoBehaviour
 
     private void DisplayCustomer(CustomerData customerData, Customer customer)
     {
-        customer.SetDrinks(customerData.Wanted, customerData.Needed, customerData.Disliked);
+        customer.SetCustomer(customerData.Wanted, customerData.Needed, customerData.Disliked);
         customer.SetObjectActive(true);
     }
 

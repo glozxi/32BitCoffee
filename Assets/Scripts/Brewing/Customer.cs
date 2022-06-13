@@ -35,7 +35,12 @@ public class Customer : MonoBehaviour
         _servebox.CupCollision -= OnServed;
     }
 
-    public void SetDrinks(Drinks wantedDrink, Drinks neededDrink, Drinks dislikedDrink)
+    public void SetCustomer(Drinks wantedDrink, Drinks neededDrink, Drinks dislikedDrink)
+    {
+        SetDrinks(wantedDrink, neededDrink, dislikedDrink);
+    }
+
+    private void SetDrinks(Drinks wantedDrink, Drinks neededDrink, Drinks dislikedDrink)
     {
         _wantedDrink = wantedDrink;
         _neededDrink = neededDrink;
@@ -48,13 +53,14 @@ public class Customer : MonoBehaviour
         _neededText.Drink = _neededDrink;
 
         _neededText.SetObjectInactive();
+        
     }
 
     private void OnServed(Cup cup)
     {
         CheckDrink(cup.Contents);
+        cup.ResetCup();
         CustomerServed?.Invoke(this);
-
     }
 
     private void CheckDrink(List<Ingredients> contents)
