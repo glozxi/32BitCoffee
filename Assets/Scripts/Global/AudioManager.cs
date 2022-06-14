@@ -10,7 +10,7 @@ public class AudioManager : MonoBehaviour
     public static BGM activeBGM = null; 
 
     public static List<BGM> allBGM = new List<BGM>(); //Not used by anyone else
-    public float bgmTransitionSpeed = 2f;
+    public float bgmTransitionSpeed = 1f;
     public bool bgmTransitionSmooth = true;
 
     public static string globalPathFX = "Sound/FX/";
@@ -75,12 +75,11 @@ public class AudioManager : MonoBehaviour
                     activeBGM = n; 
                     break; 
                 }
+                //if song is not active or not the song we want to play
             }
-
-            //if song is not active or not the song we want to play
-            if (activeBGM == null || activeBGM.clip != file )
+            if (activeBGM == null || activeBGM.clip != file)
             {
-                if (activeBGM != null) activeBGM.Stop(); 
+                //if (activeBGM != null) activeBGM.Stop();
                 activeBGM = new BGM(file, maxVolume, pitch, startingVolume, playOnStart, loop);
             }
         }
@@ -116,12 +115,15 @@ public class AudioManager : MonoBehaviour
                 if (bgm.volume < bgm.maxVolume)
                 {
                     bgm.volume = bgmTransitionSmooth ? Mathf.Lerp(bgm.volume, bgm.maxVolume, speed) : Mathf.MoveTowards(bgm.volume, bgm.maxVolume, speed);
+                    anyValueChanged = true;
                 }
-            } else
+            } 
+            else
             {
                 if (bgm.volume > 0)
                 {
                     bgm.volume = bgmTransitionSmooth ? Mathf.Lerp(bgm.volume, 0f, speed) : Mathf.MoveTowards(bgm.volume, 0f, speed);
+                    anyValueChanged = true;
                 }
                 else
                 {
