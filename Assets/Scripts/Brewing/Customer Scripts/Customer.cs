@@ -4,8 +4,10 @@ using Assets.Scripts.Brewing;
 
 public class Customer : MonoBehaviour
 {
-    public delegate void Served(Customer sender);
-    public event Served CustomerServed;
+    public delegate void ServedEventHandler(Customer sender);
+    public event ServedEventHandler CustomerServed;
+    public delegate void ServedOrderEventHandler(Order order);
+    public static event ServedOrderEventHandler OrderServed;
 
     private Drinks _wantedDrink;
     private Order _wantedOrder;
@@ -45,9 +47,9 @@ public class Customer : MonoBehaviour
         _wantedDrink = wantedDrink;
         _neededDrink = neededDrink;
         _dislikedDrink = dislikedDrink;
-        _wantedOrder = new Order(_wantedDrink);
-        _neededOrder = new Order(_neededDrink);
-        _dislikedOrder = new Order(_dislikedDrink);
+        _wantedOrder = new Order(_wantedDrink, OrderTypes.Wanted);
+        _neededOrder = new Order(_neededDrink, OrderTypes.Needed);
+        _dislikedOrder = new Order(_dislikedDrink, OrderTypes.Disliked);
 
         _wantedText.Drink = _wantedDrink;
         _neededText.Drink = _neededDrink;
@@ -58,29 +60,30 @@ public class Customer : MonoBehaviour
 
     private void OnServed(Cup cup)
     {
-        CheckDrink(cup.Contents);
+        OrderServed?.Invoke(CheckDrink(cup.Contents));
         cup.ResetCup();
         CustomerServed?.Invoke(this);
     }
 
-    private void CheckDrink(List<Ingredients> contents)
+    private Order CheckDrink(List<Ingredients> contents)
     {
         if (_wantedOrder.MatchDrink(contents))
         {
             print("wanted");
-            return;
+            return _wantedOrder;
         }
         if (_neededOrder.MatchDrink(contents))
         {
             print("needed");
-            return;
+            return _neededOrder;
         }
         if (_dislikedOrder.MatchDrink(contents))
         {
             print("disliked");
-            return;
+            return _dislikedOrder;
         }
-        print("none");
+        // Change this later to a singleton
+        return null;
     }
 
     public void SetObjectActive(bool value)

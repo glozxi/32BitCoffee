@@ -12,4 +12,12 @@ namespace Assets.Scripts.Brewing
         Chocolate,
         ChocoLatte
     }
+
+    public enum OrderTypes
+    {
+        Wanted,
+        Needed,
+        Disliked,
+        None
+    }
 }

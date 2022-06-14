@@ -4,7 +4,7 @@ using Assets.Scripts.Brewing;
 
 public class Recipes : MonoBehaviour
 {
-    public static Dictionary<Drinks, List<Ingredients>> recipes = new Dictionary<Drinks, List<Ingredients>>()
+    public static Dictionary<Drinks, List<Ingredients>> recipes = new()
     {
         { 
             Drinks.Latte, new()
@@ -32,6 +32,19 @@ public class Recipes : MonoBehaviour
                 Ingredients.Espresso,
                 Ingredients.Espresso
             }
+        }
+    };
+
+    public static Dictionary<Drinks, float> prices = new()
+    {
+        {
+            Drinks.Latte, 4f
+        },
+        {
+            Drinks.Chocolate, 2f
+        },
+        {
+            Drinks.ChocoLatte, 3f
         }
     };
 
