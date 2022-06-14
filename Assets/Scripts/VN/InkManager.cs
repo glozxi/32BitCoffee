@@ -26,37 +26,15 @@ public class InkManager : MonoBehaviour
     [SerializeField]
     private TextLog _textLog;
 
-    // [SerializeField]
-    // private Animator characterAnimator;
-
-    // TO USE IN FUTURE
-    /*
-    private Image PosL;
-    private Image PosM;
-    private Image PosR;
-
-    private Image currentlyOn;
-    */
-
     [SerializeField]
     private VerticalLayoutGroup _choiceButtonContainer;
 
-    //For Tags 
-    // Needs to have a better way to do this. If not this means I need to keep track of POS, before i can load IMG, and expression.
-    // And animation should be applied to Expression
-    // TO USE IN FUTURE
-    /*
-    private const string Position = "Pos"; // INK rule: Always start with POS, IMG, EXPR 
-    private const string CharacterImage = "Img";
-    private const string CharacterExpression = "Expression";
-
-    private const string Background = "Bg";
-    private const string SoundFx = "Fx";
-    */
-
-    private const string SpeakerName = "Char";
-
-    // private const string EFFECTS = "SpecialFx"; //Also related to Camera
+    private const string SPEAKERNAME = "SPEAKER";
+    private const string MODEL = "MODEL";
+    private const string BACKGROUND = "BG";
+    private const string BGM = "BGM";
+    private const string FX = "FX";
+    private const string PRELOAD = "PRELOAD";
 
     void Awake()
     {
@@ -145,6 +123,10 @@ public class InkManager : MonoBehaviour
 
     private void HandleTags(List<string> currentTags)
     {
+        //where to retrieve
+        float volume = 1f;
+        float pitch = 1f;
+
         foreach (string tag in currentTags)
         {
             
@@ -154,26 +136,40 @@ public class InkManager : MonoBehaviour
 
             switch (tagKey)
             {
-                case SpeakerName:
+                case SPEAKERNAME:
                     SetName(tagValue);
                     break;
 
-        
-                // TO USE IN FUTURE
-                /*
-                case CharacterImage:
-                    // characterAnimator.Play(tagValue); //Removed maybe used in future idk
+                case PRELOAD:
+                    Debug.Log("preloading.."+ tagValue);
+                    CharacterManager.instance.CMPreLoadChar(tagValue);
                     break;
 
-                case SoundFx:
-                    // audio.PlayOneShot((AudioClip)Resources.Load("music.mp3"));
+                case MODEL:
+                    string[] reqData = tagValue.Split(",");
+                    //Resolve in Google Sheets
+                    //CHARNAME,POSE,EXPR,POSITION
+                    CharacterManager.instance.CMChar(reqData[0], reqData[1], reqData[2], reqData[3]);
                     break;
-                */
 
+                case FX:
+                   AudioManager.instance.PlaySFX(tagValue, volume, pitch);
+                    break;
+
+                case BGM:
+                    float startingVolume = 0.8f;
+                    bool playOnStart = true;
+                    bool loop = true;
+                    AudioManager.instance.PlayBGM(tagValue, volume, pitch, startingVolume,playOnStart,loop);
+                    break;
+
+                case BACKGROUND:
+                    BackgroundManager.instance.CMChangeBackground(tagValue);
+                    break;
             }
         }
     }
-
+    
     private void SetName(string name)
     {
         if (name == "None")
