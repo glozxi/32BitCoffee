@@ -19,8 +19,9 @@ public class GameStateManager : MonoBehaviour
     }
     public void SaveGame()
     {
-        SaveData saveData = new() 
-        { 
+
+        SaveData saveData = new()
+        {
             InkStoryState = _inkManager.GetStoryState(),
             TextLog = _inkManager.GetTextLog()
         };
