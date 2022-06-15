@@ -1,8 +1,13 @@
 using UnityEngine;
-using Assets.Scripts.Brewing;
-
+using TMPro;
 public class Cash : MonoBehaviour
 {
+    private float _cash = 0f;
+
+    [SerializeField]
+    private TMP_Text _text;
+
+
     private void OnEnable()
     {
         Customer.OrderServed += OnServed;
@@ -15,6 +20,7 @@ public class Cash : MonoBehaviour
 
     private void OnServed(Order order)
     {
-
+        _cash += order.GetPrice();
+        _text.text = _cash.ToString();
     }
 }

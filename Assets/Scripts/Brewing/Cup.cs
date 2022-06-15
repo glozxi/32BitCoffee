@@ -53,9 +53,12 @@ public class Cup : DragItem
     // Clears contents and displayed cup contents
     public void Clear()
     {
-        foreach (GameObject obj in GameObject.FindGameObjectsWithTag(CupContentTag))
+        foreach (Transform child in transform)
         {
-            Destroy(obj);
+            if (child.CompareTag(CupContentTag))
+            {
+                Destroy(child.gameObject);
+            }
         }
         _contents.Clear();
     }

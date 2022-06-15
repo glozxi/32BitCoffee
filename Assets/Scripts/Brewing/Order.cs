@@ -9,6 +9,12 @@ public class Order
 
     private OrderTypes _type;
 
+    private static readonly Order _emptyOrder = new Order(Drinks.None, OrderTypes.None);
+    public static Order EmptyOrder
+    {
+        get => _emptyOrder;
+    }
+
     public Order(Drinks drink, OrderTypes type)
     {
         _drink = drink;

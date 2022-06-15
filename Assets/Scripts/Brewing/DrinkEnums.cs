@@ -8,6 +8,7 @@ namespace Assets.Scripts.Brewing
 
     public enum Drinks
     {
+        None,
         Latte,
         Chocolate,
         ChocoLatte
@@ -15,9 +16,9 @@ namespace Assets.Scripts.Brewing
 
     public enum OrderTypes
     {
+        None,
         Wanted,
         Needed,
-        Disliked,
-        None
+        Disliked
     }
 }

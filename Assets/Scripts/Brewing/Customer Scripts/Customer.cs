@@ -82,8 +82,8 @@ public class Customer : MonoBehaviour
             print("disliked");
             return _dislikedOrder;
         }
-        // Change this later to a singleton
-        return null;
+        print("none");
+        return Order.EmptyOrder;
     }
 
     public void SetObjectActive(bool value)
