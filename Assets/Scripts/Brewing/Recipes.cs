@@ -1,52 +1,33 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Assets.Scripts.Brewing;
+using UnityEditor;
 
 public class Recipes : MonoBehaviour
 {
-    public static Dictionary<Drinks, List<Ingredients>> recipes = new()
-    {
-        { 
-            Drinks.Latte, new()
-            {
-                Ingredients.Espresso,
-                Ingredients.Espresso,
-                Ingredients.Espresso,
-                Ingredients.Espresso
-            }
-        },
-        {
-            Drinks.Chocolate, new()
-            {
-                Ingredients.Chocolate,
-                Ingredients.Chocolate,
-                Ingredients.Chocolate,
-                Ingredients.Chocolate
-            }
-        },
-        {
-            Drinks.ChocoLatte, new()
-            {
-                Ingredients.Chocolate,
-                Ingredients.Chocolate,
-                Ingredients.Espresso,
-                Ingredients.Espresso
-            }
-        }
-    };
+    [SerializeField]
+    private List<Drink> _drinksList;
 
-    public static Dictionary<Drinks, float> prices = new()
+    private static Dictionary<Drinks, Drink> recipes = new();
+
+    static Recipes()
     {
+        foreach (Drink drink in Resources.LoadAll<Drink>("Drink"))
         {
-            Drinks.Latte, 4f
-        },
-        {
-            Drinks.Chocolate, 2f
-        },
-        {
-            Drinks.ChocoLatte, 3f
+            recipes.Add(drink.DrinkType, drink);
         }
-    };
+
+    }
+
+    public static List<Ingredients> GetRecipe(Drinks drinkName)
+    {
+        return recipes[drinkName].Recipe;
+    }
+
+    public static float GetPrice(Drinks drinkName)
+    {
+        return recipes[drinkName].Price;
+    }
 
 
 }

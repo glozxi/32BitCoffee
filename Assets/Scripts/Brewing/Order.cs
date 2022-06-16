@@ -23,14 +23,14 @@ public class Order
 
     public bool MatchDrink(List<Ingredients> actualIngredients)
     {
-        return Recipes.recipes[_drink].SequenceEqual(actualIngredients);
+        return Recipes.GetRecipe(_drink).SequenceEqual(actualIngredients);
     }
 
     public float GetPrice()
     {
         if (_type == OrderTypes.Needed || _type == OrderTypes.Wanted)
         {
-            return Recipes.prices[_drink];
+            return Recipes.GetPrice(_drink);
         }
         return 0f;
     }
