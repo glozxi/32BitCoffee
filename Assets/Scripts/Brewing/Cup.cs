@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Assets.Scripts.Brewing;
@@ -8,6 +7,8 @@ public class Cup : DragItem
     private const string IngredientTag = "Ingredient";
     private const int MaxContent = 4;
     private const string CupContentTag = "cupContent";
+
+
 
     public Vector2 SpawnPosition
     { get; set; }
@@ -29,6 +30,7 @@ public class Cup : DragItem
         SpawnPosition = transform.position;
         Clear();
     }
+
 
     private void OnTriggerEnter2D(Collider2D collision)
     {

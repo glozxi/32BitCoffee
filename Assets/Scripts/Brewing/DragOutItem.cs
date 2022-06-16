@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 // Class of item that can be dragged, creating a new sprite
 public abstract class DragOutItem : MonoBehaviour
@@ -9,21 +10,52 @@ public abstract class DragOutItem : MonoBehaviour
     [SerializeField]
     private string draggedOutTag;
 
-    private void OnMouseDown()
+    private bool _isDragging;
+    private GameObject _selectedObject;
+
+    private void Start()
     {
-        GameObject clone = Instantiate(gameObject, transform.position, transform.rotation);
-        clone.name = this.name;
-        GetComponent<SpriteRenderer>().sprite = _newSprite;
-        GetComponent<SpriteRenderer>().sortingOrder = 2;
-        transform.tag = draggedOutTag;
+        _isDragging = false;
     }
-    private void OnMouseUp()
+
+    private void Update()
     {
-        Destroy(gameObject);
+        if (EventSystem.current.IsPointerOverGameObject()) return;
+
+        if (Input.GetMouseButtonDown(0) && !_isDragging)
+        {
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, Mathf.Infinity);
+            if (hit.collider == GetComponent<Collider2D>())
+            {
+                _selectedObject = hit.collider.gameObject;
+                _isDragging = true;
+
+                GameObject clone = Instantiate(gameObject, transform.position, transform.rotation);
+                clone.name = this.name;
+
+                GetComponent<SpriteRenderer>().sprite = _newSprite;
+                GetComponent<SpriteRenderer>().sortingOrder = 2;
+                transform.tag = draggedOutTag;
+                
+            }
+        }
+
+        if (_isDragging)
+        {
+            Vector2 pos = MousePos();
+            _selectedObject.transform.position = pos;
+        }
+
+        if (Input.GetMouseButtonUp(0) && _isDragging)
+        {
+            _isDragging = false;
+            Destroy(gameObject);
+        }
     }
-    private void OnMouseDrag()
+
+    Vector2 MousePos()
     {
-        Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
-        transform.Translate(mousePosition);
+        return Camera.main.ScreenToWorldPoint(new Vector2(Input.mousePosition.x, Input.mousePosition.y));
     }
 }
