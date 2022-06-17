@@ -8,8 +8,6 @@ public class Cup : DragItem
     private const int MaxContent = 4;
     private const string CupContentTag = "cupContent";
 
-
-
     public Vector2 SpawnPosition
     { get; set; }
 

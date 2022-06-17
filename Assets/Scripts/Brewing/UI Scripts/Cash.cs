@@ -18,9 +18,9 @@ public class Cash : MonoBehaviour
         Customer.OrderServed -= OnServed;
     }
 
-    private void OnServed(Order order)
+    private void OnServed(Order order, Timer timer)
     {
-        _cash += order.GetPrice();
+        _cash += timer.HasBonus ? order.GetPrice() * 2 : order.GetPrice();
         _text.text = _cash.ToString();
     }
 }

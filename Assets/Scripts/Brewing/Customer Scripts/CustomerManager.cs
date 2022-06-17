@@ -33,7 +33,6 @@ public class CustomerManager : MonoBehaviour
 
     private void OnCustomerServed(Customer customer)
     {
-        // _customerGameObject.SetActive(false);
         DisplayNextCustomer(customer);
     }
 
@@ -52,7 +51,7 @@ public class CustomerManager : MonoBehaviour
 
     private void DisplayCustomer(CustomerData customerData, Customer customer)
     {
-        customer.SetCustomer(customerData.Wanted, customerData.Needed, customerData.Disliked);
+        customer.SetNewCustomer(customerData.Wanted, customerData.Needed, customerData.Disliked);
         customer.SetObjectActive(true);
     }
 

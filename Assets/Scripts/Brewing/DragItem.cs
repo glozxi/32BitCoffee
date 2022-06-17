@@ -18,12 +18,18 @@ public class DragItem : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, Mathf.Infinity);
-            if (hit.collider == GetComponent<Collider2D>())
+            RaycastHit2D[] hits = Physics2D.RaycastAll(ray.origin, ray.direction, Mathf.Infinity);
+
+            foreach (RaycastHit2D hit in hits)
             {
-                _selectedObject = hit.collider.gameObject;
-                _isDragging = true;
+                if (hit.collider == GetComponent<Collider2D>())
+                {
+                    _selectedObject = hit.collider.gameObject;
+                    _isDragging = true;
+                    break;
+                }
             }
+            
         }
         
         

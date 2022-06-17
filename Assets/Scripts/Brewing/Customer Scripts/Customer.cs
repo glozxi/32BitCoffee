@@ -6,7 +6,7 @@ public class Customer : MonoBehaviour
 {
     public delegate void ServedEventHandler(Customer sender);
     public event ServedEventHandler CustomerServed;
-    public delegate void ServedOrderEventHandler(Order order);
+    public delegate void ServedOrderEventHandler(Order order, Timer timer);
     public static event ServedOrderEventHandler OrderServed;
 
     private Drinks _wantedDrink;
@@ -26,6 +26,8 @@ public class Customer : MonoBehaviour
     [SerializeField]
     private Servebox _servebox;
 
+    [SerializeField]
+    private Timer _timer;
 
     private void OnEnable()
     {
@@ -37,9 +39,10 @@ public class Customer : MonoBehaviour
         _servebox.CupCollision -= OnServed;
     }
 
-    public void SetCustomer(Drinks wantedDrink, Drinks neededDrink, Drinks dislikedDrink)
+    public void SetNewCustomer(Drinks wantedDrink, Drinks neededDrink, Drinks dislikedDrink)
     {
         SetDrinks(wantedDrink, neededDrink, dislikedDrink);
+        _timer.ResetTime();
     }
 
     private void SetDrinks(Drinks wantedDrink, Drinks neededDrink, Drinks dislikedDrink)
@@ -60,7 +63,7 @@ public class Customer : MonoBehaviour
 
     private void OnServed(Cup cup)
     {
-        OrderServed?.Invoke(CheckDrink(cup.Contents));
+        OrderServed?.Invoke(CheckDrink(cup.Contents), _timer);
         cup.ResetCup();
         CustomerServed?.Invoke(this);
     }
