@@ -19,6 +19,11 @@ public class Recipes : MonoBehaviour
 
     }
 
+    public static Drink GetDrink(Drinks drink)
+    {
+        return recipes[drink];
+    }
+
     public static List<Ingredients> GetRecipe(Drinks drinkName)
     {
         return recipes[drinkName].Recipe;
