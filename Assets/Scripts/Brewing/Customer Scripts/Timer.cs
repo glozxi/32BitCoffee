@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Timer : MonoBehaviour
@@ -22,12 +20,21 @@ public class Timer : MonoBehaviour
                 _hasBonus = false;
             }
         }
-        
     }
 
     public void ResetTime()
     {
         _timer = 0.0f;
         _hasBonus = true;
+    }
+
+    // Remaining/Total
+    public float GetRatioOfBonusTimeRemaining()
+    {
+        if (_hasBonus)
+        {
+            return 1 - _timer / BonusDuration;
+        }
+        return 0f;
     }
 }

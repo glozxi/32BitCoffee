@@ -1,7 +1,6 @@
-using UnityEngine;
-using System.Collections.Generic;
-using Assets.Scripts.Brewing;
 using System;
+using System.Collections.Generic;
+using UnityEngine;
 
 // Displays customers
 public class CustomerManager : MonoBehaviour

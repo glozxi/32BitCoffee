@@ -1,13 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using Assets.Scripts.Brewing;
+using System.Collections.Generic;
 using UnityEngine;
-using Assets.Scripts.Brewing;
 
 public class Customer : MonoBehaviour
 {
     public delegate void ServedEventHandler(Customer sender);
     public event ServedEventHandler CustomerServed;
-    public delegate void ServedOrderEventHandler(Order order, Timer timer);
-    public static event ServedOrderEventHandler OrderServed;
 
     private Drinks _wantedDrink;
     private Order _wantedOrder;
@@ -63,7 +61,7 @@ public class Customer : MonoBehaviour
 
     private void OnServed(Cup cup)
     {
-        OrderServed?.Invoke(CheckDrink(cup.Contents), _timer);
+        Cash.AddCash(CheckDrink(cup.Contents), _timer);
         cup.ResetCup();
         CustomerServed?.Invoke(this);
     }
