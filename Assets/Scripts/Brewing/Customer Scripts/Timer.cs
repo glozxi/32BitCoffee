@@ -3,7 +3,9 @@ using UnityEngine;
 public class Timer : MonoBehaviour
 {
     private float _timer = 0.0f;
-    private const float BonusDuration = 7.0f;
+
+    [SerializeField]
+    private float BonusDuration = 7.0f;
     private bool _hasBonus = true;
     public bool HasBonus
     { get => _hasBonus; }

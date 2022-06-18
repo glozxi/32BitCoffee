@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5669164061171486501}
   - component: {fileID: 5669164061171486499}
   - component: {fileID: 5669164061171486498}
-  m_Layer: 5
+  m_Layer: 2
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -148,7 +148,7 @@ GameObject:
   - component: {fileID: 5669164061803526224}
   - component: {fileID: 5669164061803526227}
   - component: {fileID: 1013666196275353594}
-  m_Layer: 5
+  m_Layer: 2
   m_Name: DrinkNameButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -270,5 +270,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17f48cc620d3dfd4db1868bdc91a8c2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _drinkName: {fileID: 0}
-  _description: {fileID: 0}
