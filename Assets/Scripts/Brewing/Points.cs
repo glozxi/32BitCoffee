@@ -1,15 +1,24 @@
-using UnityEngine;
-using TMPro;
-
-public class Points : MonoBehaviour
+public class Points
 {
-    [SerializeField]
-    private TMP_Text _pointsText;
-    private int _points = 0;
+    public delegate void PointsUpdateEventHandler(float amount);
+    public static event PointsUpdateEventHandler CashUpdated;
+    public static event PointsUpdateEventHandler NetworkPointsUpdated;
 
-    public void UpdatePoints()
+    private static float _cash = 0f;
+    private static float _networkPoints = 0f;
+    private static readonly float BonusMultiplier = 2;
+    private static readonly float PointsToAdd = 5;
+
+
+    public static void AddCash(Order order, Timer timer)
     {
-        _points++;
-        _pointsText.text = _points.ToString();
+        _cash += timer.HasBonus ? order.GetPrice() * BonusMultiplier : order.GetPrice();
+        CashUpdated?.Invoke(_cash);
+    }
+
+    public static void AddAnalysePoints()
+    {
+        _networkPoints += PointsToAdd;
+        NetworkPointsUpdated?.Invoke(_networkPoints);
     }
 }

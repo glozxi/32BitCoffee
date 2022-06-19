@@ -27,6 +27,9 @@ public class Customer : MonoBehaviour
     [SerializeField]
     private Timer _timer;
 
+    [SerializeField]
+    private AnalyseOrder _analysis;
+
     private void OnEnable()
     {
         _servebox.CupCollision += OnServed;
@@ -41,6 +44,7 @@ public class Customer : MonoBehaviour
     {
         SetDrinks(wantedDrink, neededDrink, dislikedDrink);
         _timer.ResetTime();
+        _analysis.IsAlreadyAnalysed = false;
     }
 
     private void SetDrinks(Drinks wantedDrink, Drinks neededDrink, Drinks dislikedDrink)
@@ -61,7 +65,7 @@ public class Customer : MonoBehaviour
 
     private void OnServed(Cup cup)
     {
-        Cash.AddCash(CheckDrink(cup.Contents), _timer);
+        Points.AddCash(CheckDrink(cup.Contents), _timer);
         cup.ResetCup();
         CustomerServed?.Invoke(this);
     }

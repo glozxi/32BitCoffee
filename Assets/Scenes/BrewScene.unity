@@ -1738,6 +1738,7 @@ GameObject:
   - component: {fileID: 880637531}
   - component: {fileID: 880637533}
   - component: {fileID: 880637532}
+  - component: {fileID: 880637534}
   m_Layer: 2
   m_Name: UpgradePointsAmt
   m_TagString: Untagged
@@ -1862,6 +1863,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 880637530}
   m_CullTransparentMesh: 1
+--- !u!114 &880637534
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 880637530}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d44b32ca5834f9348b4a4e8e4cfc1890, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _text: {fileID: 880637532}
 --- !u!224 &947600007 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7005687778779402328, guid: 1a3977ba8c10e944a8ced2b4c1320c58, type: 3}

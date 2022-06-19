@@ -1024,6 +1024,7 @@ MonoBehaviour:
   _neededText: {fileID: 7711151432731151927}
   _servebox: {fileID: 7711151431035238623}
   _timer: {fileID: 3457908939151572258}
+  _analysis: {fileID: 7711151432781262186}
 --- !u!1 &7711151432731151920
 GameObject:
   m_ObjectHideFlags: 0
@@ -1309,7 +1310,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.00092530623, y: -0.0018506199}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -1320,7 +1321,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.2, y: 0.2}
+  m_Size: {x: 0.14263079, y: 0.12967643}
   m_EdgeRadius: 0
 --- !u!114 &7711151432781262186
 MonoBehaviour:

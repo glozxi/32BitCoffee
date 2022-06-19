@@ -1,7 +1,6 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 using System.Collections.Generic;
-
 // Class of item that can be dragged, creating a new sprite
 public abstract class DragOutItem : MonoBehaviour
 {

@@ -12,6 +12,11 @@ public class AnalyseOrder : MonoBehaviour
     private Ray ray;
 
     private bool _isAltOrderDisplayed = false;
+    private bool _isAlreadyAnalysed = false;
+    public bool IsAlreadyAnalysed
+    {
+        set => _isAlreadyAnalysed = value;
+    }
 
     private void Awake()
     {
@@ -28,28 +33,11 @@ public class AnalyseOrder : MonoBehaviour
         if (IsMouseHovering(ray))
         {
             OnHover();
-
-            // 0 for primary button
-            if (Input.GetMouseButtonDown(0))
-            {
-                if (_isAltOrderDisplayed)
-                {
-                    _altOrder.SetActive(false);
-                }
-                else
-                {
-                    _altOrder.SetActive(true);
-                }
-                _isAltOrderDisplayed = !_isAltOrderDisplayed;
-
-            }
         }
         else
         {
             OnStopHover();
         }
-
-
     }
 
     private bool IsMouseHovering(Ray ray)
@@ -60,7 +48,6 @@ public class AnalyseOrder : MonoBehaviour
             if (hit.collider == _collider)
             {
                 return true;
-
             }
         }
         return false;
@@ -71,6 +58,28 @@ public class AnalyseOrder : MonoBehaviour
     private void OnHover()
     {
         _spriteRenderer.enabled = true;
+
+        // 0 for primary button
+        // Button clicked
+        if (Input.GetMouseButtonDown(0))
+        {
+            if (_isAltOrderDisplayed)
+            {
+                _altOrder.SetActive(false);
+            }
+            else
+            {
+                _altOrder.SetActive(true);
+
+                if (!_isAlreadyAnalysed)
+                {
+                    Points.AddAnalysePoints();
+                    _isAlreadyAnalysed = true;
+                }
+            }
+            _isAltOrderDisplayed = !_isAltOrderDisplayed;
+
+        }
     }
 
     private void OnStopHover()

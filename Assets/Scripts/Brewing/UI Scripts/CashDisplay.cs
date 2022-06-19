@@ -1,24 +1,13 @@
-using UnityEngine;
-using TMPro;
-public class CashDisplay : MonoBehaviour
+public class CashDisplay : UIPointsDisplay
 {
-    [SerializeField]
-    private TMP_Text _text;
-
-    private void OnEnable()
+    protected override void OnEnable()
     {
-        Cash.CashUpdated += OnCashUpdate;
+        Points.CashUpdated += OnAmountUpdate;
     }
 
-    private void OnDisable()
+    protected override void OnDisable()
     {
-        Cash.CashUpdated -= OnCashUpdate;
-    }
-
-    public void OnCashUpdate(float amount)
-    {
-        _text.text = amount.ToString();
-        print("updated");
+        Points.CashUpdated -= OnAmountUpdate;
     }
 
 }
