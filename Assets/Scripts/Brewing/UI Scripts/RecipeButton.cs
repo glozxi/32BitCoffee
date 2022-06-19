@@ -5,7 +5,6 @@ using Assets.Scripts.Brewing;
 
 public class RecipeButton : MonoBehaviour
 {
-    private static bool _isFirstButton = true;
     public delegate void ButtonClickedEventHandler(Drinks drinkEnum);
     public static event ButtonClickedEventHandler DrinkButtonClicked;
 
@@ -21,12 +20,6 @@ public class RecipeButton : MonoBehaviour
     {
         TMP_Text buttonText = _button.GetComponentInChildren<TMP_Text>();
         buttonText.text = drinkEnum.ToString();
-
-        if (_isFirstButton)
-        {
-            TaskOnClick(drinkEnum);
-            _isFirstButton = false;
-        }
 
         _button.onClick.AddListener(() => TaskOnClick(drinkEnum));
         RecipeButtons.DrinkButtonMade -= SetButton;
