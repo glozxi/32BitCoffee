@@ -1,5 +1,5 @@
 using UnityEngine;
-using Assets.Scripts.Brewing;
+using BrewingData;
 
 public class Ingredient : DragOutItem
 {

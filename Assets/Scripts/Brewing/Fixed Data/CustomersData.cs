@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
-using Assets.Scripts.Brewing;
+using BrewingData;
 
 // Stores data of customers of each round
 public class CustomersData

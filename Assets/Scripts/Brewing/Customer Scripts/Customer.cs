@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.Brewing;
+﻿using BrewingData;
 using System.Collections.Generic;
 using UnityEngine;
 

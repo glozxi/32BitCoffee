@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Assets.Scripts.Brewing;
+using BrewingData;
 
 [CreateAssetMenu(fileName = "New Drink", menuName = "Drink")]
 public class Drink : ScriptableObject

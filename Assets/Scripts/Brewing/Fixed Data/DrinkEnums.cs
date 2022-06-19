@@ -1,4 +1,4 @@
-namespace Assets.Scripts.Brewing
+namespace BrewingData
 {
     public enum Ingredients
     {

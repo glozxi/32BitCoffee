@@ -1,7 +1,6 @@
 using System.Collections.Generic;
-using UnityEngine;
 using System.Linq;
-using Assets.Scripts.Brewing;
+using BrewingData;
 
 public class Order
 {

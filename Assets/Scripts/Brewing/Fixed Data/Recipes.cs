@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
-using Assets.Scripts.Brewing;
+using BrewingData;
 using UnityEditor;
 
 public class Recipes : MonoBehaviour

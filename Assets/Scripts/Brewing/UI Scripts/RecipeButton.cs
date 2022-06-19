@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using Assets.Scripts.Brewing;
+using BrewingData;
 
 public class RecipeButton : MonoBehaviour
 {

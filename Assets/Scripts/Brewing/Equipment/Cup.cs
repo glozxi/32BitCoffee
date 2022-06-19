@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
-using Assets.Scripts.Brewing;
+using BrewingData;
 
 public class Cup : DragItem
 {

@@ -1,6 +1,6 @@
 using UnityEngine;
 using TMPro;
-using Assets.Scripts.Brewing;
+using BrewingData;
 
 public abstract class OrderText : MonoBehaviour
 {
