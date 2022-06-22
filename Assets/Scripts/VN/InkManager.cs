@@ -29,7 +29,8 @@ public class InkManager : MonoBehaviour
     [SerializeField]
     private VerticalLayoutGroup _choiceButtonContainer;
 
-    private const string SPEAKERNAME = "SPEAKER";
+    // private const string SPEAKERNAME = "SPEAKER";
+    private const string SPEAKERNAME = "Char";
     private const string MODEL = "MODEL";
     private const string BACKGROUND = "BG";
     private const string BGM = "BGM";
