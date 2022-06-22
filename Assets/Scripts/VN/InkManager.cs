@@ -55,6 +55,8 @@ public class InkManager : MonoBehaviour
     {
         _story = new Story(_inkJsonAsset.text);
 
+        BindFunctions();
+
         // Loaded story
         if (!string.IsNullOrEmpty(_loadedState))
         {
@@ -197,6 +199,18 @@ public class InkManager : MonoBehaviour
     private void RecordChoiceInLog(Choice choice)
     {
         _textLog.RecordAndChangeTextField(choice);
+    }
+
+    private void BindFunctions()
+    {
+        _story.BindExternalFunction("toBrew", () => {
+            TransitToBrew();
+        });
+    }
+
+    private void TransitToBrew()
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene("BrewScene");
     }
 
     public string GetStoryState()

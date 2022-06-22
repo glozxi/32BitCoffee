@@ -1,3 +1,5 @@
+ EXTERNAL toBrew()
+
 ->start
 === start ===
 -> Day_1_pt_1_1
@@ -6,6 +8,8 @@
 
 TO UPDATE SHEET AND UPDATE HERE.
 
+ ~ toBrew()
+ 
 ...#Char:None #Bg:black_screen #Bgm:space_void.mp3 
 
 #Rock:hey
