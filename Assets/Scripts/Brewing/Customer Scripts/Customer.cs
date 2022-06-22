@@ -96,4 +96,8 @@ public class Customer : MonoBehaviour
         gameObject.SetActive(value);
     }
 
+    public bool IsActive()
+    {
+        return gameObject.activeSelf;
+    }
 }

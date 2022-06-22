@@ -5,6 +5,9 @@ using UnityEngine;
 // Displays customers
 public class CustomerManager : MonoBehaviour
 {
+    public delegate void ServeEndEventHandler();
+    public static event ServeEndEventHandler AllServed;
+
     [SerializeField]
     private List<Customer> _customerList;
     private Queue<CustomerData> _queue;
@@ -43,8 +46,12 @@ public class CustomerManager : MonoBehaviour
         }
         catch (InvalidOperationException)
         {
-            print("No more customers.");
             customer.SetObjectActive(false);
+            if (IsServeFinished())
+            {
+                print("serve end");
+                AllServed?.Invoke();
+            }
         }
     }
 
@@ -59,6 +66,9 @@ public class CustomerManager : MonoBehaviour
         return _queue.Dequeue();
     }
 
-
+    private bool IsServeFinished()
+    {
+        return _customerList.TrueForAll(customer => !customer.IsActive());
+    }
  
 }
