@@ -69,6 +69,7 @@ public class InkManager : MonoBehaviour
         if (!string.IsNullOrEmpty(_loadedState) && _loadedFromBrew)
         {
             _story?.state?.LoadJson(_loadedState);
+            SetInkVariables();
 
             DisplayThisLine();
         }
@@ -221,11 +222,17 @@ public class InkManager : MonoBehaviour
 
     private void TransitToBrew(string level)
     {
-        _loadedFromBrew = true;
         State.NextBrewLevel = level;
         State.InkStoryState = GetStoryState();
         State.TextLog = GetTextLog();
+
         UnityEngine.SceneManagement.SceneManager.LoadScene("BrewScene");
+    }
+
+    private void SetInkVariables()
+    {
+        _story.variablesState["Outcome"] = State.Outcome;
+        _story.variablesState["Drink"] = State.Drink;
     }
 
     public string GetStoryState()

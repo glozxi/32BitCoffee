@@ -6,7 +6,7 @@ using BrewingData;
 public class CustomersData
 {
     private static List<CustomerData> list1 = new() {
-        new CustomerData(Drinks.Latte, Drinks.Latte, Drinks.Latte)
+        new CustomerData(Drinks.Latte, Drinks.Chocolate, Drinks.ChocoLatte)
     };
 
     public static Queue<CustomerData> GetQueue(string level)

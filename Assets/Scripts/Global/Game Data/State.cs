@@ -10,7 +10,8 @@ public class State : MonoBehaviour
     { get; set; }
     public static int Outcome
     { get; set; }
-
+    public static string Drink
+    { get; set; }
     public static string InkStoryState
     { get; set; }
     public static string TextLog

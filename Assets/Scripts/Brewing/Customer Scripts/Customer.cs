@@ -75,20 +75,30 @@ public class Customer : MonoBehaviour
         if (_wantedOrder.MatchDrink(contents))
         {
             print("wanted");
+            SetState(0, _wantedDrink);
             return _wantedOrder;
         }
         if (_neededOrder.MatchDrink(contents))
         {
             print("needed");
+            SetState(1, _neededDrink);
             return _neededOrder;
         }
         if (_dislikedOrder.MatchDrink(contents))
         {
             print("disliked");
+            SetState(-1, _dislikedDrink);
             return _dislikedOrder;
         }
         print("none");
+        SetState(2, Drinks.None);
         return Order.EmptyOrder;
+    }
+
+    private void SetState(int outcome, Drinks drink)
+    {
+        State.Outcome = outcome;
+        State.Drink = drink.ToString();
     }
 
     public void SetObjectActive(bool value)
