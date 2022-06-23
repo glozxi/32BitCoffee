@@ -61,6 +61,7 @@ public class InkManager : MonoBehaviour
         if (!string.IsNullOrEmpty(_loadedState))
         {
             _story?.state?.LoadJson(_loadedState);
+
             DisplayThisLine();
         }
         // New story
@@ -203,13 +204,16 @@ public class InkManager : MonoBehaviour
 
     private void BindFunctions()
     {
-        _story.BindExternalFunction("toBrew", () => {
-            TransitToBrew();
+        _story.BindExternalFunction("goToBrew", (string level) => {
+            TransitToBrew(level);
         });
     }
 
-    private void TransitToBrew()
+    private void TransitToBrew(string level)
     {
+        State.NextBrewLevel = level;
+        State.InkStoryState = GetStoryState();
+        State.TextLog = GetTextLog();
         UnityEngine.SceneManagement.SceneManager.LoadScene("BrewScene");
     }
 

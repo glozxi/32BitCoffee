@@ -14,6 +14,6 @@ public class SceneChanger : MonoBehaviour
 
     private void OnAllServed()
     {
-        UnityEngine.SceneManagement.SceneManager.LoadScene("DialogueScene");
+        State.ContinueStory();
     }
 }

@@ -1,4 +1,6 @@
- EXTERNAL toBrew()
+EXTERNAL goToBrew(level)
+
+
 
 ->start
 === start ===
@@ -8,11 +10,11 @@
 
 TO UPDATE SHEET AND UPDATE HERE.
 
- ~ toBrew()
+ ~ goToBrew("tutorial")
  
 ...#Char:None #Bg:black_screen #Bgm:space_void.mp3 
 
-#Rock:hey
+test#Rock:hey
 Ah....#Char:None 
 I can feel it.#Char:None 
 My consciousness rising from the darkness yet again.#Char:None 
@@ -432,6 +434,5 @@ Yes! Xiao Mei!#Char:You
 === Day_1_pt_1_3 ===
 -> END
 
-
-== function toBrew() ==
-~ return 1 // placeholder result
+=== function goToBrew(level) ===
+~ return 1

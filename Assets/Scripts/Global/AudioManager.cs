@@ -31,13 +31,9 @@ public class AudioManager : MonoBehaviour
     // two fx might have different volume or pitch
     void Awake()
     {
-         if (instance == null)
+        if (instance == null)
         {
             instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else {
-            DontDestroyOnLoad(gameObject);
         }
     }
 

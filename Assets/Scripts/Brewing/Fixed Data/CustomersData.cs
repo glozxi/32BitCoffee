@@ -9,11 +9,11 @@ public class CustomersData
         new CustomerData(Drinks.Latte, Drinks.Latte, Drinks.Latte)
     };
 
-    public static Queue<CustomerData> GetQueue(int number)
+    public static Queue<CustomerData> GetQueue(string level)
     {
-        switch(number)
+        switch(level)
         {
-            case 1:
+            case "tutorial":
                 return new(list1);
             default:
                 Debug.LogError("Customer queue not found.");

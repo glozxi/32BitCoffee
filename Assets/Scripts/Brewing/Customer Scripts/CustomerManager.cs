@@ -15,7 +15,7 @@ public class CustomerManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        _queue = CustomersData.GetQueue(1);
+        _queue = CustomersData.GetQueue(State.NextBrewLevel);
         foreach (Customer customer in _customerList)
         {
             customer.CustomerServed += OnCustomerServed;
@@ -49,7 +49,6 @@ public class CustomerManager : MonoBehaviour
             customer.SetObjectActive(false);
             if (IsServeFinished())
             {
-                print("serve end");
                 AllServed?.Invoke();
             }
         }
