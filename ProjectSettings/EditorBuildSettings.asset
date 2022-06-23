@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/BrewScene_Edot.unity
     guid: d97ff49ca9b7c764a9af5507b3512dc4
+  - enabled: 1
+    path: Assets/Scenes/BrewScene.unity
+    guid: 415651899272bca4c94c1e5836f7a646
   m_configObjects: {}

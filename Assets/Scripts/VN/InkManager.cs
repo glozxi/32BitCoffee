@@ -14,6 +14,8 @@ public class InkManager : MonoBehaviour
     private Story _story;
     private string _loadedState;
 
+    private static bool _loadedFromBrew = false;
+
     [SerializeField]
     private TextAsset _inkJsonAsset;
 
@@ -36,6 +38,7 @@ public class InkManager : MonoBehaviour
     private const string BGM = "BGM";
     private const string FX = "FX";
     private const string PRELOAD = "PRELOAD";
+    private const string TOBREW = "TOBREW";
 
     void Awake()
     {
@@ -56,9 +59,18 @@ public class InkManager : MonoBehaviour
         _story = new Story(_inkJsonAsset.text);
 
         // Loaded story
-        if (!string.IsNullOrEmpty(_loadedState))
+        if (!string.IsNullOrEmpty(_loadedState) && !_loadedFromBrew)
         {
             _story?.state?.LoadJson(_loadedState);
+
+            DisplayThisLine();
+        }
+        // Loaded from brew
+        if (!string.IsNullOrEmpty(_loadedState) && _loadedFromBrew)
+        {
+            _story?.state?.LoadJson(_loadedState);
+            SetInkVariables();
+
             DisplayThisLine();
         }
         // New story
@@ -167,6 +179,15 @@ public class InkManager : MonoBehaviour
                 case BACKGROUND:
                     BackgroundManager.instance.CMChangeBackground(tagValue);
                     break;
+
+                case TOBREW:
+                    if (_loadedFromBrew)
+                    {
+                        _loadedFromBrew = false;
+                        break;
+                    }
+                    TransitToBrew(tagValue);
+                    break;
             }
         }
     }
@@ -199,6 +220,21 @@ public class InkManager : MonoBehaviour
         _textLog.RecordAndChangeTextField(choice);
     }
 
+    private void TransitToBrew(string level)
+    {
+        State.NextBrewLevel = level;
+        State.InkStoryState = GetStoryState();
+        State.TextLog = GetTextLog();
+
+        UnityEngine.SceneManagement.SceneManager.LoadScene("BrewScene");
+    }
+
+    private void SetInkVariables()
+    {
+        _story.variablesState["Outcome"] = State.Outcome;
+        _story.variablesState["Drink"] = State.Drink;
+    }
+
     public string GetStoryState()
     {
         return _story.state.ToJson();
@@ -209,6 +245,14 @@ public class InkManager : MonoBehaviour
         _loadedState = inkStoryState;
         _textLog.SetTextLog(textLog);
 
+        StartStory();
+    }
+
+    public void LoadStateFromBrew(string inkStoryState, string textLog)
+    {
+        _loadedState = inkStoryState;
+        _textLog.SetTextLog(textLog);
+        _loadedFromBrew = true;
         StartStory();
     }
 

@@ -19,6 +19,8 @@ MonoBehaviour:
   _sprite: {fileID: 21300000, guid: 6a727daef5c968b48b80d8d0b33db542, type: 3}
   _mood: normal
   _promptDialogue: Where's my drink?
-  _analyzeInformation: John wants Chocolate
+  _orderTalk: I want Chocolate.
+  _analyzeInformation: John, businessman, 31. Seems like he needs Latte.
   _bonusTime: 6
   _bonusMult: 1.5
+  _isStoryAffected: 0

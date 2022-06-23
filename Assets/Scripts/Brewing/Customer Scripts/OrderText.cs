@@ -7,13 +7,13 @@ public abstract class OrderText : MonoBehaviour
     [SerializeField]
     protected TMP_Text _orderText;
 
-    protected Drinks _drink;
-    public Drinks Drink
+    protected string _textToDisplay;
+    public string TextToDisplay
     {
-        get => _drink; 
+        get => _textToDisplay; 
         set
         {
-            _drink = value;
+            _textToDisplay = value;
             SetText();
 
         }

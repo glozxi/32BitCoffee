@@ -1,3 +1,6 @@
+VAR Outcome = 0
+VAR Drink = "Latte"
+
 ->start
 === start ===
 -> Day_1_pt_1_1
@@ -6,10 +9,29 @@
 
 TO UPDATE SHEET AND UPDATE HERE.
 
-...#Char:None #Bg:black_screen #Bgm:space_void.mp3 
+...#Char:None #Bg:black_screen #Bgm:space_void.mp3 #TOBREW:tutorial
 
-#Rock:hey
+// Brew then back
+{
+- Outcome != 0 &&  Outcome != 1  && Outcome != -1: 
+    ~ Drink = "..."
+}
+
+test#Rock:hey
 Ah....#Char:None 
+
+You gave me a {Drink}
+{ 
+- Outcome == 1 : -> Tutorial_Pos
+- Outcome == 0 : -> Tutorial_Nor
+- Outcome == -1 : -> Tutorial_Bad
+- else : -> Tutorial_Non
+}
+=== Tutorial_Non ===
+You didn't even try.
+Can you try again?
+-> Day_1_pt_1_1
+
 I can feel it.#Char:None 
 My consciousness rising from the darkness yet again.#Char:None 
 How long has it been since I last woke from my slumber...?#Char:None 
@@ -319,8 +341,6 @@ Anyway. I'll try it.#Char:You
 -> Tutorial
 
 === Tutorial ===
-VAR Outcome = 0
-VAR Drink = "Latte"
 //Go to brew
 //Comeback
 #Sprite:Clear 

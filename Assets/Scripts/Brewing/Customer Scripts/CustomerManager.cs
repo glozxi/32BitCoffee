@@ -5,6 +5,9 @@ using UnityEngine;
 // Displays customers
 public class CustomerManager : MonoBehaviour
 {
+    public delegate void ServeEndEventHandler();
+    public static event ServeEndEventHandler AllServed;
+
     [SerializeField]
     private List<Customer> _customerList;
     private Queue<CustomerData> _queue;
@@ -12,7 +15,7 @@ public class CustomerManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        _queue = CustomersData.GetQueue(1);
+        _queue = CustomersData.GetQueue(State.NextBrewLevel);
         foreach (Customer customer in _customerList)
         {
             customer.CustomerServed += OnCustomerServed;
@@ -43,14 +46,17 @@ public class CustomerManager : MonoBehaviour
         }
         catch (InvalidOperationException)
         {
-            print("No more customers.");
             customer.SetObjectActive(false);
+            if (IsServeFinished())
+            {
+                AllServed?.Invoke();
+            }
         }
     }
 
     private void DisplayCustomer(CustomerData customerData, Customer customer)
     {
-        customer.SetNewCustomer(customerData.Wanted, customerData.Needed, customerData.Disliked);
+        customer.SetNewCustomer(customerData);
         customer.SetObjectActive(true);
     }
 
@@ -59,6 +65,9 @@ public class CustomerManager : MonoBehaviour
         return _queue.Dequeue();
     }
 
-
+    private bool IsServeFinished()
+    {
+        return _customerList.TrueForAll(customer => !customer.IsActive());
+    }
  
 }

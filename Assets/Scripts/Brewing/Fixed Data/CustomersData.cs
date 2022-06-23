@@ -3,29 +3,37 @@ using UnityEngine;
 using BrewingData;
 
 // Stores data of customers of each round
-public class CustomersData
+public class CustomersData : MonoBehaviour
 {
-    private static List<CustomerData> list1 = new() {
-        new CustomerData(Drinks.Latte, Drinks.Latte, Drinks.Latte),
-        new CustomerData(Drinks.Chocolate, Drinks.ChocoLatte, Drinks.ChocoLatte),
-        new CustomerData(Drinks.Chocolate, Drinks.Latte, Drinks.ChocoLatte),
-        new CustomerData(Drinks.Latte, Drinks.Latte, Drinks.Latte),
-        new CustomerData(Drinks.Chocolate, Drinks.ChocoLatte, Drinks.ChocoLatte)
-    };
+    private static Dictionary<string, CustomerData> _data = new();
+    private static List<CustomerData> list1;
 
-    private static Queue<CustomerData> queue1 = new(list1);
-
-    public static Queue<CustomerData> GetQueue(int number)
+    static CustomersData()
     {
-        switch(number)
+        foreach (CustomerData customer in Resources.LoadAll<CustomerData>("Customer"))
         {
-            case 1:
-                return queue1;
+            _data.Add(customer.Name, customer);
+        }
+        list1 = new() {
+            _data["Xiao Mei"]
+        };
+    }
+
+    public static Queue<CustomerData> GetQueue(string level)
+    {
+        switch(level)
+        {
+            case "tutorial":
+                return new(list1);
             default:
                 Debug.LogError("Customer queue not found.");
                 return null;
         }
     }
 
+    public static string GetAnalyseInfo(string name)
+    {
+        return _data[name].AnalyseInformation;
+    }
 
 }

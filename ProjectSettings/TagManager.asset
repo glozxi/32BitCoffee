@@ -6,6 +6,7 @@ TagManager:
   tags:
   - cupContent
   - Ingredient
+  - DNDOL
   layers:
   - Default
   - TransparentFX
