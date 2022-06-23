@@ -8,6 +8,9 @@ public class State : MonoBehaviour
 
     public static string NextBrewLevel
     { get; set; }
+    public static int Outcome
+    { get; set; }
+
     public static string InkStoryState
     { get; set; }
     public static string TextLog
@@ -33,6 +36,6 @@ public class State : MonoBehaviour
         UnityEngine.SceneManagement.SceneManager.LoadScene("DialogueScene");
         yield return null;
         InkManager inkManager = (InkManager) FindObjectOfType(typeof(InkManager));
-        inkManager.LoadState(InkStoryState, TextLog);
+        inkManager.LoadStateFromBrew(InkStoryState, TextLog);
     }
 }

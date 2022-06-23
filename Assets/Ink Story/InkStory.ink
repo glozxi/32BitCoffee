@@ -1,5 +1,3 @@
-EXTERNAL goToBrew(level)
-
 
 
 ->start
@@ -10,9 +8,7 @@ EXTERNAL goToBrew(level)
 
 TO UPDATE SHEET AND UPDATE HERE.
 
- ~ goToBrew("tutorial")
- 
-...#Char:None #Bg:black_screen #Bgm:space_void.mp3 
+...#Char:None #Bg:black_screen #Bgm:space_void.mp3 #TOBREW:tutorial
 
 test#Rock:hey
 Ah....#Char:None 
@@ -433,6 +429,3 @@ Yes! Xiao Mei!#Char:You
 //Note: Once you begin serving Jayden coffee, the minigame will continue and not stop.
 === Day_1_pt_1_3 ===
 -> END
-
-=== function goToBrew(level) ===
-~ return 1
