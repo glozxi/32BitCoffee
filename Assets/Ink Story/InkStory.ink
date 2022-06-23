@@ -3,24 +3,23 @@ VAR Drink = "Latte"
 
 ->start
 === start ===
--> Day_1_pt_1_1
-=== Day_1_pt_1_1 ===
-
-
-TO UPDATE SHEET AND UPDATE HERE.
-
-...#Char:None #Bg:black_screen #Bgm:space_void.mp3 #TOBREW:tutorial
-
+attemptb
+Doesn
+GOING
+again
+1
+-> brew
+=== brew ===
+2#TOBREW:tutorial
 // Brew then back
 {
 - Outcome != 0 &&  Outcome != 1  && Outcome != -1: 
     ~ Drink = "..."
 }
 
-test#Rock:hey
-Ah....#Char:None 
+3
 
-You gave me a {Drink}
+4 You gave me a {Drink}
 { 
 - Outcome == 1 : -> Tutorial_Pos
 - Outcome == 0 : -> Tutorial_Nor
@@ -28,9 +27,19 @@ You gave me a {Drink}
 - else : -> Tutorial_Non
 }
 === Tutorial_Non ===
-You didn't even try.
-Can you try again?
+5 You didn't even try.
+6 Can you try again?
+-> brew
+
 -> Day_1_pt_1_1
+=== Day_1_pt_1_1 ===
+
+
+TO UPDATE SHEET AND UPDATE HERE.
+
+...#Char:None #Bg:black_screen #Bgm:space_void.mp3
+Ah....#Char:None 
+
 
 I can feel it.#Char:None 
 My consciousness rising from the darkness yet again.#Char:None 

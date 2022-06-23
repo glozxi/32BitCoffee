@@ -57,16 +57,14 @@ public class InkManager : MonoBehaviour
     private void StartStory()
     {
         _story = new Story(_inkJsonAsset.text);
-
         // Loaded story
         if (!string.IsNullOrEmpty(_loadedState) && !_loadedFromBrew)
         {
             _story?.state?.LoadJson(_loadedState);
-
             DisplayThisLine();
         }
         // Loaded from brew
-        if (!string.IsNullOrEmpty(_loadedState) && _loadedFromBrew)
+        else if (!string.IsNullOrEmpty(_loadedState) && _loadedFromBrew)
         {
             _story?.state?.LoadJson(_loadedState);
             SetInkVariables();
@@ -113,6 +111,7 @@ public class InkManager : MonoBehaviour
     private void DisplayThisLine()
     {
         string text = _story.currentText.Trim();
+
         _dialogueTextField.text = text;
         HandleTags(_story.currentTags);
         HandleChoices();
@@ -244,7 +243,7 @@ public class InkManager : MonoBehaviour
     {
         _loadedState = inkStoryState;
         _textLog.SetTextLog(textLog);
-
+        _loadedFromBrew = false;
         StartStory();
     }
 

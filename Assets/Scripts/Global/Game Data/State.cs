@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class State : MonoBehaviour
 {
-    private static State instance;
+    private static State _instance;
 
     public static string NextBrewLevel
     { get; set; }
@@ -17,20 +17,18 @@ public class State : MonoBehaviour
     public static string TextLog
     { get; set; }
 
-    private static Points _points;
-
     void Awake()
     {
-        if (instance == null)
+        if (_instance == null)
         {
-            instance = this;
+            _instance = this;
         }
         NextBrewLevel = "tutorial";
     }
 
     public static void ContinueStory()
     {
-        instance.StartCoroutine(instance.DialogueScene());
+        _instance.StartCoroutine(_instance.DialogueScene());
     }
 
     private IEnumerator DialogueScene()
@@ -40,4 +38,5 @@ public class State : MonoBehaviour
         InkManager inkManager = (InkManager) FindObjectOfType(typeof(InkManager));
         inkManager.LoadStateFromBrew(InkStoryState, TextLog);
     }
+
 }
