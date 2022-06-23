@@ -7,14 +7,15 @@ public class Customer : MonoBehaviour
     public delegate void ServedEventHandler(Customer sender);
     public event ServedEventHandler CustomerServed;
 
-    private Drinks _wantedDrink;
+    private CustomerData _data;
+
     private Order _wantedOrder;
 
-    private Drinks _neededDrink;
     private Order _neededOrder;
 
-    private Drinks _dislikedDrink;
     private Order _dislikedOrder;
+
+    private bool _isStoryAffected;
 
     [SerializeField]
     private WantedOrderText _wantedText;
@@ -40,27 +41,30 @@ public class Customer : MonoBehaviour
         _servebox.CupCollision -= OnServed;
     }
 
-    public void SetNewCustomer(Drinks wantedDrink, Drinks neededDrink, Drinks dislikedDrink)
+    public void SetNewCustomer(CustomerData data)
     {
-        SetDrinks(wantedDrink, neededDrink, dislikedDrink);
+        _data = data;
+
+        SetDrinks();
+        SetText();
+
+        _isStoryAffected = data.IsStoryAffected;
         _timer.ResetTime();
         _analysis.IsAlreadyAnalysed = false;
     }
 
-    private void SetDrinks(Drinks wantedDrink, Drinks neededDrink, Drinks dislikedDrink)
+    private void SetDrinks()
     {
-        _wantedDrink = wantedDrink;
-        _neededDrink = neededDrink;
-        _dislikedDrink = dislikedDrink;
-        _wantedOrder = new Order(_wantedDrink, OrderTypes.Wanted);
-        _neededOrder = new Order(_neededDrink, OrderTypes.Needed);
-        _dislikedOrder = new Order(_dislikedDrink, OrderTypes.Disliked);
+        _wantedOrder = new Order(_data.Wanted, OrderTypes.Wanted);
+        _neededOrder = new Order(_data.Needed, OrderTypes.Needed);
+        _dislikedOrder = new Order(_data.Disliked, OrderTypes.Disliked);
+    }
 
-        _wantedText.Drink = _wantedDrink;
-        _neededText.Drink = _neededDrink;
-
+    private void SetText()
+    {
+        _wantedText.TextToDisplay = _data.OrderTalk;
+        _neededText.TextToDisplay = _data.AnalyseInformation;
         _neededText.SetObjectInactive();
-        
     }
 
     private void OnServed(Cup cup)
@@ -72,27 +76,44 @@ public class Customer : MonoBehaviour
 
     private Order CheckDrink(List<Ingredients> contents)
     {
+        int outcome;
+        Drinks drink;
+        Order order;
         if (_wantedOrder.MatchDrink(contents))
         {
             print("wanted");
-            SetState(0, _wantedDrink);
-            return _wantedOrder;
+            outcome = 0;
+            drink = _data.Wanted;
+            order =  _wantedOrder;
         }
-        if (_neededOrder.MatchDrink(contents))
+        else if (_neededOrder.MatchDrink(contents))
         {
             print("needed");
-            SetState(1, _neededDrink);
-            return _neededOrder;
+            outcome = 1;
+            drink = _data.Needed;
+            order = _neededOrder;
         }
-        if (_dislikedOrder.MatchDrink(contents))
+        else if (_dislikedOrder.MatchDrink(contents))
         {
             print("disliked");
-            SetState(-1, _dislikedDrink);
-            return _dislikedOrder;
+            outcome = -1;
+            drink = _data.Disliked;
+            order = _dislikedOrder;
         }
-        print("none");
-        SetState(2, Drinks.None);
-        return Order.EmptyOrder;
+        else
+        {
+            print("none");
+            outcome = 2;
+            drink = Drinks.None;
+            order = Order.EmptyOrder;
+        }
+
+        if (_isStoryAffected)
+        {
+            SetState(outcome, drink);
+        }
+        return order;
+
     }
 
     private void SetState(int outcome, Drinks drink)

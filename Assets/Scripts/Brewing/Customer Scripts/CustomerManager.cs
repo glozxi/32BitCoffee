@@ -56,7 +56,7 @@ public class CustomerManager : MonoBehaviour
 
     private void DisplayCustomer(CustomerData customerData, Customer customer)
     {
-        customer.SetNewCustomer(customerData.Wanted, customerData.Needed, customerData.Disliked);
+        customer.SetNewCustomer(customerData);
         customer.SetObjectActive(true);
     }
 

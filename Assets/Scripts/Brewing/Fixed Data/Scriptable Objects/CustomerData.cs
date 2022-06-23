@@ -4,7 +4,7 @@ using UnityEngine;
 using BrewingData;
 
 [CreateAssetMenu(fileName = "New Customer", menuName = "Customer")]
-public class CustomerData1 : ScriptableObject
+public class CustomerData : ScriptableObject
 {
 
     [SerializeField]
@@ -37,15 +37,29 @@ public class CustomerData1 : ScriptableObject
     [SerializeField]
     private string _promptDialogue = "Where's my drink?";
 
-    // name?
     [SerializeField]
+    [TextArea(15, 20)]
+    private string _orderTalk;
+    public string OrderTalk
+    { get => _orderTalk; }
+
+    [SerializeField]
+    [TextArea(15, 20)]
     private string _analyzeInformation;
+    public string AnalyseInformation
+    { get => _analyzeInformation; }
 
     [SerializeField]
     private float _bonusTime = 10f;
 
     [SerializeField]
     private float _bonusMult = 1.5f;
+
+    // True if order served affects the story
+    [SerializeField]
+    private bool _isStoryAffected;
+    public bool IsStoryAffected
+    { get => _isStoryAffected; }
 
 
 }

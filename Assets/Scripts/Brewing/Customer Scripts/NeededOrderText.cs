@@ -2,7 +2,7 @@ public class NeededOrderText : OrderText
 {
     protected override void SetText()
     {
-        _orderText.text = "This guy needs " + Drink;
+        _orderText.text = _textToDisplay;
     }
 
     public void SetObjectInactive()

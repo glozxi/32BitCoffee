@@ -2,6 +2,6 @@ public class WantedOrderText : OrderText
 {
     protected override void SetText()
     {
-        _orderText.text = "I want " + Drink;
+        _orderText.text = _textToDisplay;
     }
 }

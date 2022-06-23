@@ -25,6 +25,7 @@ public class State : MonoBehaviour
         {
             instance = this;
         }
+        NextBrewLevel = "tutorial";
     }
 
     public static void ContinueStory()
