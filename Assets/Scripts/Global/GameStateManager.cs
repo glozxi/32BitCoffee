@@ -56,6 +56,7 @@ public class GameStateManager : MonoBehaviour
 
             _inkManager.LoadState(saveData.InkStoryState, saveData.TextLog);
             Points.LoadPoints(saveData.Cash, saveData.NetworkPoints);
+
             State.NextBrewLevel = saveData.NextBrewLevel;
             State.Outcome = saveData.Outcome;
             State.Drink = saveData.Drink;

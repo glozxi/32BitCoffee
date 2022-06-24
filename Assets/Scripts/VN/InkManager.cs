@@ -16,6 +16,9 @@ public class InkManager : MonoBehaviour
 
     private static bool _loadedFromBrew = false;
 
+    private bool _isBrewNext = false;
+    private string _nextLevel;
+
     [SerializeField]
     private TextAsset _inkJsonAsset;
 
@@ -57,18 +60,14 @@ public class InkManager : MonoBehaviour
     private void StartStory()
     {
         _story = new Story(_inkJsonAsset.text);
+
+        ObserveVariables();
+
         // Loaded story
-        if (!string.IsNullOrEmpty(_loadedState) && !_loadedFromBrew)
-        {
-            _story?.state?.LoadJson(_loadedState);
-            DisplayThisLine();
-        }
-        // Loaded from brew
-        else if (!string.IsNullOrEmpty(_loadedState) && _loadedFromBrew)
+        if (!string.IsNullOrEmpty(_loadedState))
         {
             _story?.state?.LoadJson(_loadedState);
             SetInkVariables();
-
             DisplayThisLine();
         }
         // New story
@@ -77,6 +76,13 @@ public class InkManager : MonoBehaviour
             DisplayNextLine();
         }
 
+    }
+
+    private void ObserveVariables()
+    {
+        _story.ObserveVariable("Drink", (string varName, object newValue) => {
+            State.Drink = (string)newValue;
+        });
     }
 
     // Called when a choice button is clicked
@@ -91,6 +97,11 @@ public class InkManager : MonoBehaviour
     // Called when next button clicked
     private void OnNext()
     {
+        if (_isBrewNext)
+        {
+            TransitToBrew(_nextLevel);
+            return;
+        }
         RecordLineInLog();
         DisplayNextLine();
     }
@@ -183,14 +194,18 @@ public class InkManager : MonoBehaviour
                     if (_loadedFromBrew)
                     {
                         _loadedFromBrew = false;
+                        _isBrewNext = false;
+                        OnNext();
                         break;
                     }
-                    TransitToBrew(tagValue);
+                    _isBrewNext = true;
+                    _nextLevel = tagValue;
                     break;
             }
         }
     }
     
+
     private void SetName(string name)
     {
         if (name == "None")
@@ -230,8 +245,16 @@ public class InkManager : MonoBehaviour
 
     private void SetInkVariables()
     {
-        _story.variablesState["Outcome"] = State.Outcome;
-        _story.variablesState["Drink"] = State.Drink;
+        SetInkVariable("Outcome", State.Outcome);
+        SetInkVariable("Drink", State.Drink);
+    }
+
+    private void SetInkVariable(string varName, object toAssign)
+    {
+        if (toAssign != null)
+        {
+            _story.variablesState[varName] = toAssign;
+        }
     }
 
     public string GetStoryState()
