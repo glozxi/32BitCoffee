@@ -4,7 +4,7 @@ using TMPro;
 public abstract class UIPointsDisplay : MonoBehaviour
 {
     [SerializeField]
-    private TMP_Text _text;
+    protected TMP_Text _text;
 
     protected abstract void OnEnable();
 

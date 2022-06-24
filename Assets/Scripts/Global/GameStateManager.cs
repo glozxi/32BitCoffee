@@ -23,7 +23,12 @@ public class GameStateManager : MonoBehaviour
         SaveData saveData = new()
         {
             InkStoryState = _inkManager.GetStoryState(),
-            TextLog = _inkManager.GetTextLog()
+            TextLog = _inkManager.GetTextLog(),
+            Cash = Points.Cash,
+            NetworkPoints = Points.NetworkPoints,
+            NextBrewLevel = State.NextBrewLevel,
+            Outcome = State.Outcome,
+            Drink = State.Drink
         };
 
         BinaryFormatter bf = new();
@@ -50,6 +55,11 @@ public class GameStateManager : MonoBehaviour
             file.Close();
 
             _inkManager.LoadState(saveData.InkStoryState, saveData.TextLog);
+            Points.LoadPoints(saveData.Cash, saveData.NetworkPoints);
+
+            State.NextBrewLevel = saveData.NextBrewLevel;
+            State.Outcome = saveData.Outcome;
+            State.Drink = saveData.Drink;
         }
     }
 
