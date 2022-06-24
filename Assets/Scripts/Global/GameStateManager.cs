@@ -13,10 +13,18 @@ public class GameStateManager : MonoBehaviour
         _inkManager = FindObjectOfType<InkManager>();
     }
 
-    public void StartGame()
+    private void StartGame()
     {
         UnityEngine.SceneManagement.SceneManager.LoadScene("DialogueScene");
     }
+
+    public void StartNewGame()
+    {
+        InkManager.ResetStory();
+        StartGame();
+    }
+
+    // Save from VN scene
     public void SaveGame()
     {
 
@@ -41,6 +49,8 @@ public class GameStateManager : MonoBehaviour
         print("Game saved at " + savePath);
 
     }
+
+    // Load from start screen scene
     public void LoadGame()
     {
         string savePath = Application.persistentDataPath + "/savedata.save";
@@ -54,12 +64,14 @@ public class GameStateManager : MonoBehaviour
             SaveData saveData = (SaveData)bf.Deserialize(file);
             file.Close();
 
-            _inkManager.LoadState(saveData.InkStoryState, saveData.TextLog);
+            InkManager.LoadState(saveData.InkStoryState, saveData.TextLog);
             Points.LoadPoints(saveData.Cash, saveData.NetworkPoints);
 
             State.NextBrewLevel = saveData.NextBrewLevel;
             State.Outcome = saveData.Outcome;
             State.Drink = saveData.Drink;
+
+            StartGame();
         }
     }
 

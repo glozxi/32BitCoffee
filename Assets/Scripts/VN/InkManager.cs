@@ -12,7 +12,9 @@ public class InkManager : MonoBehaviour
     public static event ChoicesEncountered Choices;
 
     private Story _story;
-    private string _loadedState;
+    private static string _loadedState;
+    private static string _textInLog;
+
 
     private static bool _loadedFromBrew = false;
 
@@ -68,6 +70,7 @@ public class InkManager : MonoBehaviour
         {
             _story?.state?.LoadJson(_loadedState);
             SetInkVariables();
+            _textLog.SetTextLog(_textInLog);
             DisplayThisLine();
         }
         // New story
@@ -262,12 +265,11 @@ public class InkManager : MonoBehaviour
         return _story.state.ToJson();
     }
 
-    public void LoadState(string inkStoryState, string textLog)
+    public static void LoadState(string inkStoryState, string textLog)
     {
         _loadedState = inkStoryState;
-        _textLog.SetTextLog(textLog);
+        _textInLog = textLog;
         _loadedFromBrew = false;
-        StartStory();
     }
 
     public void LoadStateFromBrew(string inkStoryState, string textLog)
@@ -276,6 +278,13 @@ public class InkManager : MonoBehaviour
         _textLog.SetTextLog(textLog);
         _loadedFromBrew = true;
         StartStory();
+    }
+
+    public static void ResetStory()
+    {
+        _loadedState = null;
+        _textInLog = null;
+        _loadedFromBrew = false;
     }
 
     public string GetTextLog()
