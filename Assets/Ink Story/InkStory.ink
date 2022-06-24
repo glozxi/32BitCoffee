@@ -3,35 +3,7 @@ VAR Drink = "Latte"
 
 ->start
 === start ===
-attemptb
-Doesn
-GOING
-again
-1
--> brew
-=== brew ===
-2#TOBREW:tutorial
-// Brew then back
-{
-- Outcome != 0 &&  Outcome != 1  && Outcome != -1: 
-    ~ Drink = "..."
-}
-
-3
-
-4 You gave me a {Drink}
-{ 
-- Outcome == 1 : -> Tutorial_Pos
-- Outcome == 0 : -> Tutorial_Nor
-- Outcome == -1 : -> Tutorial_Bad
-- else : -> Tutorial_Non
-}
-=== Tutorial_Non ===
-5 You didn't even try.
-6 Can you try again?
--> brew
-
--> Day_1_pt_1_1
+-> Tutorial
 === Day_1_pt_1_1 ===
 
 
@@ -350,20 +322,29 @@ Anyway. I'll try it.#Char:You
 -> Tutorial
 
 === Tutorial ===
+{Time to brew.| Time to brew again}#TOBREW:tutorial
 //Go to brew
 //Comeback
 #Sprite:Clear 
 Soo, you done staring at me?#Char:Sherlyn #Sprite:Sherlyn #Pos:MM #Expr:Normal #Bgm:Some_Bgm.mp3 
+-> Tut_End
+=== Tut_End ===
+{
+- Outcome != 0 &&  Outcome != 1  && Outcome != -1: 
+    ~ Drink = "..."
+}
 Here you go, {Drink}#Char:You #Sprite:FX: Serve Cup #Fx:Serve.mp3 
-END OF STORY
-->END
-"{ 
+
+{ 
 - Outcome == 1 : -> Tutorial_Pos
 - Outcome == 0 : -> Tutorial_Nor
 - Outcome == -1 : -> Tutorial_Bad
-}"
-
-
+- else : -> Tutorial_Fail
+}
+=== Tutorial_Fail ===
+Hey, this isn't what I asked for.#Char:Sherlyn
+Can you try again?#Char:Sherlyn#TOBREW:tutorial
+-> Tut_End
 
 === Tutorial_Pos ===
 #Sprite:Clear 
@@ -455,4 +436,5 @@ Yes! Xiao Mei!#Char:You
 
 //Note: Once you begin serving Jayden coffee, the minigame will continue and not stop.
 === Day_1_pt_1_3 ===
+END OF STORY
 -> END
