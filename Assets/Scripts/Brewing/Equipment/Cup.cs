@@ -45,7 +45,8 @@ public class Cup : DragItem
 
     public void ResetCup()
     {
-        Instantiate(gameObject, SpawnPosition, Quaternion.identity);
+        var newcup = Instantiate(gameObject, SpawnPosition, Quaternion.identity);
+        newcup.transform.parent = this.transform.parent;
         Destroy(gameObject);
     }
 

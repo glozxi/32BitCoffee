@@ -13,6 +13,7 @@ public class DragItem : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
+            AudioManager.instance.PlaySFX("pickup"); // figure how to selectively do this or tie audio to object variable and read from there.
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit2D[] hits = Physics2D.RaycastAll(ray.origin, ray.direction, Mathf.Infinity);
             foreach (RaycastHit2D hit in hits)

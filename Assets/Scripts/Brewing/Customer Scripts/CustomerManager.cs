@@ -58,6 +58,7 @@ public class CustomerManager : MonoBehaviour
     {
         customer.SetNewCustomer(customerData);
         customer.SetObjectActive(true);
+        AudioManager.instance.PlaySFX("welcome");
     }
 
     private CustomerData NextCustomer()

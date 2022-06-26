@@ -16,8 +16,8 @@ public class TESTERAUDIO : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            CharacterManager.instance.CMChar("PERSON2", "person_default", "default", "LL");
-            BackgroundManager.instance.CMChangeBackground("day");
+            CharacterManager.instance.CMChar("ADDER", "adder_default", "default", "MM");
+            //BackgroundManager.instance.CMChangeBackground("day");
         }
     }
 }

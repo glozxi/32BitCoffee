@@ -16,14 +16,16 @@ public class AudioManager : MonoBehaviour
     public static string globalPathFX = "Sound/FX/";
     public static Dictionary<string, string>  dictEfx = new Dictionary<string, string>()
     {
-        {"buzzer", globalPathFX+"lisc_checked_unknown/166030__vinrax__metal-item-drop" }
+        {"pickup", globalPathFX+"Brew_Click" },
+        {"welcome", globalPathFX+"Brew_Customer_In" },
+        {"new_cup", globalPathFX+"Brew_New_Cup" }
     };
 
     public static string globalPathBG = "Sound/BGM/";
     public static Dictionary<string, string> dictBgm = new Dictionary<string, string>()
     {
-        {"menu", globalPathBG+"Orange_Highway - Fukagawa" },
-        {"two", globalPathBG+"Sunday_breakfast -  yuhei komatsu" }
+        {"menu", globalPathBG+"TALK_and_WALK" },
+        {"cafe", globalPathBG+"ensolarado" }
     };
 
 
