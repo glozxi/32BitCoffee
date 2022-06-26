@@ -1,11 +1,11 @@
 using UnityEngine;
 
-public class Timer : MonoBehaviour
+public class Timer : MonoBehaviour, ITimer
 {
     private float _timer = 0.0f;
 
     [SerializeField]
-    private float BonusDuration = 7.0f;
+    private float _bonusDuration = 7.0f;
     private bool _hasBonus = true;
     public bool HasBonus
     { get => _hasBonus; }
@@ -16,9 +16,9 @@ public class Timer : MonoBehaviour
         if (_hasBonus)
         {
             _timer += Time.deltaTime;
-            if (_timer > BonusDuration)
+            if (_timer > _bonusDuration)
             {
-                print(BonusDuration + " seconds");
+                print(_bonusDuration + " seconds");
                 _hasBonus = false;
             }
         }
@@ -35,7 +35,7 @@ public class Timer : MonoBehaviour
     {
         if (_hasBonus)
         {
-            return 1 - _timer / BonusDuration;
+            return 1 - _timer / _bonusDuration;
         }
         return 0f;
     }

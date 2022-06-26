@@ -4,9 +4,9 @@ using BrewingData;
 
 public class Cup : DragItem
 {
-    private const string IngredientTag = "Ingredient";
-    private const int MaxContent = 4;
-    private const string CupContentTag = "cupContent";
+    private const string INGREDIENT_TAG = "Ingredient";
+    private const int MAX_CONTENT = 4;
+    private const string CUP_CONTENT_TAG = "cupContent";
 
     public Vector2 SpawnPosition
     { get; set; }
@@ -33,7 +33,7 @@ public class Cup : DragItem
     private void OnTriggerEnter2D(Collider2D collision)
     {
         GameObject collidedObject = collision.gameObject;
-        if (collidedObject.CompareTag(IngredientTag))
+        if (collidedObject.CompareTag(INGREDIENT_TAG))
         {
             Ingredient ingredient = collidedObject.GetComponent<Ingredient>();
             
@@ -55,7 +55,7 @@ public class Cup : DragItem
     {
         foreach (Transform child in transform)
         {
-            if (child.CompareTag(CupContentTag))
+            if (child.CompareTag(CUP_CONTENT_TAG))
             {
                 Destroy(child.gameObject);
             }
@@ -66,7 +66,7 @@ public class Cup : DragItem
     // Adds an item to the cup if possible and displays it
     private void Add(Ingredient ingredient)
     {
-        if (_contents.Count < MaxContent)
+        if (_contents.Count < MAX_CONTENT)
         {
             _contents.Add(ingredient.IngredientType);
             DisplayContent(ingredient);

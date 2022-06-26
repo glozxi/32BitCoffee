@@ -1,26 +1,22 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 using System.Collections.Generic;
+
 // Class of item that can be dragged, creating a new sprite
 public abstract class DragOutItem : MonoBehaviour
 {
     [SerializeField]
     private Sprite _newSprite;
 
-    [SerializeField]
-    private string draggedOutTag;
+    protected virtual string DraggedOutTag
+    { get; set; }
 
-    private bool _isDragging;
+    private bool _isDragging = false;
     private GameObject _selectedObject;
-
-    private void Start()
-    {
-        _isDragging = false;
-    }
 
     private void Update()
     {
-        if (PointerIsOverUI(Input.mousePosition)) return;
+        if (IsPointerOverUI(Input.mousePosition)) return;
 
         if (Input.GetMouseButtonDown(0) && !_isDragging)
         {
@@ -36,7 +32,7 @@ public abstract class DragOutItem : MonoBehaviour
 
                 GetComponent<SpriteRenderer>().sprite = _newSprite;
                 GetComponent<SpriteRenderer>().sortingOrder = 2;
-                transform.tag = draggedOutTag;
+                transform.tag = DraggedOutTag;
                 
             }
         }
@@ -54,18 +50,18 @@ public abstract class DragOutItem : MonoBehaviour
         }
     }
 
-    Vector2 MousePos()
+    private Vector2 MousePos()
     {
         return Camera.main.ScreenToWorldPoint(new Vector2(Input.mousePosition.x, Input.mousePosition.y));
     }
 
-    public static bool PointerIsOverUI(Vector2 screenPos)
+    private bool IsPointerOverUI(Vector2 screenPos)
     {
         var hitObject = UIRaycast(ScreenPosToPointerData(screenPos));
         return hitObject != null && hitObject.layer == LayerMask.NameToLayer("UI");
     }
 
-    static GameObject UIRaycast(PointerEventData pointerData)
+    private GameObject UIRaycast(PointerEventData pointerData)
     {
         var results = new List<RaycastResult>();
         EventSystem.current.RaycastAll(pointerData, results);
@@ -73,6 +69,6 @@ public abstract class DragOutItem : MonoBehaviour
         return results.Count < 1 ? null : results[0].gameObject;
     }
 
-    static PointerEventData ScreenPosToPointerData(Vector2 screenPos)
+    private PointerEventData ScreenPosToPointerData(Vector2 screenPos)
        => new(EventSystem.current) { position = screenPos };
 }

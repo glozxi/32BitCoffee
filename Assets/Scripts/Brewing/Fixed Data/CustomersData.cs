@@ -6,7 +6,7 @@ using BrewingData;
 public class CustomersData : MonoBehaviour
 {
     private static Dictionary<string, CustomerData> _data = new();
-    private static List<CustomerData> list1;
+    private static List<CustomerData> _list1;
 
     static CustomersData()
     {
@@ -14,7 +14,7 @@ public class CustomersData : MonoBehaviour
         {
             _data.Add(customer.Name, customer);
         }
-        list1 = new() {
+        _list1 = new() {
             _data["Xiao Mei"]
         };
     }
@@ -24,7 +24,7 @@ public class CustomersData : MonoBehaviour
         switch(level)
         {
             case "tutorial":
-                return new(list1);
+                return new(_list1);
             default:
                 Debug.LogError("Customer queue not found.");
                 return null;
