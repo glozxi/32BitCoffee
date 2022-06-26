@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using BrewingData;
 
@@ -45,9 +43,9 @@ public class CustomerData : ScriptableObject
 
     [SerializeField]
     [TextArea(15, 20)]
-    private string _analyzeInformation;
+    private string _analyseInformation;
     public string AnalyseInformation
-    { get => _analyzeInformation; }
+    { get => _analyseInformation; }
 
     [SerializeField]
     private float _bonusTime = 10f;

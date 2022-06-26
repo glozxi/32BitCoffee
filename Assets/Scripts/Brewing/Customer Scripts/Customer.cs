@@ -79,21 +79,21 @@ public class Customer : MonoBehaviour
         int outcome;
         Drinks drink;
         Order order;
-        if (_wantedOrder.MatchDrink(contents))
+        if (_wantedOrder.DoesDrinkMatch(contents))
         {
             print("wanted");
             outcome = 0;
             drink = _data.Wanted;
             order =  _wantedOrder;
         }
-        else if (_neededOrder.MatchDrink(contents))
+        else if (_neededOrder.DoesDrinkMatch(contents))
         {
             print("needed");
             outcome = 1;
             drink = _data.Needed;
             order = _neededOrder;
         }
-        else if (_dislikedOrder.MatchDrink(contents))
+        else if (_dislikedOrder.DoesDrinkMatch(contents))
         {
             print("disliked");
             outcome = -1;

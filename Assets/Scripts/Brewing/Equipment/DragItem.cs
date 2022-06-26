@@ -4,19 +4,11 @@ using System.Collections.Generic;
 
 public class DragItem : MonoBehaviour
 {
-    public int IgnoreLayer = 2;
-
-    private bool _isDragging;
+    private bool _isDragging = false;
     private GameObject _selectedObject;
-
-    private void Start()
-    {
-        _isDragging = false;
-    }
 
     private void Update()
     {
-
         if (PointerIsOverUI(Input.mousePosition)) return;
 
         if (Input.GetMouseButtonDown(0))
@@ -32,7 +24,6 @@ public class DragItem : MonoBehaviour
                     break;
                 }
             }
-            
         }
         
         if (_isDragging)
@@ -63,13 +54,13 @@ public class DragItem : MonoBehaviour
     }
 
 
-    public static bool PointerIsOverUI(Vector2 screenPos)
+    private bool PointerIsOverUI(Vector2 screenPos)
     {
         var hitObject = UIRaycast(ScreenPosToPointerData(screenPos));
         return hitObject != null && hitObject.layer == LayerMask.NameToLayer("UI");
     }
 
-    static GameObject UIRaycast(PointerEventData pointerData)
+    private GameObject UIRaycast(PointerEventData pointerData)
     {
         var results = new List<RaycastResult>();
         EventSystem.current.RaycastAll(pointerData, results);
@@ -77,6 +68,6 @@ public class DragItem : MonoBehaviour
         return results.Count < 1 ? null : results[0].gameObject;
     }
 
-    static PointerEventData ScreenPosToPointerData(Vector2 screenPos)
+    private PointerEventData ScreenPosToPointerData(Vector2 screenPos)
        => new(EventSystem.current) { position = screenPos };
 }

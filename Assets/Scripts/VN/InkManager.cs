@@ -70,7 +70,7 @@ public class InkManager : MonoBehaviour
         {
             _story?.state?.LoadJson(_loadedState);
             SetInkVariables();
-            _textLog.SetTextLog(_textInLog);
+            _textLog.Log = _textInLog;
             DisplayThisLine();
         }
         // New story
@@ -275,7 +275,7 @@ public class InkManager : MonoBehaviour
     public void LoadStateFromBrew(string inkStoryState, string textLog)
     {
         _loadedState = inkStoryState;
-        _textLog.SetTextLog(textLog);
+        _textLog.Log = textLog;
         _loadedFromBrew = true;
         StartStory();
     }
@@ -289,6 +289,6 @@ public class InkManager : MonoBehaviour
 
     public string GetTextLog()
     {
-        return _textLog.GetTextLog();
+        return _textLog.Log;
     }
 }

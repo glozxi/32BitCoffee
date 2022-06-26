@@ -8,7 +8,7 @@ public class AnalyseOrder : MonoBehaviour
     [SerializeField]
     private GameObject _altOrder;
 
-    private Ray ray;
+    private Ray _ray;
 
     private bool _isAltOrderDisplayed = false;
     private bool _isAlreadyAnalysed = false;
@@ -28,8 +28,8 @@ public class AnalyseOrder : MonoBehaviour
 
     private void Update()
     {
-        ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        if (IsMouseHovering(ray))
+        _ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        if (IsMouseHovering(_ray))
         {
             OnHover();
         }
