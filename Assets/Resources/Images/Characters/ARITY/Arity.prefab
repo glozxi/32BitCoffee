@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 733199680977399878}
   m_Layer: 5
-  m_Name: ADDER
+  m_Name: Arity
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

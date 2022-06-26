@@ -18,7 +18,9 @@ public class AudioManager : MonoBehaviour
     {
         {"pickup", globalPathFX+"Brew_Click" },
         {"welcome", globalPathFX+"Brew_Customer_In" },
-        {"new_cup", globalPathFX+"Brew_New_Cup" }
+        {"new_cup", globalPathFX+"Brew_New_Cup" },
+        {"phone_pick", globalPathFX+"phone_pickup" },
+        {"phone_vibrate", globalPathFX+"phone_vibration" }
     };
 
     public static string globalPathBG = "Sound/BGM/";

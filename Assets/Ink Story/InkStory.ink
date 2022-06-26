@@ -322,6 +322,26 @@ Anyway. I'll try it.#Char:You
 -> Tutorial
 
 === Tutorial ===
+...#Char:None Char
+Oh! Hi! Welcome!#Char:Arity #MODEL:arity,arity_default,default,MM 
+Thank you for starting the game.#Char:Arity
+Well, let me not hold you back any further, I'll..#Char:arity #FX:phone_vibrate 
+Phone rings#Char:None
+Hold on let me get this.#Char:Arity #MODEL:Arity,arity_default,blank,MM 
+Sorry.#Char:Arity
+Hey whats up.#Char:Arity #MODEL:Arity,arity_default,stare,MM #FX:phone_pick 
+Yeah milestone 2?#Char:Arity
+What do you mean we ain't ready yet?#Char:Arity #MODEL:Arity,arity_default,angry,MM 
+But the people are...#Char:Arity #MODEL:Arity,arity_default,sad,MM 
+Alright alright...#Char:Arity
+I'll do something about it.#Char:Arity
+Phone closes#Char:None
+Sorry to keep you waiting.#Char:Arity #MODEL:Arity,arity_default,default,MM 
+It appears the story isn't ready yet.#Char:Arity
+And whatever you will see after this doesn't make sense.#Char:Arity
+But perhaps maybe you would like to have a try at brewing coffee?#Char:Arity
+
+#Char:None
 {Time to brew.| Time to brew again}#TOBREW:tutorial
 //Go to brew
 //Comeback
@@ -342,7 +362,7 @@ Here you go, {Drink}#Char:You #Sprite:FX: Serve Cup #Fx:Serve.mp3
 - else : -> Tutorial_Fail
 }
 === Tutorial_Fail ===
-Hey, this isn't what I asked for.#Char:Sherlyn
+Hey, this isn't what I asked for.#Char:Arity
 Can you try again?#Char:Sherlyn#TOBREW:tutorial
 -> Tut_End
 
@@ -355,6 +375,7 @@ Her eyes light up, as if sparkling#Char:None #Sprite:Sherlyn #Pos:MM #Expr:Happy
 Mmmm... Delicious!#Char:Sherlyn 
 Yup, you passed.#Char:Sherlyn 
 {Drink} is nice once in a while eh.#Char:Sherlyn 
+
 ->Day_1_pt_1_2 
 
 === Tutorial_Nor ===
@@ -386,6 +407,8 @@ Well, she didn't spit it out immediately, so I guess, technically you passed qua
 ->Day_1_pt_1_2 
 
 === Day_1_pt_1_2 ===
+//Thank you for playing our game. Currently under development #Char:Arity 
+//->END
 #Sprite:Clear 
 It's kinda weird saying this now and you have probably already registered our names in your database already.#Char:Sherlyn #Sprite:Sherlyn #Pos:LL #Expr:Normal 
 I'm Sherlyn. See ya.#Char:Sherlyn #Sprite:Clear 
