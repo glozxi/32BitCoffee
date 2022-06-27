@@ -319,10 +319,13 @@ What is it?#Char:You
 The Analyze feature. I don't actually remember installing this feature inside, but I didn't want to brick you so I didn't uninstall it.#Char:Sherlyn 
 Brick me?#Char:You 
 Anyway. I'll try it.#Char:You 
+// Brew
+Soo, you done staring at me?#Char:Sherlyn #Sprite:Sherlyn #Pos:MM #Expr:Normal #Bgm:Some_Bgm.mp3 
+-> END
 -> Tutorial
 
 === Tutorial ===
-...#Char:None Char
+...#Char:None
 Oh! Hi! Welcome!#Char:Arity #MODEL:arity,arity_default,default,MM 
 Thank you for starting the game.#Char:Arity
 Well, let me not hold you back any further, I'll..#Char:arity #FX:phone_vibrate 
@@ -339,28 +342,53 @@ Phone closes#Char:None
 Sorry to keep you waiting.#Char:Arity #MODEL:Arity,arity_default,default,MM 
 It appears the story isn't ready yet.#Char:Arity
 And whatever you will see after this doesn't make sense.#Char:Arity
-But perhaps maybe you would like to have a try at brewing coffee?#Char:Arity
+-> Brew_Req
+=== Brew_Req ===
+{But perhaps maybe you would like to have a try at brewing coffee? | Eh, can you brew again?}#Char:Arity #TOBREW:tut_MS2
 
-#Char:None
-{Time to brew.| Time to brew again}#TOBREW:tutorial
 //Go to brew
 //Comeback
 #Sprite:Clear 
-Soo, you done staring at me?#Char:Sherlyn #Sprite:Sherlyn #Pos:MM #Expr:Normal #Bgm:Some_Bgm.mp3 
 -> Tut_End
 === Tut_End ===
 {
 - Outcome != 0 &&  Outcome != 1  && Outcome != -1: 
     ~ Drink = "..."
 }
-Here you go, {Drink}#Char:You #Sprite:FX: Serve Cup #Fx:Serve.mp3 
+Here you go.#Char:You #Sprite:FX: Serve Cup #Fx:Serve.mp3 
 
 { 
-- Outcome == 1 : -> Tutorial_Pos
-- Outcome == 0 : -> Tutorial_Nor
-- Outcome == -1 : -> Tutorial_Bad
-- else : -> Tutorial_Fail
+- Outcome == 1 : -> Tutorial_Pos_MS2
+- Outcome == 0 : -> Tutorial_Nor_MS2
+- Outcome == -1 : -> Tutorial_Bad_MS2
+- else : -> Tutorial_Fail_MS2
 }
+
+=== Tutorial_Pos_MS2 ===
+Huh, a {Drink}?#Char:Arity
+Not what I ordered, but...#Char:Arity
+He sips.#Char:None
+Wow, it's really good.#Char:Arity
+You can go on to enjoy the unready story!#Char:Arity
+-> Day_1_pt_1_1
+=== Tutorial_Nor_MS2 ===
+Cool, a {Drink}, just what I ordered.#Char:Arity
+He sips.#Char:None
+Well, you can go on to enjoy the unready story!
+-> Day_1_pt_1_1
+=== Tutorial_Bad_MS2 ===
+The colour seems wrong.#Char:Arity
+Whatever.#Char:Arity
+He sips.#Char:None
+Geez, a {Drink}?#Char:Arity
+Why did you give this to me?#Char:Arity
+Urgh, you can go look at the unready story,  I guess.#Char:Arity
+-> Day_1_pt_1_1
+=== Tutorial_Fail_MS2 ===
+Hey, this doesn't seem right.#Char:Arity
+He peers inside the cup.#Char:None
+-> Brew_Req
+
 === Tutorial_Fail ===
 Hey, this isn't what I asked for.#Char:Arity
 Can you try again?#Char:Sherlyn#TOBREW:tutorial

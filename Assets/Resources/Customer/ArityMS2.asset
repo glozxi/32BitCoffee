@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86251f7ded1e6cc488fc871633ce1048, type: 3}
+  m_Name: ArityMS2
+  m_EditorClassIdentifier: 
+  _name: Arity
+  _wanted: 1
+  _needed: 2
+  _disliked: 3
+  _sprite: {fileID: 21300000, guid: 2414bda853c4ed848932a4241cb439a5, type: 3}
+  _mood: normal
+  _promptDialogue: Where's my drink?
+  _orderTalk: Can I get a Latte?
+  _analyseInformation: Arity. He looks like a try-hard. I should give him a Chocolate
+    instead.
+  _bonusTime: 10
+  _bonusMult: 1.5
+  _isStoryAffected: 1
