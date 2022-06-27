@@ -4,9 +4,74 @@ VAR Drink = "Latte"
 ->start
 === start ===
 -> Tutorial
+=== Tutorial ===
+...#Char:None
+Oh! Hi! Welcome!#Char:Arity #MODEL:arity,arity_default,default,MM 
+Thank you for starting the game.#Char:Arity
+Well, let me not hold you back any further, I'll..#Char:Arity #FX:phone_vibrate 
+Phone rings#Char:None
+Hold on let me get this.#Char:Arity #MODEL:Arity,arity_default,blank,MM 
+Sorry.#Char:Arity
+Hey whats up.#Char:Arity #MODEL:Arity,arity_default,stare,MM #FX:phone_pick 
+Yeah milestone 2?#Char:Arity
+What do you mean we ain't ready yet?#Char:Arity #MODEL:Arity,arity_default,angry,MM 
+But the people are...#Char:Arity #MODEL:Arity,arity_default,sad,MM 
+Alright alright...#Char:Arity
+I'll do something about it.#Char:Arity
+Phone closes#Char:None
+Sorry to keep you waiting.#Char:Arity #MODEL:Arity,arity_default,default,MM 
+It appears the story isn't ready yet.#Char:Arity
+And whatever you will see after this doesn't make sense.#Char:Arity
+-> Brew_Req
+=== Brew_Req ===
+{But perhaps maybe you would like to have a try at brewing coffee? | Eh, can you brew again?}#Char:Arity #TOBREW:tut_MS2
+
+//Go to brew
+//Comeback
+-> Tut_End
+=== Tut_End ===
+{
+- Outcome != 0 &&  Outcome != 1  && Outcome != -1: 
+    ~ Drink = "..."
+}
+Here you go.#Char:You #Sprite:FX: Serve Cup #Fx:Serve.mp3 
+
+{ 
+- Outcome == 1 : -> Tutorial_Pos_MS2
+- Outcome == 0 : -> Tutorial_Nor_MS2
+- Outcome == -1 : -> Tutorial_Bad_MS2
+- else : -> Tutorial_Fail_MS2
+}
+
+=== Tutorial_Pos_MS2 ===
+Huh, a {Drink}?#Char:Arity#MODEL:Arity,arity_default,default,MM
+Not what I ordered, but...#Char:Arity#Char:Arity #MODEL:Arity,arity_default,blank,MM
+He sips.#Char:None
+Wow, it's really good.#Char:Arity#MODEL:Arity,arity_default,default,MM
+You can go on to enjoy the unready story!
+-> Day_1_pt_1_1
+=== Tutorial_Nor_MS2 ===
+Cool, a {Drink}, just what I ordered.#Char:Arity#MODEL:Arity,arity_default,default,MM
+He sips.#Char:None
+Well, you can go on to enjoy the unready story!
+-> Day_1_pt_1_1
+=== Tutorial_Bad_MS2 ===
+The colour seems wrong.#Char:Arity#MODEL:Arity,arity_default,default,MM
+Whatever.#Char:Arity#MODEL:Arity,arity_default,default,MM
+He sips.#Char:None
+Geez, a {Drink}?#Char:Arity#MODEL:Arity,arity_default,angry,MM
+Why did you give this to me?#Char:Arity
+Urgh, you can go look at the unready story,  I guess.#Char:Arity#
+-> Day_1_pt_1_1
+=== Tutorial_Fail_MS2 ===
+Hey, this doesn't seem right.#Char:Arity#MODEL:Arity,arity_default,default,MM
+He peers inside the cup.#Char:None
+-> Brew_Req
+
+
+
 === Day_1_pt_1_1 ===
-
-
+#MODEL:Arity,HIDE,,
 TO UPDATE SHEET AND UPDATE HERE.
 
 ...#Char:None #Bg:black_screen #Bgm:space_void.mp3
@@ -322,72 +387,9 @@ Anyway. I'll try it.#Char:You
 // Brew
 Soo, you done staring at me?#Char:Sherlyn #Sprite:Sherlyn #Pos:MM #Expr:Normal #Bgm:Some_Bgm.mp3 
 -> END
--> Tutorial
+// -> Tutorial
 
-=== Tutorial ===
-...#Char:None
-Oh! Hi! Welcome!#Char:Arity #MODEL:arity,arity_default,default,MM 
-Thank you for starting the game.#Char:Arity
-Well, let me not hold you back any further, I'll..#Char:arity #FX:phone_vibrate 
-Phone rings#Char:None
-Hold on let me get this.#Char:Arity #MODEL:Arity,arity_default,blank,MM 
-Sorry.#Char:Arity
-Hey whats up.#Char:Arity #MODEL:Arity,arity_default,stare,MM #FX:phone_pick 
-Yeah milestone 2?#Char:Arity
-What do you mean we ain't ready yet?#Char:Arity #MODEL:Arity,arity_default,angry,MM 
-But the people are...#Char:Arity #MODEL:Arity,arity_default,sad,MM 
-Alright alright...#Char:Arity
-I'll do something about it.#Char:Arity
-Phone closes#Char:None
-Sorry to keep you waiting.#Char:Arity #MODEL:Arity,arity_default,default,MM 
-It appears the story isn't ready yet.#Char:Arity
-And whatever you will see after this doesn't make sense.#Char:Arity
--> Brew_Req
-=== Brew_Req ===
-{But perhaps maybe you would like to have a try at brewing coffee? | Eh, can you brew again?}#Char:Arity #TOBREW:tut_MS2
 
-//Go to brew
-//Comeback
-#Sprite:Clear 
--> Tut_End
-=== Tut_End ===
-{
-- Outcome != 0 &&  Outcome != 1  && Outcome != -1: 
-    ~ Drink = "..."
-}
-Here you go.#Char:You #Sprite:FX: Serve Cup #Fx:Serve.mp3 
-
-{ 
-- Outcome == 1 : -> Tutorial_Pos_MS2
-- Outcome == 0 : -> Tutorial_Nor_MS2
-- Outcome == -1 : -> Tutorial_Bad_MS2
-- else : -> Tutorial_Fail_MS2
-}
-
-=== Tutorial_Pos_MS2 ===
-Huh, a {Drink}?#Char:Arity
-Not what I ordered, but...#Char:Arity
-He sips.#Char:None
-Wow, it's really good.#Char:Arity
-You can go on to enjoy the unready story!#Char:Arity
--> Day_1_pt_1_1
-=== Tutorial_Nor_MS2 ===
-Cool, a {Drink}, just what I ordered.#Char:Arity
-He sips.#Char:None
-Well, you can go on to enjoy the unready story!
--> Day_1_pt_1_1
-=== Tutorial_Bad_MS2 ===
-The colour seems wrong.#Char:Arity
-Whatever.#Char:Arity
-He sips.#Char:None
-Geez, a {Drink}?#Char:Arity
-Why did you give this to me?#Char:Arity
-Urgh, you can go look at the unready story,  I guess.#Char:Arity
--> Day_1_pt_1_1
-=== Tutorial_Fail_MS2 ===
-Hey, this doesn't seem right.#Char:Arity
-He peers inside the cup.#Char:None
--> Brew_Req
 
 === Tutorial_Fail ===
 Hey, this isn't what I asked for.#Char:Arity

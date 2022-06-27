@@ -62,6 +62,11 @@ public class CharacterManager : MonoBehaviour
 
     public void CMChar(string characterName, string body, string expr, string pos, bool enabled = true)
     {
+        if (body == "HIDE")
+        {
+            CMEnableChar(characterName, false);
+            return;
+        }
         float speed = 1f;
 
         Character character = GetCharacter(characterName);
@@ -71,7 +76,7 @@ public class CharacterManager : MonoBehaviour
     }
 
     public void CMEnableChar(string charName, bool TF= true){
-        GetCharacter(characterName).enabled = TF;
+        GetCharacter(charName).enabled = TF;
     }
 
     public void CMHideAll()
