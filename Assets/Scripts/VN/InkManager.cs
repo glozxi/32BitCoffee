@@ -275,7 +275,7 @@ public class InkManager : MonoBehaviour
     public void LoadStateFromBrew(string inkStoryState, string textLog)
     {
         _loadedState = inkStoryState;
-        _textLog.Log = textLog;
+        _textInLog = textLog;
         _loadedFromBrew = true;
         StartStory();
     }

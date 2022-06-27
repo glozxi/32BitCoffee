@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using BrewingData;
 
 // Displays customers
 public class CustomerManager : MonoBehaviour
@@ -33,8 +34,14 @@ public class CustomerManager : MonoBehaviour
     }
 
 
-    private void OnCustomerServed(Customer customer)
+    private void OnCustomerServed(Customer customer, int outcome, Drinks drink)
     {
+        // Set outcome, drink of current customer
+        if (customer.IsStoryAffected)
+        {
+            State.Outcome = outcome;
+            State.Drink = drink.ToString();
+        }
         DisplayNextCustomer(customer);
     }
 

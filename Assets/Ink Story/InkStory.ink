@@ -65,7 +65,7 @@ Urgh, you can go look at the unready story,  I guess.#Char:Arity##MODEL:Arity,ar
 -> Day_1_pt_1_1
 === Tutorial_Fail_MS2 ===
 Hey, this doesn't seem right.#Char:Arity#MODEL:Arity,arity_default,default,MM
-He peers inside the cup.#Char:None#MODEL:Arity,arity_default,default,MM
+He peers inside the cup.#Char:None#MODEL:Arity,HIDE,,
 -> Brew_Req
 
 

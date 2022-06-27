@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class Customer : MonoBehaviour
 {
-    public delegate void ServedEventHandler(Customer sender);
+    public delegate void ServedEventHandler(Customer sender, int outcome, Drinks drink);
     public event ServedEventHandler CustomerServed;
 
     private CustomerData _data;
@@ -17,6 +17,11 @@ public class Customer : MonoBehaviour
     private Order _dislikedOrder;
 
     private bool _isStoryAffected;
+    public bool IsStoryAffected
+    { get => _isStoryAffected; }
+
+    private int _outcome;
+    private Drinks _outcomeDrink;
 
     [SerializeField]
     private GameObject _imageObject;
@@ -82,55 +87,42 @@ public class Customer : MonoBehaviour
     {
         Points.AddCash(CheckDrink(cup.Contents), _timer);
         cup.ResetCup();
-        CustomerServed?.Invoke(this);
+        CustomerServed?.Invoke(this, _outcome, _outcomeDrink);
     }
 
     private Order CheckDrink(List<Ingredients> contents)
     {
-        int outcome;
-        Drinks drink;
         Order order;
         if (_wantedOrder.DoesDrinkMatch(contents))
         {
             print("wanted");
-            outcome = 0;
-            drink = _data.Wanted;
+            _outcome = 0;
+            _outcomeDrink = _data.Wanted;
             order =  _wantedOrder;
         }
         else if (_neededOrder.DoesDrinkMatch(contents))
         {
             print("needed");
-            outcome = 1;
-            drink = _data.Needed;
+            _outcome = 1;
+            _outcomeDrink = _data.Needed;
             order = _neededOrder;
         }
         else if (_dislikedOrder.DoesDrinkMatch(contents))
         {
             print("disliked");
-            outcome = -1;
-            drink = _data.Disliked;
+            _outcome = -1;
+            _outcomeDrink = _data.Disliked;
             order = _dislikedOrder;
         }
         else
         {
             print("none");
-            outcome = 2;
-            drink = Drinks.None;
+            _outcome = 2;
+            _outcomeDrink = Drinks.None;
             order = Order.EmptyOrder;
-        }
-
-        if (_isStoryAffected)
-        {
-            SetState(outcome, drink);
         }
         return order;
 
-    }
-
-    private void SetState(int outcome, Drinks drink)
-    {
-        State.Outcome = outcome;
-        State.Drink = drink.ToString();
     }
 
     public void SetObjectActive(bool value)

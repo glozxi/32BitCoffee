@@ -8,6 +8,7 @@ public class CustomersData : MonoBehaviour
     private static Dictionary<string, CustomerData> _data = new();
     private static List<CustomerData> _listMS2;
     private static List<CustomerData> _list1;
+    private static List<CustomerData> _defaultList;
 
     static CustomersData()
     {
@@ -23,6 +24,10 @@ public class CustomersData : MonoBehaviour
         {
             _data["Xiao Mei"]
         };
+        _defaultList = new()
+        {
+            _data["Xiao Mei"], _data["Arity"], _data["Arity"], _data["Xiao Mei"]
+        };
     }
 
     public static Queue<CustomerData> GetQueue(string level)
@@ -35,7 +40,7 @@ public class CustomersData : MonoBehaviour
                 return new(_list1);
             default:
                 Debug.LogError("Customer queue not found. Returning default queue.");
-                return new(_listMS2);
+                return new(_defaultList);
         }
     }
 
