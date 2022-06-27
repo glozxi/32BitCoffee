@@ -70,6 +70,10 @@ public class CharacterManager : MonoBehaviour
         character.enabled = enabled;
     }
 
+    public void CMEnableChar(string charName, bool TF= true){
+        GetCharacter(characterName).enabled = TF;
+    }
+
     public void CMHideAll()
     {
         for (int i = 0; i < onScreen.Count; i++)
