@@ -161,7 +161,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: -0.002023697, y: 0.000030517578}
+  m_AnchoredPosition: {x: -0.002023697, y: 0}
   m_SizeDelta: {x: 1280, y: 243.6202}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &162552148
@@ -2683,7 +2683,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6108fe99e6b564745a1c6d2373599020, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _choiceButtonPrefab: {fileID: 3609612829481773195, guid: dd0fbc576c118cd4d8727d368f477f5c, type: 3}
+  _choiceButtonPrefab: {fileID: 7252332958885180378, guid: dd0fbc576c118cd4d8727d368f477f5c, type: 3}
 --- !u!224 &2085285074 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1390535763924721452, guid: f9475f010bd90804aa0d10788f3dbcbb, type: 3}

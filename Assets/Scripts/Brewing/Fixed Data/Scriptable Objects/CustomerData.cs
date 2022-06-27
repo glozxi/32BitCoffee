@@ -26,7 +26,14 @@ public class CustomerData : ScriptableObject
     { get => _disliked; }
 
     [SerializeField]
-    private Sprite _sprite;
+    private Sprite _mainSprite;
+    public Sprite MainSprite
+    { get => _mainSprite; }
+
+    [SerializeField]
+    private Sprite _expression;
+    public Sprite Expression
+    { get => _expression; }
 
     // Change from string to enum?
     [SerializeField]

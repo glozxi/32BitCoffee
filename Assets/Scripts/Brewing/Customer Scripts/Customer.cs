@@ -1,6 +1,7 @@
 ﻿using BrewingData;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Customer : MonoBehaviour
 {
@@ -16,6 +17,13 @@ public class Customer : MonoBehaviour
     private Order _dislikedOrder;
 
     private bool _isStoryAffected;
+
+    [SerializeField]
+    private GameObject _imageObject;
+    [SerializeField]
+    private GameObject _mainImage;
+    [SerializeField]
+    private GameObject _expressionImage;
 
     [SerializeField]
     private WantedOrderText _wantedText;
@@ -47,6 +55,9 @@ public class Customer : MonoBehaviour
 
         SetDrinks();
         SetText();
+
+        _mainImage.GetComponent<Image>().sprite = _data.MainSprite;
+        _expressionImage.GetComponent<Image>().sprite = _data.Expression;
 
         _isStoryAffected = data.IsStoryAffected;
         _timer.ResetTime();
@@ -124,6 +135,7 @@ public class Customer : MonoBehaviour
 
     public void SetObjectActive(bool value)
     {
+        _imageObject?.SetActive(value);
         gameObject.SetActive(value);
     }
 

@@ -16,12 +16,12 @@ MonoBehaviour:
   _wanted: 1
   _needed: 2
   _disliked: 3
-  _sprite: {fileID: 21300000, guid: 2414bda853c4ed848932a4241cb439a5, type: 3}
+  _mainSprite: {fileID: 21300000, guid: 2414bda853c4ed848932a4241cb439a5, type: 3}
+  _expression: {fileID: 21300000, guid: c6b5b252463a2304ea48d30021c1812a, type: 3}
   _mood: normal
   _promptDialogue: Where's my drink?
   _orderTalk: Can I get a Latte?
-  _analyseInformation: Arity. He looks like a try-hard. I should give him a Chocolate
-    instead.
+  _analyseInformation: Arity. I should give him a Chocolate instead.
   _bonusTime: 10
   _bonusMult: 1.5
   _isStoryAffected: 1

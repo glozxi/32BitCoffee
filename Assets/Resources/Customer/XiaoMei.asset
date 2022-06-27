@@ -16,11 +16,12 @@ MonoBehaviour:
   _wanted: 1
   _needed: 2
   _disliked: 3
-  _sprite: {fileID: 21300000, guid: b3f2eabeeeffc5949bb33e34db7fba8d, type: 3}
+  _mainSprite: {fileID: 21300000, guid: b3f2eabeeeffc5949bb33e34db7fba8d, type: 3}
+  _expression: {fileID: 21300000, guid: c7756510f5ed90b4cb9ef74e219c2bb4, type: 3}
   _mood: normal
   _promptDialogue: Where's my drink?
   _orderTalk: Ok, try making Latte.
-  _analyzeInformation: Xiao Mei, she needs some Chocolate.
+  _analyseInformation: Needs Chocolate.
   _bonusTime: 10
   _bonusMult: 1.5
   _isStoryAffected: 1
