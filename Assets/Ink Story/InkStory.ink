@@ -7,24 +7,24 @@ VAR Drink = "Latte"
 === Tutorial ===
 ...#Char:None
 Oh! Hi! Welcome!#Char:Arity #MODEL:arity,arity_default,default,MM 
-Thank you for starting the game.#Char:Arity
-Well, let me not hold you back any further, I'll..#Char:Arity #FX:phone_vibrate 
-Phone rings#Char:None
+Thank you for starting the game.#Char:Arity#MODEL:arity,arity_default,default,MM
+Well, let me not hold you back any further, I'll..#Char:Arity #FX:phone_vibrate#MODEL:arity,arity_default,default,MM 
+Phone rings#Char:None#MODEL:arity,HIDE,,
 Hold on let me get this.#Char:Arity #MODEL:Arity,arity_default,blank,MM 
 Sorry.#Char:Arity
 Hey whats up.#Char:Arity #MODEL:Arity,arity_default,stare,MM #FX:phone_pick 
-Yeah milestone 2?#Char:Arity
+Yeah milestone 2?#Char:Arity#MODEL:Arity,arity_default,stare,MM #FX:phone_pick
 What do you mean we ain't ready yet?#Char:Arity #MODEL:Arity,arity_default,angry,MM 
 But the people are...#Char:Arity #MODEL:Arity,arity_default,sad,MM 
-Alright alright...#Char:Arity
-I'll do something about it.#Char:Arity
-Phone closes#Char:None
+Alright alright...#Char:Arity#MODEL:Arity,arity_default,sad,MM
+I'll do something about it.#Char:Arity#MODEL:Arity,arity_default,sad,MM
+Phone closes#Char:None#MODEL:Arity,HIDE,,
 Sorry to keep you waiting.#Char:Arity #MODEL:Arity,arity_default,default,MM 
-It appears the story isn't ready yet.#Char:Arity
-And whatever you will see after this doesn't make sense.#Char:Arity
+It appears the story isn't ready yet.#Char:Arity#MODEL:Arity,arity_default,default,MM
+And whatever you will see after this doesn't make sense.#Char:Arity#MODEL:Arity,arity_default,default,MM
 -> Brew_Req
 === Brew_Req ===
-{But perhaps maybe you would like to have a try at brewing coffee? | Eh, can you brew again?}#Char:Arity #TOBREW:tut_MS2
+{But perhaps maybe you would like to have a try at brewing coffee? | Eh, can you brew again?}#Char:Arity #TOBREW:tut_MS2#MODEL:Arity,arity_default,default,MM
 
 //Go to brew
 //Comeback
@@ -46,26 +46,26 @@ Here you go.#Char:You #Sprite:FX: Serve Cup #Fx:Serve.mp3
 === Tutorial_Pos_MS2 ===
 Huh, a {Drink}?#Char:Arity#MODEL:Arity,arity_default,default,MM
 Not what I ordered, but...#Char:Arity#Char:Arity #MODEL:Arity,arity_default,blank,MM
-He sips.#Char:None
+He sips.#Char:None#MODEL:Arity,HIDE,,
 Wow, it's really good.#Char:Arity#MODEL:Arity,arity_default,default,MM
-You can go on to enjoy the unready story!
+You can go on to enjoy the unready story!#Char:Arity#MODEL:Arity,arity_default,default,MM
 -> Day_1_pt_1_1
 === Tutorial_Nor_MS2 ===
 Cool, a {Drink}, just what I ordered.#Char:Arity#MODEL:Arity,arity_default,default,MM
-He sips.#Char:None
-Well, you can go on to enjoy the unready story!
+He sips.#Char:None#MODEL:Arity,HIDE,,
+Well, you can go on to enjoy the unready story!#Char:Arity#MODEL:Arity,arity_default,default,MM
 -> Day_1_pt_1_1
 === Tutorial_Bad_MS2 ===
 The colour seems wrong.#Char:Arity#MODEL:Arity,arity_default,default,MM
 Whatever.#Char:Arity#MODEL:Arity,arity_default,default,MM
-He sips.#Char:None
+He sips.#Char:None#MODEL:Arity,HIDE,,
 Geez, a {Drink}?#Char:Arity#MODEL:Arity,arity_default,angry,MM
-Why did you give this to me?#Char:Arity
-Urgh, you can go look at the unready story,  I guess.#Char:Arity#
+Why did you give this to me?#Char:Arity#MODEL:Arity,arity_default,angry,MM
+Urgh, you can go look at the unready story,  I guess.#Char:Arity##MODEL:Arity,arity_default,angry,MM
 -> Day_1_pt_1_1
 === Tutorial_Fail_MS2 ===
 Hey, this doesn't seem right.#Char:Arity#MODEL:Arity,arity_default,default,MM
-He peers inside the cup.#Char:None
+He peers inside the cup.#Char:None#MODEL:Arity,arity_default,default,MM
 -> Brew_Req
 
 
