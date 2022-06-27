@@ -31,7 +31,7 @@ public class GameStateManager : MonoBehaviour
         SaveData saveData = new()
         {
             InkStoryState = _inkManager.GetStoryState(),
-            TextLog = _inkManager.GetTextLog(),
+            TextLog = _inkManager.GetTextLog(), //This may cause issues in future for TextLog, also this loads the entire story.
             Cash = Points.Cash,
             NetworkPoints = Points.NetworkPoints,
             NextBrewLevel = State.NextBrewLevel,
@@ -75,6 +75,7 @@ public class GameStateManager : MonoBehaviour
         }
     }
 
+    // To rename with ExitGamePrompt, and create new one which does the actual exit
     public void ExitGame()
     {
         // TODO: Display "do you want to quit?"
