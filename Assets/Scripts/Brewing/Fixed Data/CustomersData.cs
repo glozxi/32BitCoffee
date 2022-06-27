@@ -34,8 +34,8 @@ public class CustomersData : MonoBehaviour
             case "tutorial":
                 return new(_list1);
             default:
-                Debug.LogError("Customer queue not found.");
-                return null;
+                Debug.LogError("Customer queue not found. Returning default queue.");
+                return new(_listMS2);
         }
     }
 
