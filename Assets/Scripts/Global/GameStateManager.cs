@@ -41,6 +41,10 @@ public class GameStateManager : MonoBehaviour
 
         BinaryFormatter bf = new();
         string savePath = Application.persistentDataPath + "/savedata.save";
+        int i = 0;
+        for (; File.Exists(Application.persistentDataPath + "/savedata" + i + ".save"); i++) {}
+        savePath = Application.persistentDataPath + "/savedata" + i + ".save";
+
         FileStream file = File.Create(savePath);
 
         bf.Serialize(file, saveData);
