@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6188932301868622622}
   - component: {fileID: 4538833272389177752}
+  - component: {fileID: 3785173522577713372}
   m_Layer: 5
   m_Name: OneSave
   m_TagString: Untagged
@@ -51,6 +52,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _text: {fileID: 8483803267958465906}
+  _gameStateManager: {fileID: 3785173522577713372}
+--- !u!114 &3785173522577713372
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2544469573079249350}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ce0ec5684fc5844fae8b29467c016cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4305000410146831376
 GameObject:
   m_ObjectHideFlags: 0
@@ -173,7 +187,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 3215196387569596272}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 4538833272389177752}
+        m_TargetAssemblyTypeName: SavePrefab, GameAssembly
+        m_MethodName: LoadGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &7003067839378511443
 GameObject:
   m_ObjectHideFlags: 0

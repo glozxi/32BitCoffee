@@ -53,6 +53,7 @@ public class Saves : MonoBehaviour
                 GameObject obj = Instantiate(_savePrefab, row.transform);
                 obj.GetComponent<SavePrefab>().SetText(
                     filePaths[i].Split("/").Last().Split('.')[0]);
+                obj.GetComponent<SavePrefab>().Path = filePaths[i];
                 i++;
             }
         }

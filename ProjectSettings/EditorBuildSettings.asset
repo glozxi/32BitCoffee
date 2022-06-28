@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/BrewScene.unity
     guid: 415651899272bca4c94c1e5836f7a646
+  - enabled: 1
+    path: Assets/Scenes/SaveSelect.unity
+    guid: c24f098eaa887414b950ebd11a96f0ef
   m_configObjects: {}

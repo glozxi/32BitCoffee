@@ -51,9 +51,8 @@ public class GameStateManager : MonoBehaviour
     }
 
     // Load from start screen scene
-    public void LoadGame()
+    public void LoadGame(string savePath)
     {
-        string savePath = Application.persistentDataPath + "/savedata.save";
         if (File.Exists(savePath))
         {
             BinaryFormatter bf = new();
