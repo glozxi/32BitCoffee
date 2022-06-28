@@ -21,6 +21,7 @@ public class Saves : MonoBehaviour
     private int MAX_SAVE_IN_ROW = 2;
     private int MAX_IN_PAGE;
 
+    // Index in list of first shown save
     private int _firstShown;
     public int FirstShown
     { get => _firstShown; }
@@ -42,6 +43,7 @@ public class Saves : MonoBehaviour
     private void InstantiateSavePrefabs(string[] filePaths, int firstShown)
     {
         int i = firstShown;
+        // Creating save objects in each row
         foreach (GameObject row in _rows)
         {
             for (int j = 0; j < MAX_SAVE_IN_ROW; j++)
@@ -59,6 +61,7 @@ public class Saves : MonoBehaviour
         }
     }
 
+    // Remove current save objects from screen
     private void RemoveSavesObjects()
     {
         foreach (GameObject row in _rows)
@@ -71,6 +74,7 @@ public class Saves : MonoBehaviour
         }
     }
 
+    // Next page of saves
     public void NextPage()
     {
         if (_firstShown + MAX_IN_PAGE >= filePaths.Length)
@@ -87,6 +91,7 @@ public class Saves : MonoBehaviour
         InstantiateSavePrefabs(filePaths, _firstShown);
     }
 
+    // Previous page of saves
     public void PrevPage()
     {
         if (_firstShown == 0)
@@ -100,6 +105,7 @@ public class Saves : MonoBehaviour
         InstantiateSavePrefabs(filePaths, _firstShown);
     }
 
+    // Activate or deactive next and previous buttons
     private void PrevAndNextButtonsActive()
     {
         _prev.SetActive(_firstShown != 0);

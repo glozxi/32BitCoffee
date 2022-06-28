@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
+// Combine with SaveData and GameStateManager?
 public class State : MonoBehaviour
 {
     private static State _instance;
@@ -24,6 +25,7 @@ public class State : MonoBehaviour
         }
     }
 
+    // Move methods to GameStateManager?
     public static void ContinueStory()
     {
         _instance.StartCoroutine(_instance.DialogueScene());

@@ -21,7 +21,6 @@ public class SavePrefab : MonoBehaviour
 
     public void LoadGame()
     {
-        // Application.persistentDataPath + "/savedata.save";
         _gameStateManager.LoadGame(Path);
 
     }
