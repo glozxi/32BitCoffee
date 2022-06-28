@@ -135,7 +135,6 @@ GameObject:
   - component: {fileID: 337352108}
   - component: {fileID: 337352107}
   - component: {fileID: 337352106}
-  - component: {fileID: 337352105}
   - component: {fileID: 337352109}
   m_Layer: 5
   m_Name: LoadGameButton
@@ -165,18 +164,6 @@ RectTransform:
   m_AnchoredPosition: {x: 151, y: 446}
   m_SizeDelta: {x: 372.8277, y: 150}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &337352105
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 337352103}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ce0ec5684fc5844fae8b29467c016cd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &337352106
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -220,19 +207,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 337352107}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 337352105}
-        m_TargetAssemblyTypeName: GameStateManager, Assembly-CSharp
-        m_MethodName: LoadGame
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: DialogueScene
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &337352107
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -280,10 +255,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 337352103}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 532ee5a9b8be1f5478d18649aea6651e, type: 3}
+  m_Script: {fileID: 11500000, guid: e94ae6080d345f742a15d0ce2f373d25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _button: {fileID: 337352103}
 --- !u!1 &359484009
 GameObject:
   m_ObjectHideFlags: 1
