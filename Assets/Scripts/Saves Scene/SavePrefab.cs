@@ -1,9 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
+using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using System.IO;
+using System.Linq;
 
 public class SavePrefab : MonoBehaviour
 {
@@ -13,17 +13,28 @@ public class SavePrefab : MonoBehaviour
     private GameStateManager _gameStateManager;
     [SerializeField]
     private RawImage _rawImage;
+    private SaveData _saveData;
 
-    // Path with .save
+    // Path is *.save
+    private string _path;
     public string Path
-    { get; set; }
-
-    public void SetText(string text)
     {
-        _text.text = text;
+        get => _path;
+        set
+        {
+            _path = value;
+            DeserializeData();
+            SetImage();
+            SetText();
+        }
     }
 
-    public void SetImage()
+    private void SetText()
+    {
+        _text.text = _saveData.Time.ToString();
+    }
+
+    private void SetImage()
     {
         Texture2D thisTexture = new Texture2D(1, 1);
         string picPath = Path.Split('.')[0] + ".png";
@@ -32,10 +43,22 @@ public class SavePrefab : MonoBehaviour
         _rawImage.texture = thisTexture;
     }
 
-    public void LoadGame()
+    private void DeserializeData()
     {
-        _gameStateManager.LoadGame(Path);
+        BinaryFormatter bf = new();
+        FileStream file = File.Open(_path, FileMode.Open);
+
+        // Start reading byte sequence from start
+        file.Position = 0;
+        _saveData = (SaveData)bf.Deserialize(file);
+        file.Close();
 
     }
+
+    public void LoadGame()
+    {
+        _gameStateManager.LoadGame(_saveData);
+    }
+
     
 }

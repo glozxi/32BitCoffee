@@ -20,4 +20,6 @@ public class SaveData
     { get; set; }
     public string Drink
     { get; set; }
+    public DateTime Time
+    { get; set; }
 }

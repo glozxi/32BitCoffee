@@ -1,3 +1,4 @@
+using System;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 using UnityEngine;
@@ -37,6 +38,7 @@ public class GameStateManager : MonoBehaviour
             NextBrewLevel = State.NextBrewLevel,
             Outcome = State.Outcome,
             Drink = State.Drink,
+            Time = DateTime.Now
         };
 
         BinaryFormatter bf = new();
@@ -57,27 +59,19 @@ public class GameStateManager : MonoBehaviour
     }
 
     // Load from start screen scene
-    public void LoadGame(string savePath)
+    public void LoadGame(SaveData saveData)
     {
-        if (File.Exists(savePath))
-        {
-            BinaryFormatter bf = new();
-            FileStream file = File.Open(savePath, FileMode.Open);
+        
 
-            // Start reading byte sequence from start
-            file.Position = 0;
-            SaveData saveData = (SaveData)bf.Deserialize(file);
-            file.Close();
+        InkManager.LoadState(saveData.InkStoryState, saveData.TextLog);
+        Points.LoadPoints(saveData.Cash, saveData.NetworkPoints);
 
-            InkManager.LoadState(saveData.InkStoryState, saveData.TextLog);
-            Points.LoadPoints(saveData.Cash, saveData.NetworkPoints);
+        State.NextBrewLevel = saveData.NextBrewLevel;
+        State.Outcome = saveData.Outcome;
+        State.Drink = saveData.Drink;
 
-            State.NextBrewLevel = saveData.NextBrewLevel;
-            State.Outcome = saveData.Outcome;
-            State.Drink = saveData.Drink;
+        StartGame();
 
-            StartGame();
-        }
     }
 
     // To rename with ExitGamePrompt, and create new one which does the actual exit
