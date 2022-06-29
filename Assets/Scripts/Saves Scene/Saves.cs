@@ -52,13 +52,21 @@ public class Saves : MonoBehaviour
                 {
                     return;
                 }
-                GameObject obj = Instantiate(_savePrefab, row.transform);
-                obj.GetComponent<SavePrefab>().SetText(
+                GameObject obj = Instantiate(_savePrefab);
+                obj.transform.SetParent(row.transform, false);
+                SavePrefab prefab = obj.GetComponent<SavePrefab>();
+                prefab.SetText(
                     filePaths[i].Split("/").Last().Split('.')[0]);
-                obj.GetComponent<SavePrefab>().Path = filePaths[i];
+                prefab.Path = filePaths[i];
+                prefab.SetImage();
                 i++;
             }
         }
+    }
+
+    private void ShowScreenshot()
+    {
+
     }
 
     // Remove current save objects from screen

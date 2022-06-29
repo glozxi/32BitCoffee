@@ -36,20 +36,22 @@ public class GameStateManager : MonoBehaviour
             NetworkPoints = Points.NetworkPoints,
             NextBrewLevel = State.NextBrewLevel,
             Outcome = State.Outcome,
-            Drink = State.Drink
+            Drink = State.Drink,
         };
 
         BinaryFormatter bf = new();
-        string savePath = Application.persistentDataPath + "/savedata.save";
         int i = 0;
         for (; File.Exists(Application.persistentDataPath + "/savedata" + i + ".save"); i++) {}
-        savePath = Application.persistentDataPath + "/savedata" + i + ".save";
+        string savePath = Application.persistentDataPath + "/savedata" + i + ".save";
+        string picSavePath = Application.persistentDataPath + "/savedata" + i + ".png";
 
         FileStream file = File.Create(savePath);
-
         bf.Serialize(file, saveData);
 
         file.Close();
+        ScreenshotNow _screenshotter = FindObjectOfType<ScreenshotNow>();
+        _screenshotter.Screenshot(picSavePath);
+
         print("Game saved at " + savePath);
 
     }
