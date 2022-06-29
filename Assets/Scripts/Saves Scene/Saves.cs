@@ -34,10 +34,18 @@ public class Saves : MonoBehaviour
     {
         _firstShown = 0;
         MAX_IN_PAGE = _rows.Length * MAX_SAVE_IN_ROW;
-        filePaths = Directory.GetFiles(Application.persistentDataPath + "/", "*.save");
+        // Arrange files from most recently modified to least
+        filePaths = Directory
+            .GetFiles(Application.persistentDataPath + "/", "*.save")
+            .OrderByDescending(
+                f => File.GetLastWriteTime(f).Year <= 1601 
+                    ? File.GetCreationTime(f) 
+                    : File.GetLastWriteTime(f)
+            )
+            .ToArray();
         RemoveSavesObjects();
         PrevAndNextButtonsActive();
-        InstantiateSavePrefabs(filePaths, _firstShown);    
+        InstantiateSavePrefabs(filePaths, _firstShown);
     }
 
     private void InstantiateSavePrefabs(string[] filePaths, int firstShown)
