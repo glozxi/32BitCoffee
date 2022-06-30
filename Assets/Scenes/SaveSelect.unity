@@ -1661,10 +1661,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: OneSave
       objectReference: {fileID: 0}
-    - target: {fileID: 5580927761205476402, guid: 564685247c22daa46bf379500c2e1d70, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -214.25002
-      objectReference: {fileID: 0}
     - target: {fileID: 6188932301868622622, guid: 564685247c22daa46bf379500c2e1d70, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

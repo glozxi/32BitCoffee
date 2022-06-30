@@ -15,6 +15,8 @@ public class SavePrefab : MonoBehaviour
     private RawImage _rawImage;
     private SaveData _saveData;
 
+    // *.png
+    private string _picPath;
     // Path is *.save
     private string _path;
     public string Path
@@ -23,11 +25,14 @@ public class SavePrefab : MonoBehaviour
         set
         {
             _path = value;
+            _picPath = Path.Split('.')[0] + ".png";
             DeserializeData();
             SetImage();
             SetText();
         }
     }
+
+    
 
     private void SetText()
     {
@@ -37,8 +42,7 @@ public class SavePrefab : MonoBehaviour
     private void SetImage()
     {
         Texture2D thisTexture = new Texture2D(1, 1);
-        string picPath = Path.Split('.')[0] + ".png";
-        byte[] bytes = File.ReadAllBytes(picPath);
+        byte[] bytes = File.ReadAllBytes(_picPath);
         thisTexture.LoadImage(bytes);
         _rawImage.texture = thisTexture;
     }
@@ -53,6 +57,13 @@ public class SavePrefab : MonoBehaviour
         _saveData = (SaveData)bf.Deserialize(file);
         file.Close();
 
+    }
+
+    public void DeleteSave()
+    {
+        File.Delete(_picPath);
+        File.Delete(_path);
+        Destroy(gameObject);
     }
 
     public void LoadGame()
