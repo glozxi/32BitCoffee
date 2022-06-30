@@ -5,13 +5,22 @@ using BrewingData;
 
 public class OrderStub : IOrder
 {
+    private bool _isMatch;
+    private float _price;
+
+    public OrderStub(bool isMatch, float price)
+    {
+        _isMatch = isMatch;
+        _price = price;
+    }
+
     public bool DoesDrinkMatch(List<Ingredients> actualIngredients)
     {
-        return true;
+        return _isMatch;
     }
 
     public float GetPrice()
     {
-        return 7.5f;
+        return _price;
     }
 }
