@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3077984909497291581}
   - component: {fileID: 3077984909497291580}
   - component: {fileID: 3946068214808844267}
+  - component: {fileID: 8556069763279635422}
   m_Layer: 0
   m_Name: DNDOL
   m_TagString: DNDOL
@@ -83,5 +84,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7a0f416e2892a02468e021e295fee12c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &8556069763279635422
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3077984909497291583}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 249cd8ccb55ef1e42b2348c6c86c6820, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

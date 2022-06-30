@@ -13,7 +13,7 @@ public class LoadButtonInMenu : MonoBehaviour
     }
     private void OnClick()
     {
-        PreviousSceneChanger.Instance.PreviousScene = SceneManager.GetActiveScene().name;
+        FindObjectOfType<PreviousSceneChanger>().PreviousScene = SceneManager.GetActiveScene().name;
         if (SceneManager.GetActiveScene().name == "DialogueScene")
         {
             InkManager inkManager = (InkManager)FindObjectOfType(typeof(InkManager));

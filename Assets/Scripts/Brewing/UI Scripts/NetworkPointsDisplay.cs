@@ -2,7 +2,8 @@ public class NetworkPointsDisplay : UIPointsDisplay
 {
     protected override void OnEnable()
     {
-        _text.text = Points.NetworkPoints.ToString();
+        Points points = FindObjectOfType<Points>();
+        _text.text = points.NetworkPoints.ToString();
         Points.NetworkPointsUpdated += OnAmountUpdate;
     }
 

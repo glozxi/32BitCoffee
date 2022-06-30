@@ -2,7 +2,8 @@ public class CashDisplay : UIPointsDisplay
 {
     protected override void OnEnable()
     {
-        _text.text = Points.Cash.ToString();
+        Points points = FindObjectOfType<Points>();
+        _text.text = points.Cash.ToString();
         Points.CashUpdated += OnAmountUpdate;
     }
 

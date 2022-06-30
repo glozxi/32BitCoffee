@@ -13,6 +13,6 @@ public class BackButton : MonoBehaviour
 
     private void OnClick()
     {
-        PreviousSceneChanger.Instance.LoadPreviousScene();
+        FindObjectOfType<PreviousSceneChanger>().LoadPreviousScene();
     }
 }

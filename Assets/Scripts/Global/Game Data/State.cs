@@ -4,31 +4,21 @@ using UnityEngine;
 // Combine with SaveData and GameStateManager?
 public class State : MonoBehaviour
 {
-    private static State _instance;
-
-    public static string NextBrewLevel
+    public string NextBrewLevel
     { get; set; }
-    public static int Outcome
+    public int Outcome
     { get; set; }
-    public static string Drink
+    public string Drink
     { get; set; }
-    public static string InkStoryState
+    public string InkStoryState
     { get; set; }
-    public static string TextLog
+    public string TextLog
     { get; set; }
-
-    void Awake()
-    {
-        if (_instance == null)
-        {
-            _instance = this;
-        }
-    }
 
     // Move methods to GameStateManager?
-    public static void ContinueStory()
+    public void ContinueStory()
     {
-        _instance.StartCoroutine(_instance.DialogueScene());
+        StartCoroutine(DialogueScene());
     }
 
     private IEnumerator DialogueScene()

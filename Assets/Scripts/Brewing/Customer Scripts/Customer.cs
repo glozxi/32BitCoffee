@@ -85,7 +85,8 @@ public class Customer : MonoBehaviour
 
     private void OnServed(Cup cup)
     {
-        Points.AddCash(CheckDrink(cup.Contents), _timer);
+        Points points = FindObjectOfType<Points>();
+        points.AddCash(CheckDrink(cup.Contents), _timer);
         cup.ResetCup();
         CustomerServed?.Invoke(this, _outcome, _outcomeDrink);
     }

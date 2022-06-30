@@ -7,11 +7,15 @@ using UnityEngine;
 public class GameStateManager : MonoBehaviour
 {
     private InkManager _inkManager;
+    private State _state;
+    private Points _points;
 
     // Start is called before the first frame update
     void Start()
     {
         _inkManager = FindObjectOfType<InkManager>();
+        _state = FindObjectOfType<State>();
+        _points = FindObjectOfType<Points>();
     }
 
     private void StartGame()
@@ -33,11 +37,11 @@ public class GameStateManager : MonoBehaviour
         {
             InkStoryState = _inkManager.GetStoryState(),
             TextLog = _inkManager.GetTextLog(), //This may cause issues in future for TextLog, also this loads the entire story.
-            Cash = Points.Cash,
-            NetworkPoints = Points.NetworkPoints,
-            NextBrewLevel = State.NextBrewLevel,
-            Outcome = State.Outcome,
-            Drink = State.Drink,
+            Cash = _points.Cash,
+            NetworkPoints = _points.NetworkPoints,
+            NextBrewLevel = _state.NextBrewLevel,
+            Outcome = _state.Outcome,
+            Drink = _state.Drink,
             Time = DateTime.Now
         };
 
@@ -64,11 +68,11 @@ public class GameStateManager : MonoBehaviour
         
 
         InkManager.LoadState(saveData.InkStoryState, saveData.TextLog);
-        Points.LoadPoints(saveData.Cash, saveData.NetworkPoints);
+        _points.LoadPoints(saveData.Cash, saveData.NetworkPoints);
 
-        State.NextBrewLevel = saveData.NextBrewLevel;
-        State.Outcome = saveData.Outcome;
-        State.Drink = saveData.Drink;
+        _state.NextBrewLevel = saveData.NextBrewLevel;
+        _state.Outcome = saveData.Outcome;
+        _state.Drink = saveData.Drink;
 
         StartGame();
 

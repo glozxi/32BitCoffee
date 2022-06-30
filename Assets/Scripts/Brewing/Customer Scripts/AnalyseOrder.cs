@@ -72,7 +72,8 @@ public class AnalyseOrder : MonoBehaviour
 
                 if (!_isAlreadyAnalysed)
                 {
-                    Points.AddAnalysePoints();
+                    Points points = FindObjectOfType<Points>();
+                    points.AddAnalysePoints();
                     _isAlreadyAnalysed = true;
                 }
             }

@@ -22,6 +22,7 @@ public class InkManager : MonoBehaviour
     private bool _isBrewNext = false;
     // Name of next brew level
     private string _nextLevel;
+    private State _state;
 
     [SerializeField]
     private TextAsset _inkJsonAsset;
@@ -63,6 +64,7 @@ public class InkManager : MonoBehaviour
 
     private void StartStory()
     {
+        _state = FindObjectOfType<State>();
         _story = new Story(_inkJsonAsset.text);
 
         ObserveVariables();
@@ -86,7 +88,7 @@ public class InkManager : MonoBehaviour
     private void ObserveVariables()
     {
         _story.ObserveVariable("Drink", (string varName, object newValue) => {
-            State.Drink = (string)newValue;
+            _state.Drink = (string)newValue;
         });
     }
 
@@ -240,23 +242,23 @@ public class InkManager : MonoBehaviour
 
     private void TransitToBrew(string level)
     {
-        State.NextBrewLevel = level;
-        State.InkStoryState = GetStoryState();
-        State.TextLog = GetTextLog();
+        _state.NextBrewLevel = level;
+        _state.InkStoryState = GetStoryState();
+        _state.TextLog = GetTextLog();
 
         UnityEngine.SceneManagement.SceneManager.LoadScene("BrewScene");
     }
 
     public void SaveBeforeLoadScene()
     {
-        State.InkStoryState = GetStoryState();
-        State.TextLog = GetTextLog();
+        _state.InkStoryState = GetStoryState();
+        _state.TextLog = GetTextLog();
     }
 
     private void SetInkVariables()
     {
-        SetInkVariable("Outcome", State.Outcome);
-        SetInkVariable("Drink", State.Drink);
+        SetInkVariable("Outcome", _state.Outcome);
+        SetInkVariable("Drink", _state.Drink);
     }
 
     private void SetInkVariable(string varName, object toAssign)

@@ -14,6 +14,6 @@ public class SceneChanger : MonoBehaviour
 
     private void OnAllServed()
     {
-        State.ContinueStory();
+        FindObjectOfType<State>().ContinueStory();
     }
 }
