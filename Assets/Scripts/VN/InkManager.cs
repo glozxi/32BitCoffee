@@ -15,10 +15,12 @@ public class InkManager : MonoBehaviour
     private static string _loadedState;
     private static string _textInLog;
 
-
+    // Prevents brew repeating after returning to VN
     private static bool _loadedFromBrew = false;
 
+    // Determines if brew or not on next button pressed
     private bool _isBrewNext = false;
+    // Name of next brew level
     private string _nextLevel;
 
     [SerializeField]
@@ -215,7 +217,6 @@ public class InkManager : MonoBehaviour
         {
             _nameTextField.text = "";
             _nameTextField.transform.parent.gameObject.GetComponent<Image>().enabled = false;
-            // nameTextField.GetComponent<Canvas>().enabled = false;
         }
         else
         {
@@ -244,6 +245,12 @@ public class InkManager : MonoBehaviour
         State.TextLog = GetTextLog();
 
         UnityEngine.SceneManagement.SceneManager.LoadScene("BrewScene");
+    }
+
+    public void SaveBeforeLoadScene()
+    {
+        State.InkStoryState = GetStoryState();
+        State.TextLog = GetTextLog();
     }
 
     private void SetInkVariables()

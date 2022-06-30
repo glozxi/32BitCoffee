@@ -1,3 +1,4 @@
+using System;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 using UnityEngine;
@@ -36,43 +37,41 @@ public class GameStateManager : MonoBehaviour
             NetworkPoints = Points.NetworkPoints,
             NextBrewLevel = State.NextBrewLevel,
             Outcome = State.Outcome,
-            Drink = State.Drink
+            Drink = State.Drink,
+            Time = DateTime.Now
         };
 
         BinaryFormatter bf = new();
-        string savePath = Application.persistentDataPath + "/savedata.save";
-        FileStream file = File.Create(savePath);
+        int i = 0;
+        for (; File.Exists(Application.persistentDataPath + "/savedata" + i + ".save"); i++) {}
+        string savePath = Application.persistentDataPath + "/savedata" + i + ".save";
+        string picSavePath = Application.persistentDataPath + "/savedata" + i + ".png";
 
+        FileStream file = File.Create(savePath);
         bf.Serialize(file, saveData);
 
         file.Close();
+        ScreenshotNow _screenshotter = FindObjectOfType<ScreenshotNow>();
+        _screenshotter.Screenshot(picSavePath);
+
         print("Game saved at " + savePath);
 
     }
 
     // Load from start screen scene
-    public void LoadGame()
+    public void LoadGame(SaveData saveData)
     {
-        string savePath = Application.persistentDataPath + "/savedata.save";
-        if (File.Exists(savePath))
-        {
-            BinaryFormatter bf = new();
-            FileStream file = File.Open(savePath, FileMode.Open);
+        
 
-            // Start reading byte sequence from start
-            file.Position = 0;
-            SaveData saveData = (SaveData)bf.Deserialize(file);
-            file.Close();
+        InkManager.LoadState(saveData.InkStoryState, saveData.TextLog);
+        Points.LoadPoints(saveData.Cash, saveData.NetworkPoints);
 
-            InkManager.LoadState(saveData.InkStoryState, saveData.TextLog);
-            Points.LoadPoints(saveData.Cash, saveData.NetworkPoints);
+        State.NextBrewLevel = saveData.NextBrewLevel;
+        State.Outcome = saveData.Outcome;
+        State.Drink = saveData.Drink;
 
-            State.NextBrewLevel = saveData.NextBrewLevel;
-            State.Outcome = saveData.Outcome;
-            State.Drink = saveData.Drink;
+        StartGame();
 
-            StartGame();
-        }
     }
 
     // To rename with ExitGamePrompt, and create new one which does the actual exit

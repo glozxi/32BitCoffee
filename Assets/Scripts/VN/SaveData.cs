@@ -1,4 +1,5 @@
 using System;
+using UnityEngine;
 
 [Serializable]
 public class SaveData
@@ -18,5 +19,7 @@ public class SaveData
     public int Outcome
     { get; set; }
     public string Drink
+    { get; set; }
+    public DateTime Time
     { get; set; }
 }
