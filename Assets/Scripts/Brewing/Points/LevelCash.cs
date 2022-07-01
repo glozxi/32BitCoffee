@@ -21,9 +21,15 @@ public class LevelCash : MonoBehaviour
         _ui.Goal = _cashGoal;
     }
 
+    // Adds cash to current cash
     public void AddCash(IOrder order, ITimer timer)
     {
         _currentCash += timer.HasBonus ? order.GetPrice() * BONUS_MULTIPLIER : order.GetPrice();
         _ui.CurrentCash = _currentCash;
+    }
+
+    public bool IsGoalReached()
+    {
+        return _currentCash >= _cashGoal;
     }
 }

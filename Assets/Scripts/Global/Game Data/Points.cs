@@ -20,6 +20,11 @@ public class Points : MonoBehaviour
         get => _networkPoints;
     }
 
+    public void AddCash(float amount)
+    {
+        _cash += amount;
+    }
+
     public void AddAnalysePoints()
     {
         _networkPoints += POINTS_TO_ADD;
