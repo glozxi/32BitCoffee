@@ -5895,6 +5895,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _outcome: {fileID: 1627562570}
+  _retry: {fileID: 118238230}
+  _next: {fileID: 1837865854}
 --- !u!1 &2094931597
 GameObject:
   m_ObjectHideFlags: 0
@@ -6628,7 +6630,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 164.7729, y: -652.267}
+  m_AnchoredPosition: {x: 164.7729, y: -652.26697}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &3343008289592317141

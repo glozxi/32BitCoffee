@@ -6,11 +6,27 @@ using TMPro;
 public class EndScreen : MonoBehaviour
 {
     [SerializeField]
-    TMP_Text _outcome;
+    private TMP_Text _outcome;
+    [SerializeField]
+    private GameObject _retry;
+    [SerializeField]
+    private GameObject _next;
 
     private void OnEnable()
     {
         LevelCash levelCash = FindObjectOfType<LevelCash>();
-        _outcome.text = levelCash.IsGoalReached() ? "Success" : "Fail";
+        if (levelCash.IsGoalReached())
+        {
+            _outcome.text = "Success";
+            _retry.SetActive(false);
+            _next.SetActive(true);
+        }
+        else
+        {
+            _outcome.text = "Fail";
+            _retry.SetActive(true);
+            _next.SetActive(false); ;
+        }
+         
     }
 }
