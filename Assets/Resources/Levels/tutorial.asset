@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be3a7123c492298458b677b0c075beb9, type: 3}
   m_Name: tutorial
   m_EditorClassIdentifier: 
-  _levelName: 
-  _customerDatas: []
+  _levelName: tutorial
+  _customerDatas:
+  - {fileID: 11400000, guid: 87faac45a20cfa648b48e9924150d46e, type: 2}
   _cashGoal: 0

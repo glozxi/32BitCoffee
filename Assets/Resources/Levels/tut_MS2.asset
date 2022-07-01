@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be3a7123c492298458b677b0c075beb9, type: 3}
   m_Name: tut_MS2
   m_EditorClassIdentifier: 
-  _levelName: 
-  _customerDatas: []
+  _levelName: tut_MS2
+  _customerDatas:
+  - {fileID: 11400000, guid: 12358cf152d12be41a2dfa75e862574b, type: 2}
   _cashGoal: 0

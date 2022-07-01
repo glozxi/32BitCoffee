@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 
 public class PointsTest
 {
+    /*
     // Add cash from 0, order price 3.5, timer has bonus
     [UnityTest]
     public IEnumerator AddCashFromZeroWithBonus()
@@ -123,4 +124,5 @@ public class PointsTest
 
         Assert.AreEqual(5f, val);
     }
+    */
 }

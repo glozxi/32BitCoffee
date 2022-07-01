@@ -41,13 +41,13 @@ public class LevelsData : MonoBehaviour
         }
         catch (KeyNotFoundException)
         {
-            Debug.LogError("Level not found. Returning zero.");
-            return 0;
+            Debug.LogError("Level not found. Returning default.");
+            return _data["tutorial"].CashGoal;
         }
         catch (ArgumentNullException)
         {
-            Debug.LogError("Level name is null. Returning zero. ");
-            return 0;
+            Debug.LogError("Level name is null. Returning default. ");
+            return _data["tutorial"].CashGoal;
         }
     }
 
