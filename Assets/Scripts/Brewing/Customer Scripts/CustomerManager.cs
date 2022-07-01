@@ -18,7 +18,7 @@ public class CustomerManager : MonoBehaviour
     void Start()
     {
         _state = FindObjectOfType<State>();
-        _queue = CustomersData.GetQueue(_state.NextBrewLevel);
+        _queue = LevelsData.GetQueue(_state.NextBrewLevel);
         foreach (Customer customer in _customerList)
         {
             customer.CustomerServed += OnCustomerServed;
