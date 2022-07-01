@@ -8,6 +8,7 @@ public class SceneChanger : MonoBehaviour
     void Start()
     {
         CustomerManager.AllServed += OnAllServed;
+        _endScreen.gameObject.SetActive(false);
     }
 
     private void OnDisable()
