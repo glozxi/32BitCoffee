@@ -5,29 +5,31 @@ using System.Collections.Generic;
 public class DragItem : MonoBehaviour
 {
     private bool _isDragging = false;
-    private GameObject _selectedObject;
+    private static GameObject _selectedObject;
 
     private void Update()
     {
         if (PointerIsOverUI(Input.mousePosition)) return;
-
         if (Input.GetMouseButtonDown(0))
         {
-            AudioManager.instance.PlaySFX("pickup"); // figure how to selectively do this or tie audio to object variable and read from there.
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit2D[] hits = Physics2D.RaycastAll(ray.origin, ray.direction, Mathf.Infinity);
-            foreach (RaycastHit2D hit in hits)
+            if (_selectedObject == null)
             {
-                if (hit.collider == GetComponent<Collider2D>())
+                AudioManager.instance.PlaySFX("pickup"); // figure how to selectively do this or tie audio to object variable and read from there.
+                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                RaycastHit2D[] hits = Physics2D.RaycastAll(ray.origin, ray.direction, Mathf.Infinity);
+                foreach (RaycastHit2D hit in hits)
                 {
-                    _selectedObject = hit.collider.gameObject;
-                    _isDragging = true;
-                    break;
+                    if (hit.collider == GetComponent<Collider2D>())
+                    {
+                        _selectedObject = hit.collider.gameObject;
+                        _isDragging = true;
+                        break;
+                    }
                 }
-            }
+            }                
         }
         
-        if (_isDragging)
+        if (_isDragging && _selectedObject == gameObject)
         {
             Vector2 pos = MousePos();
             _selectedObject.transform.position = pos;
@@ -36,6 +38,10 @@ public class DragItem : MonoBehaviour
         if (Input.GetMouseButtonUp(0))
         {
             _isDragging = false;
+            if (_selectedObject == gameObject)
+            {
+                _selectedObject = null;
+            }
         }
 
         ClampPosition();
@@ -71,4 +77,6 @@ public class DragItem : MonoBehaviour
 
     private PointerEventData ScreenPosToPointerData(Vector2 screenPos)
        => new(EventSystem.current) { position = screenPos };
+
+    
 }

@@ -1,8 +1,10 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using BrewingData;
+using System;
 
-public class Cup : DragItem
+public class Cup : MonoBehaviour
 {
     private const string INGREDIENT_TAG = "Ingredient";
     private const int MAX_CONTENT = 4;
@@ -29,18 +31,28 @@ public class Cup : DragItem
         Clear();
     }
 
-
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void Update()
     {
-        GameObject collidedObject = collision.gameObject;
-        if (collidedObject.CompareTag(INGREDIENT_TAG))
+        if (Input.GetMouseButtonUp(0))
         {
-            Ingredient ingredient = collidedObject.GetComponent<Ingredient>();
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit2D[] hits = Physics2D.RaycastAll(ray.origin, ray.direction, Mathf.Infinity);
+            if (!Array.Exists(hits, hit => hit.collider == GetComponent<Collider2D>()))
+            {
+                return;
+            }
             
-            Add(ingredient);
-            Destroy(collidedObject);
+            foreach (RaycastHit2D hit in hits)
+            {
+                if (hit.collider.gameObject.CompareTag(INGREDIENT_TAG))
+                {
+                    Ingredient ingredient = hit.collider.gameObject.GetComponent<Ingredient>();
+                    Add(ingredient);
+                    Destroy(hit.collider.gameObject);
+                    break;
+                }
+            }
         }
-        
     }
 
     public void ResetCup()
