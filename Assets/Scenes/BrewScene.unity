@@ -6128,10 +6128,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1825618586}
     m_Modifications:
-    - target: {fileID: 791335632578283409, guid: ca5a924db95759d4ba05c2d782a149f1, type: 3}
-      propertyPath: notClickable.m_Bits
-      value: 4
-      objectReference: {fileID: 0}
     - target: {fileID: 791335632578283437, guid: ca5a924db95759d4ba05c2d782a149f1, type: 3}
       propertyPath: m_Name
       value: Empty_Cup
