@@ -24,12 +24,12 @@ public class LevelsData : MonoBehaviour
         catch (KeyNotFoundException)
         {
             Debug.LogError("Level not found. Returning default queue.");
-            return new(_data["tutorial"].CustomerDatas);
+            return new(_data["default"].CustomerDatas);
         }
         catch (ArgumentNullException)
         {
             Debug.LogError("Level name is null. Returning default queue. ");
-            return new(_data["tutorial"].CustomerDatas);
+            return new(_data["default"].CustomerDatas);
         }
     }
 
@@ -42,12 +42,12 @@ public class LevelsData : MonoBehaviour
         catch (KeyNotFoundException)
         {
             Debug.LogError("Level not found. Returning default.");
-            return _data["tutorial"].CashGoal;
+            return _data["default"].CashGoal;
         }
         catch (ArgumentNullException)
         {
             Debug.LogError("Level name is null. Returning default. ");
-            return _data["tutorial"].CashGoal;
+            return _data["default"].CashGoal;
         }
     }
 
