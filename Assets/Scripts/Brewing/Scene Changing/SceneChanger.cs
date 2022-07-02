@@ -2,9 +2,13 @@ using UnityEngine;
 
 public class SceneChanger : MonoBehaviour
 {
+    [SerializeField]
+    private EndScreen _endScreen;
+
     void Start()
     {
         CustomerManager.AllServed += OnAllServed;
+        _endScreen.gameObject.SetActive(false);
     }
 
     private void OnDisable()
@@ -14,6 +18,6 @@ public class SceneChanger : MonoBehaviour
 
     private void OnAllServed()
     {
-        FindObjectOfType<State>().ContinueStory();
+        _endScreen.gameObject.SetActive(true);
     }
 }

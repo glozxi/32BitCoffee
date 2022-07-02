@@ -16,11 +16,12 @@ MonoBehaviour:
   _wanted: 2
   _needed: 1
   _disliked: 3
-  _sprite: {fileID: 21300000, guid: 6a727daef5c968b48b80d8d0b33db542, type: 3}
+  _mainSprite: {fileID: 21300000, guid: b3f2eabeeeffc5949bb33e34db7fba8d, type: 3}
+  _expression: {fileID: 21300000, guid: 2bbe621446689f240ac662617dadcd64, type: 3}
   _mood: normal
   _promptDialogue: Where's my drink?
   _orderTalk: I want Chocolate.
-  _analyzeInformation: John, businessman, 31. Seems like he needs Latte.
+  _analyseInformation: John needs a Latte
   _bonusTime: 6
   _bonusMult: 1.5
   _isStoryAffected: 0
