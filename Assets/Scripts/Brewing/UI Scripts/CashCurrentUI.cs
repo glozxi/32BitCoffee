@@ -2,11 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class CashCurrentUI : MonoBehaviour
 {
     [SerializeField]
     private TMP_Text _text;
+    [SerializeField]
+    private Slider _slider;
 
     private float _goal = 0;
     public float Goal
@@ -33,6 +36,11 @@ public class CashCurrentUI : MonoBehaviour
     private void ChangeDisplayText()
     {
         _text.text = "+" + CurrentCash + "/" + Goal;
+        UpdateSlider();
     }
 
+    private void UpdateSlider()
+    {
+        _slider.value = _currentCash / _goal;
+    }
 }

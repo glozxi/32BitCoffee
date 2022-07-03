@@ -96,28 +96,24 @@ public class Customer : MonoBehaviour
         Order order;
         if (_wantedOrder.DoesDrinkMatch(contents))
         {
-            print("wanted");
             _outcome = 0;
             _outcomeDrink = _data.Wanted;
             order =  _wantedOrder;
         }
         else if (_neededOrder.DoesDrinkMatch(contents))
         {
-            print("needed");
             _outcome = 1;
             _outcomeDrink = _data.Needed;
             order = _neededOrder;
         }
         else if (_dislikedOrder.DoesDrinkMatch(contents))
         {
-            print("disliked");
             _outcome = -1;
             _outcomeDrink = _data.Disliked;
             order = _dislikedOrder;
         }
         else
         {
-            print("none");
             _outcome = 2;
             _outcomeDrink = Drinks.None;
             order = Order.EmptyOrder;
