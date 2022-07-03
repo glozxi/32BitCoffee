@@ -2391,8 +2391,16 @@ PrefabInstance:
     m_TransformParent: {fileID: 1825618586}
     m_Modifications:
     - target: {fileID: 791335632578283436, guid: ca5a924db95759d4ba05c2d782a149f1, type: 3}
+      propertyPath: m_SortingLayer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 791335632578283436, guid: ca5a924db95759d4ba05c2d782a149f1, type: 3}
       propertyPath: m_SortingOrder
-      value: 1
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 791335632578283436, guid: ca5a924db95759d4ba05c2d782a149f1, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -1880570071
       objectReference: {fileID: 0}
     - target: {fileID: 791335632578283437, guid: ca5a924db95759d4ba05c2d782a149f1, type: 3}
       propertyPath: m_Name
@@ -4078,8 +4086,16 @@ PrefabInstance:
     m_TransformParent: {fileID: 1825618586}
     m_Modifications:
     - target: {fileID: 791335632578283436, guid: ca5a924db95759d4ba05c2d782a149f1, type: 3}
+      propertyPath: m_SortingLayer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 791335632578283436, guid: ca5a924db95759d4ba05c2d782a149f1, type: 3}
       propertyPath: m_SortingOrder
-      value: 1
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 791335632578283436, guid: ca5a924db95759d4ba05c2d782a149f1, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -1880570071
       objectReference: {fileID: 0}
     - target: {fileID: 791335632578283437, guid: ca5a924db95759d4ba05c2d782a149f1, type: 3}
       propertyPath: m_Name
@@ -6128,6 +6144,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1825618586}
     m_Modifications:
+    - target: {fileID: 791335632578283436, guid: ca5a924db95759d4ba05c2d782a149f1, type: 3}
+      propertyPath: m_SortingLayer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 791335632578283436, guid: ca5a924db95759d4ba05c2d782a149f1, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -1880570071
+      objectReference: {fileID: 0}
     - target: {fileID: 791335632578283437, guid: ca5a924db95759d4ba05c2d782a149f1, type: 3}
       propertyPath: m_Name
       value: Empty_Cup

@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 using System.Collections.Generic;
+using System;
 
 public class DragItem : MonoBehaviour
 {
@@ -17,15 +18,8 @@ public class DragItem : MonoBehaviour
                 AudioManager.instance.PlaySFX("pickup"); // figure how to selectively do this or tie audio to object variable and read from there.
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
                 RaycastHit2D[] hits = Physics2D.RaycastAll(ray.origin, ray.direction, Mathf.Infinity);
-                foreach (RaycastHit2D hit in hits)
-                {
-                    if (hit.collider == GetComponent<Collider2D>())
-                    {
-                        _selectedObject = hit.collider.gameObject;
-                        _isDragging = true;
-                        break;
-                    }
-                }
+                Array.Sort(hits, CompareHits);
+                SelectObject(hits);
             }                
         }
         
@@ -38,10 +32,7 @@ public class DragItem : MonoBehaviour
         if (Input.GetMouseButtonUp(0))
         {
             _isDragging = false;
-            if (_selectedObject == gameObject)
-            {
-                _selectedObject = null;
-            }
+            _selectedObject = null;
         }
 
         ClampPosition();
@@ -78,5 +69,33 @@ public class DragItem : MonoBehaviour
     private PointerEventData ScreenPosToPointerData(Vector2 screenPos)
        => new(EventSystem.current) { position = screenPos };
 
-    
+    private void SelectObject(RaycastHit2D[] hits)
+    {
+        foreach (RaycastHit2D hit in hits)
+        {
+            if (hit.collider.gameObject.GetComponent<DragItem>() != null)
+            {
+                _selectedObject = hit.collider.gameObject;
+                _selectedObject.GetComponent<DragItem>()._isDragging = true;
+                break;
+            }
+        }
+    }
+
+    // Sort hits based on layer order, if same layer, then by sorting order
+    private int CompareHits(RaycastHit2D x, RaycastHit2D y)
+    {
+        // Sort by sorting layer, then order in sorting layer.
+        // x < y (return -1) if x is x is on a higher layer, so xLayer > yLayer
+        int xLayer = SortingLayer.GetLayerValueFromID(x.collider.gameObject.GetComponent<SpriteRenderer>().sortingLayerID);
+        int yLayer = SortingLayer.GetLayerValueFromID(y.collider.gameObject.GetComponent<SpriteRenderer>().sortingLayerID);
+        if (xLayer > yLayer) return -1;
+        else if (xLayer < yLayer) return 1;
+
+        int xOrder = x.collider.gameObject.GetComponent<SpriteRenderer>().sortingOrder;
+        int yOrder = y.collider.gameObject.GetComponent<SpriteRenderer>().sortingOrder;
+        if (xOrder < yOrder) return 1;
+        else if (xOrder == yOrder) return 0;
+        else return -1;
+    }
 }
