@@ -110,5 +110,6 @@ public class Cup : MonoBehaviour
                 0),
             Quaternion.identity);
         newContent.transform.parent = gameObject.transform;
+        newContent.GetComponent<SpriteRenderer>().sortingOrder = gameObject.GetComponent<SpriteRenderer>().sortingOrder + 1;
     }
 }
