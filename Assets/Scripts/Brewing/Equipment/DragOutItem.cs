@@ -1,8 +1,8 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 using System.Collections.Generic;
+using System;
 
-// Class of item that can be dragged, creating a new sprite
 public abstract class DragOutItem : MonoBehaviour
 {
     [SerializeField]
@@ -13,16 +13,20 @@ public abstract class DragOutItem : MonoBehaviour
 
     private bool _isDragging = false;
     private GameObject _selectedObject;
+    [SerializeField]
+    private List<string> _dontDestroyIfOver;
 
     private void Update()
     {
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, Mathf.Infinity);
+        RaycastHit2D[] hits = Physics2D.RaycastAll(ray.origin, ray.direction, Mathf.Infinity);
+
         if (IsPointerOverUI(Input.mousePosition)) return;
 
         if (Input.GetMouseButtonDown(0) && !_isDragging)
         {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, Mathf.Infinity);
-            if (hit.collider == GetComponent<Collider2D>())
+            if (Array.Exists(hits, hit => hit.collider == GetComponent<Collider2D>()))
             {
                 _selectedObject = hit.collider.gameObject;
                 _isDragging = true;
@@ -33,7 +37,6 @@ public abstract class DragOutItem : MonoBehaviour
                 GetComponent<SpriteRenderer>().sprite = _newSprite;
                 GetComponent<SpriteRenderer>().sortingOrder = 2;
                 transform.tag = DraggedOutTag;
-                
             }
         }
 
@@ -45,8 +48,12 @@ public abstract class DragOutItem : MonoBehaviour
 
         if (Input.GetMouseButtonUp(0) && _isDragging)
         {
-            _isDragging = false;
-            Destroy(gameObject);
+            if (!Array.Exists(hits, hit => _dontDestroyIfOver.Contains(hit.collider.gameObject.tag)))
+            {
+                _isDragging = false;
+                Destroy(gameObject);
+            }
+            
         }
     }
 
