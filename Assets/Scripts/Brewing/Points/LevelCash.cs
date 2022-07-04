@@ -8,7 +8,8 @@ public class LevelCash : MonoBehaviour
     private const float BONUS_MULTIPLIER = 2;
 
     private float _cashGoal;
-    private float _currentCash = 0;
+    public float CurrentCash
+    { get; set; } = 0;
     private State _state;
     [SerializeField]
     private CashCurrentUI _ui;
@@ -24,12 +25,12 @@ public class LevelCash : MonoBehaviour
     // Adds cash to current cash
     public void AddCash(IOrder order, ITimer timer)
     {
-        _currentCash += timer.HasBonus ? order.GetPrice() * BONUS_MULTIPLIER : order.GetPrice();
-        _ui.CurrentCash = _currentCash;
+        CurrentCash += timer.HasBonus ? order.GetPrice() * BONUS_MULTIPLIER : order.GetPrice();
+        _ui.CurrentCash = CurrentCash;
     }
 
     public bool IsGoalReached()
     {
-        return _currentCash >= _cashGoal;
+        return CurrentCash >= _cashGoal;
     }
 }

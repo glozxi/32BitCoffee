@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class SceneChanger : MonoBehaviour
+public class EndScreenOpener : MonoBehaviour
 {
     [SerializeField]
     private EndScreen _endScreen;
