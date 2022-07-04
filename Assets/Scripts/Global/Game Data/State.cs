@@ -14,6 +14,9 @@ public class State : MonoBehaviour
     { get; set; }
     public string TextLog
     { get; set; }
+    public string BGMFile
+    { get; set; }
+
 
     // Move methods to GameStateManager?
     public void ContinueStory()

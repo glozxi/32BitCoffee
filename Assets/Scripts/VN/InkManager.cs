@@ -48,6 +48,11 @@ public class InkManager : MonoBehaviour
     private const string PRELOAD = "PRELOAD";
     private const string TOBREW = "TOBREW";
 
+
+    //where to retrieve
+    float volume = 1f;
+    float pitch = 1f;
+
     void Awake()
     {
         ChoiceButtonScript.Choices += OnChoicePicked;
@@ -75,6 +80,10 @@ public class InkManager : MonoBehaviour
             _story?.state?.LoadJson(_loadedState);
             SetInkVariables();
             _textLog.Log = _textInLog;
+            if (_state.BGMFile != null)
+            {
+                PlayBGM(_state.BGMFile);
+            }
             DisplayThisLine();
         }
         // New story
@@ -153,10 +162,6 @@ public class InkManager : MonoBehaviour
 
     private void HandleTags(List<string> currentTags)
     {
-        //where to retrieve
-        float volume = 1f;
-        float pitch = 1f;
-
         foreach (string tag in currentTags)
         {
             
@@ -183,14 +188,12 @@ public class InkManager : MonoBehaviour
                     break;
 
                 case FX:
-                   AudioManager.instance.PlaySFX(tagValue, volume, pitch);
+                    AudioManager.instance.PlaySFX(tagValue, volume, pitch);
                     break;
 
                 case BGM:
-                    float startingVolume = 0.8f;
-                    bool playOnStart = true;
-                    bool loop = true;
-                    AudioManager.instance.PlayBGM(tagValue, volume, pitch, startingVolume,playOnStart,loop);
+                    _state.BGMFile = tagValue;
+                    PlayBGM(tagValue);
                     break;
 
                 case BACKGROUND:
@@ -212,6 +215,13 @@ public class InkManager : MonoBehaviour
         }
     }
     
+    private void PlayBGM(string file)
+    {
+        float startingVolume = 0.8f;
+        bool playOnStart = true;
+        bool loop = true;
+        AudioManager.instance.PlayBGM(file, volume, pitch, startingVolume, playOnStart, loop);
+    }    
 
     private void SetName(string name)
     {

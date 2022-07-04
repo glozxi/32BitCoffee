@@ -26,6 +26,7 @@ public class GameStateManager : MonoBehaviour
     public void StartNewGame()
     {
         InkManager.ResetStory();
+        _points.ResetPoints();
         StartGame();
     }
 
@@ -42,6 +43,7 @@ public class GameStateManager : MonoBehaviour
             NextBrewLevel = _state.NextBrewLevel,
             Outcome = _state.Outcome,
             Drink = _state.Drink,
+            BGMFile = _state.BGMFile,
             Time = DateTime.Now
         };
 
@@ -65,14 +67,13 @@ public class GameStateManager : MonoBehaviour
     // Load from start screen scene
     public void LoadGame(SaveData saveData)
     {
-        
-
         InkManager.LoadState(saveData.InkStoryState, saveData.TextLog);
         _points.LoadPoints(saveData.Cash, saveData.NetworkPoints);
 
         _state.NextBrewLevel = saveData.NextBrewLevel;
         _state.Outcome = saveData.Outcome;
         _state.Drink = saveData.Drink;
+        _state.BGMFile = saveData.BGMFile;
 
         StartGame();
 

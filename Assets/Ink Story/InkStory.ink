@@ -5,8 +5,8 @@ VAR Drink = "Latte"
 === start ===
 -> Tutorial
 === Tutorial ===
-...#Char:None
-Oh! Hi! Welcome!#Char:Arity #MODEL:arity,arity_default,default,MM 
+...#Char:None #BGM:cafe
+Oh! Hi! Welcome!#Char:Arity #MODEL:arity,arity_default,default,MM #BGM:menu
 Thank you for starting the game.#Char:Arity#MODEL:arity,arity_default,default,MM
 Well, let me not hold you back any further, I'll..#Char:Arity #FX:phone_vibrate#MODEL:arity,arity_default,default,MM 
 Phone rings#Char:None#MODEL:arity,HIDE,,
@@ -87,7 +87,7 @@ Who are you? And what do yo-#Char:You
 Bright lights flood my vision.#Char:None 
 As if, someone, somewhere had just switched on the lights.#Char:None 
 Rather, it felt more like as if I had suddenly gained awareness of the concept of light, and the ability to perceive it.#Char:None 
-Where am I?#Char:None #BG:evening #BGM:two
+Where am I?#Char:None #BG:evening
 
 Unfamiliar walls, unfamiliar smell, unfamiliar sounds.#Char:None 
 No sorry, scratch that.#Char:None 

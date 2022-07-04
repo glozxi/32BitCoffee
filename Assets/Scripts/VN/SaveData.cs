@@ -22,4 +22,6 @@ public class SaveData
     { get; set; }
     public DateTime Time
     { get; set; }
+    public string BGMFile
+    { get; set; }
 }
