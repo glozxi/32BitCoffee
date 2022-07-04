@@ -7,7 +7,9 @@ public class AudioManager : MonoBehaviour
     //https://www.raywenderlich.com/532-audio-tutorial-for-unity-the-audio-mixer might be better idea
 
     public static AudioManager instance;
-    public static BGM activeBGM = null; 
+    public static BGM activeBGM = null;
+
+    // public float maxVolume = PlayerPrefs.GetFloat("FxVolume"); //not good method
 
     public static List<BGM> allBGM = new List<BGM>(); //Not used by anyone else
     public float bgmTransitionSpeed = 1f;
@@ -96,7 +98,7 @@ public class AudioManager : MonoBehaviour
 
     IEnumerator VolumeLeveler()
     {
-        while (TransitionBGM())
+        while (TransitionBGM()) // The while loop gradually decreasing volume.
         {
             yield return new WaitForEndOfFrame();
         }
@@ -114,6 +116,7 @@ public class AudioManager : MonoBehaviour
             {
                 if (bgm.volume < bgm.maxVolume)
                 {
+                    //Can't figure out how to not do lerp and have smoother transitions. 
                     bgm.volume = bgmTransitionSmooth ? Mathf.Lerp(bgm.volume, bgm.maxVolume, speed) : Mathf.MoveTowards(bgm.volume, bgm.maxVolume, speed);
                     anyValueChanged = true;
                 }
