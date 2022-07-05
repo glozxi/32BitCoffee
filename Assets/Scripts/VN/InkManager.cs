@@ -22,7 +22,6 @@ public class InkManager : MonoBehaviour
     private bool _isBrewNext = false;
     // Name of next brew level
     private string _nextLevel;
-    private State _state;
 
     [SerializeField]
     private TextAsset _inkJsonAsset;
@@ -57,7 +56,10 @@ public class InkManager : MonoBehaviour
     {
         ChoiceButtonScript.Choices += OnChoicePicked;
         NextButtonScript.Next += OnNext;
-        
+
+    }
+    private void Start()
+    {
         StartStory();
     }
 
@@ -69,7 +71,6 @@ public class InkManager : MonoBehaviour
 
     private void StartStory()
     {
-        _state = FindObjectOfType<State>();
         _story = new Story(_inkJsonAsset.text);
 
         ObserveVariables();
@@ -80,10 +81,11 @@ public class InkManager : MonoBehaviour
             _story?.state?.LoadJson(_loadedState);
             SetInkVariables();
             _textLog.Log = _textInLog;
-            if (_state.BGMFile != null)
+            if (State.Instance.BGMFile != null)
             {
-                PlayBGM(_state.BGMFile);
+                PlayBGM(State.Instance.BGMFile);
             }
+            CharacterManager.instance.DisplayCharacters(State.Instance.CharDatas);
             DisplayThisLine();
         }
         // New story
@@ -97,7 +99,7 @@ public class InkManager : MonoBehaviour
     private void ObserveVariables()
     {
         _story.ObserveVariable("Drink", (string varName, object newValue) => {
-            _state.Drink = (string)newValue;
+            State.Instance.Drink = (string)newValue;
         });
     }
 
@@ -192,7 +194,7 @@ public class InkManager : MonoBehaviour
                     break;
 
                 case BGM:
-                    _state.BGMFile = tagValue;
+                    State.Instance.BGMFile = tagValue;
                     PlayBGM(tagValue);
                     break;
 
@@ -252,23 +254,23 @@ public class InkManager : MonoBehaviour
 
     private void TransitToBrew(string level)
     {
-        _state.NextBrewLevel = level;
-        _state.InkStoryState = GetStoryState();
-        _state.TextLog = GetTextLog();
+        State.Instance.NextBrewLevel = level;
+        State.Instance.InkStoryState = GetStoryState();
+        State.Instance.TextLog = GetTextLog();
 
         UnityEngine.SceneManagement.SceneManager.LoadScene("BrewScene");
     }
 
     public void SaveBeforeLoadScene()
     {
-        _state.InkStoryState = GetStoryState();
-        _state.TextLog = GetTextLog();
+        State.Instance.InkStoryState = GetStoryState();
+        State.Instance.TextLog = GetTextLog();
     }
 
     private void SetInkVariables()
     {
-        SetInkVariable("Outcome", _state.Outcome);
-        SetInkVariable("Drink", _state.Drink);
+        SetInkVariable("Outcome", State.Instance.Outcome);
+        SetInkVariable("Drink", State.Instance.Drink);
     }
 
     private void SetInkVariable(string varName, object toAssign)

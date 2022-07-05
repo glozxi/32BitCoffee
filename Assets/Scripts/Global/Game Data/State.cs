@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 // Combine with SaveData and GameStateManager?
@@ -16,7 +17,21 @@ public class State : MonoBehaviour
     { get; set; }
     public string BGMFile
     { get; set; }
+    public List<CharData> CharDatas
+    { get; set; }
 
+    public static State Instance { get; private set; }
+    private void Awake()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(this);
+        }
+        else
+        {
+            Instance = this;
+        }
+    }
 
     // Move methods to GameStateManager?
     public void ContinueStory()

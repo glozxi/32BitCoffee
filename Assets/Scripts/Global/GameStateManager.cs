@@ -7,14 +7,12 @@ using UnityEngine;
 public class GameStateManager : MonoBehaviour
 {
     private InkManager _inkManager;
-    private State _state;
     private Points _points;
 
     // Start is called before the first frame update
     void Start()
     {
         _inkManager = FindObjectOfType<InkManager>();
-        _state = FindObjectOfType<State>();
         _points = FindObjectOfType<Points>();
     }
 
@@ -33,18 +31,18 @@ public class GameStateManager : MonoBehaviour
     // Save from VN scene
     public void SaveGame()
     {
-
         SaveData saveData = new()
         {
             InkStoryState = _inkManager.GetStoryState(),
             TextLog = _inkManager.GetTextLog(), //This may cause issues in future for TextLog, also this loads the entire story.
             Cash = _points.Cash,
             NetworkPoints = _points.NetworkPoints,
-            NextBrewLevel = _state.NextBrewLevel,
-            Outcome = _state.Outcome,
-            Drink = _state.Drink,
-            BGMFile = _state.BGMFile,
-            Time = DateTime.Now
+            NextBrewLevel = State.Instance.NextBrewLevel,
+            Outcome = State.Instance.Outcome,
+            Drink = State.Instance.Drink,
+            BGMFile = State.Instance.BGMFile,
+            Time = DateTime.Now,
+            CharDatas = CharacterManager.instance.GetEnabledCharDatas()
         };
 
         BinaryFormatter bf = new();
@@ -70,12 +68,14 @@ public class GameStateManager : MonoBehaviour
         InkManager.LoadState(saveData.InkStoryState, saveData.TextLog);
         _points.LoadPoints(saveData.Cash, saveData.NetworkPoints);
 
-        _state.NextBrewLevel = saveData.NextBrewLevel;
-        _state.Outcome = saveData.Outcome;
-        _state.Drink = saveData.Drink;
-        _state.BGMFile = saveData.BGMFile;
-
+        State.Instance.NextBrewLevel = saveData.NextBrewLevel;
+        State.Instance.Outcome = saveData.Outcome;
+        State.Instance.Drink = saveData.Drink;
+        State.Instance.BGMFile = saveData.BGMFile;
+        State.Instance.CharDatas = saveData.CharDatas;
+        
         StartGame();
+
 
     }
 

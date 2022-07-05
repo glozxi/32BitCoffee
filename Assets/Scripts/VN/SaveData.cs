@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 [Serializable]
@@ -23,5 +24,7 @@ public class SaveData
     public DateTime Time
     { get; set; }
     public string BGMFile
+    { get; set; }
+    public List<CharData> CharDatas
     { get; set; }
 }
