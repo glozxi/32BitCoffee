@@ -183,14 +183,14 @@ public class InkManager : MonoBehaviour
                     break;
 
                 case FX:
-                   AudioManager.instance.PlaySFX(tagValue, volume, pitch);
+                    AudioManager.instance.PlaySFX(tagValue); //, volume, pitch);
                     break;
 
                 case BGM:
                     float startingVolume = 0.8f;
                     bool playOnStart = true;
                     bool loop = true;
-                    AudioManager.instance.PlayBGM(tagValue, volume, pitch, startingVolume,playOnStart,loop);
+                    AudioManager.instance.PlayBGM(tagValue); //, volume, pitch, startingVolume,playOnStart,loop);
                     break;
 
                 case BACKGROUND:
