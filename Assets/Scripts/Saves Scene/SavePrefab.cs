@@ -3,7 +3,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using System.IO;
-using System.Linq;
+using UnityEngine.SceneManagement;
 
 public class SavePrefab : MonoBehaviour
 {
@@ -64,6 +64,7 @@ public class SavePrefab : MonoBehaviour
         File.Delete(_picPath);
         File.Delete(_path);
         Destroy(gameObject);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     public void LoadGame()

@@ -1,18 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Audio;
 
 public class AudioManager : MonoBehaviour
 {
     //https://www.raywenderlich.com/532-audio-tutorial-for-unity-the-audio-mixer might be better idea
 
     public static AudioManager instance;
-    public AudioMixer masterMixer;
-    //public static audio
-    public static BGM activeBGM = null;
-
-    // public float maxVolume = PlayerPrefs.GetFloat("FxVolume"); //not good method
+    public static BGM activeBGM = null; 
 
     public static List<BGM> allBGM = new List<BGM>(); //Not used by anyone else
     public float bgmTransitionSpeed = 1f;
@@ -46,31 +41,30 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    public void PlaySFX(string file) //, float volume = 1f, float pitch = 1f)
-    {
-        PlaySFX(Resources.Load(dictEfx[file]) as AudioClip);//, volume, pitch);
+    public void PlaySFX(string file, float volume = 1f, float pitch = 1f)
+    {      
+        PlaySFX(Resources.Load(dictEfx[file]) as AudioClip, volume, pitch);
     }
 
     // two fx might have different volume or pitch
-    public void PlaySFX(AudioClip file) //, float volume = 1f, float pitch = 1f)
+    public void PlaySFX(AudioClip file, float volume = 1f, float pitch = 1f)
     {
         //Appears on prefab.
         AudioSource source = CreateNewSource(string.Format("SFX_[{0}]", file.name));
-        source.outputAudioMixerGroup = masterMixer.FindMatchingGroups("FXVolume")[0];
         source.clip = file;
-        //source.volume = volume;
-        //source.pitch = pitch;
+        source.volume = volume;
+        source.pitch = pitch;
         source.Play();
 
         Destroy(source.gameObject, file.length); //auto destroy self after finish 
     }
 
-    public void PlayBGM(string file) //, float maxVolume = 1f, float pitch = 1f, float startingVolume = 0f, bool playOnStart = true, bool loop = true)
+    public void PlayBGM(string file, float maxVolume = 1f, float pitch = 1f, float startingVolume = 0f, bool playOnStart = true, bool loop = true)
     {
-        PlayBGM(Resources.Load(dictBgm[file]) as AudioClip);
+        PlayBGM(Resources.Load(dictBgm[file]) as AudioClip, maxVolume, pitch, startingVolume, playOnStart, loop);
     }
 
-    public void PlayBGM(AudioClip file) // , float maxVolume = 1f, float pitch = 1f, float startingVolume = 0f, bool playOnStart = true, bool loop = true)
+    public void PlayBGM(AudioClip file, float maxVolume = 1f, float pitch = 1f, float startingVolume = 0f, bool playOnStart = true, bool loop = true)
     {
         if (file != null) 
         {
@@ -86,7 +80,7 @@ public class AudioManager : MonoBehaviour
             if (activeBGM == null || activeBGM.clip != file)
             {
                 //if (activeBGM != null) activeBGM.Stop();
-                activeBGM = new BGM(file, masterMixer);// maxVolume, pitch, startingVolume, playOnStart, loop);
+                activeBGM = new BGM(file, maxVolume, pitch, startingVolume, playOnStart, loop);
             }
         }
 
@@ -102,7 +96,7 @@ public class AudioManager : MonoBehaviour
 
     IEnumerator VolumeLeveler()
     {
-        while (TransitionBGM()) // The while loop gradually decreasing volume.
+        while (TransitionBGM())
         {
             yield return new WaitForEndOfFrame();
         }
@@ -120,7 +114,6 @@ public class AudioManager : MonoBehaviour
             {
                 if (bgm.volume < bgm.maxVolume)
                 {
-                    //Can't figure out how to not do lerp and have smoother transitions. 
                     bgm.volume = bgmTransitionSmooth ? Mathf.Lerp(bgm.volume, bgm.maxVolume, speed) : Mathf.MoveTowards(bgm.volume, bgm.maxVolume, speed);
                     anyValueChanged = true;
                 }
@@ -155,30 +148,26 @@ public class AudioManager : MonoBehaviour
     public class BGM
     {
         public AudioSource source;
-        public AudioMixer masterMixer;
         public AudioClip clip { get { return source.clip;  } set { source.clip = value; } }
         public float maxVolume = 1f;
 
-
-        public BGM(AudioClip file, AudioMixer audioMixer) // float desiredMaxVolume, float pitch, float startingVolume, bool playOnStart, bool loop)
+        
+        public BGM(AudioClip file, float desiredMaxVolume, float pitch, float startingVolume, bool playOnStart, bool loop)
         {
             source = AudioManager.CreateNewSource(string.Format("BGM_[{0}]", file.name));
-            masterMixer = audioMixer;
-            source.outputAudioMixerGroup = masterMixer.FindMatchingGroups("BGMVolume")[0];
             source.clip = file;
-            source.volume = 0; // startingVolume;
-            //source.pitch = pitch;
-            //maxVolume = desiredMaxVolume;
-            //source.pitch = pitch;
-            //source.loop = loop;
+            source.volume = startingVolume;
+            source.pitch = pitch;
+            maxVolume = desiredMaxVolume;
+            source.pitch = pitch;
+            source.loop = loop;
 
             AudioManager.allBGM.Add(this);
 
-            source.Play();
-            //if (playOnStart)
-            //{
-            //    source.Play();
-            //}
+            if (playOnStart)
+            {
+                source.Play();
+            }
                 
         }
 

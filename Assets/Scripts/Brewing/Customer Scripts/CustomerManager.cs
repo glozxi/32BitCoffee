@@ -12,13 +12,11 @@ public class CustomerManager : MonoBehaviour
     [SerializeField]
     private List<Customer> _customerList;
     private Queue<CustomerData> _queue;
-    private State _state;
 
     // Start is called before the first frame update
     void Start()
     {
-        _state = FindObjectOfType<State>();
-        _queue = LevelsData.GetQueue(_state.NextBrewLevel);
+        _queue = LevelsData.GetQueue(State.Instance.NextBrewLevel);
         foreach (Customer customer in _customerList)
         {
             customer.CustomerServed += OnCustomerServed;
@@ -41,8 +39,8 @@ public class CustomerManager : MonoBehaviour
         // Set outcome, drink of current customer
         if (customer.IsStoryAffected)
         {
-            _state.Outcome = outcome;
-            _state.Drink = drink.ToString();
+            State.Instance.Outcome = outcome;
+            State.Instance.Drink = drink.ToString();
         }
         DisplayNextCustomer(customer);
     }

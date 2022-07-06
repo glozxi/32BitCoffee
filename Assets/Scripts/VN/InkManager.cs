@@ -22,7 +22,6 @@ public class InkManager : MonoBehaviour
     private bool _isBrewNext = false;
     // Name of next brew level
     private string _nextLevel;
-    private State _state;
 
     [SerializeField]
     private TextAsset _inkJsonAsset;
@@ -48,11 +47,19 @@ public class InkManager : MonoBehaviour
     private const string PRELOAD = "PRELOAD";
     private const string TOBREW = "TOBREW";
 
+
+    //where to retrieve
+    float volume = 1f;
+    float pitch = 1f;
+
     void Awake()
     {
         ChoiceButtonScript.Choices += OnChoicePicked;
         NextButtonScript.Next += OnNext;
-        
+
+    }
+    private void Start()
+    {
         StartStory();
     }
 
@@ -64,7 +71,6 @@ public class InkManager : MonoBehaviour
 
     private void StartStory()
     {
-        _state = FindObjectOfType<State>();
         _story = new Story(_inkJsonAsset.text);
 
         ObserveVariables();
@@ -75,6 +81,11 @@ public class InkManager : MonoBehaviour
             _story?.state?.LoadJson(_loadedState);
             SetInkVariables();
             _textLog.Log = _textInLog;
+            if (State.Instance.BGMFile != null)
+            {
+                PlayBGM(State.Instance.BGMFile);
+            }
+            CharacterManager.instance.DisplayCharacters(State.Instance.CharDatas);
             DisplayThisLine();
         }
         // New story
@@ -88,7 +99,7 @@ public class InkManager : MonoBehaviour
     private void ObserveVariables()
     {
         _story.ObserveVariable("Drink", (string varName, object newValue) => {
-            _state.Drink = (string)newValue;
+            State.Instance.Drink = (string)newValue;
         });
     }
 
@@ -153,10 +164,6 @@ public class InkManager : MonoBehaviour
 
     private void HandleTags(List<string> currentTags)
     {
-        //where to retrieve
-        float volume = 1f;
-        float pitch = 1f;
-
         foreach (string tag in currentTags)
         {
             
@@ -183,14 +190,12 @@ public class InkManager : MonoBehaviour
                     break;
 
                 case FX:
-                    AudioManager.instance.PlaySFX(tagValue); //, volume, pitch);
+                    AudioManager.instance.PlaySFX(tagValue, volume, pitch);
                     break;
 
                 case BGM:
-                    float startingVolume = 0.8f;
-                    bool playOnStart = true;
-                    bool loop = true;
-                    AudioManager.instance.PlayBGM(tagValue); //, volume, pitch, startingVolume,playOnStart,loop);
+                    State.Instance.BGMFile = tagValue;
+                    PlayBGM(tagValue);
                     break;
 
                 case BACKGROUND:
@@ -212,6 +217,13 @@ public class InkManager : MonoBehaviour
         }
     }
     
+    private void PlayBGM(string file)
+    {
+        float startingVolume = 0.8f;
+        bool playOnStart = true;
+        bool loop = true;
+        AudioManager.instance.PlayBGM(file, volume, pitch, startingVolume, playOnStart, loop);
+    }    
 
     private void SetName(string name)
     {
@@ -242,23 +254,23 @@ public class InkManager : MonoBehaviour
 
     private void TransitToBrew(string level)
     {
-        _state.NextBrewLevel = level;
-        _state.InkStoryState = GetStoryState();
-        _state.TextLog = GetTextLog();
-
+        State.Instance.NextBrewLevel = level;
+        State.Instance.InkStoryState = GetStoryState();
+        State.Instance.TextLog = GetTextLog();
+        State.Instance.CharDatas = CharacterManager.instance.GetEnabledCharDatas();
         UnityEngine.SceneManagement.SceneManager.LoadScene("BrewScene");
     }
 
     public void SaveBeforeLoadScene()
     {
-        _state.InkStoryState = GetStoryState();
-        _state.TextLog = GetTextLog();
+        State.Instance.InkStoryState = GetStoryState();
+        State.Instance.TextLog = GetTextLog();
     }
 
     private void SetInkVariables()
     {
-        SetInkVariable("Outcome", _state.Outcome);
-        SetInkVariable("Drink", _state.Drink);
+        SetInkVariable("Outcome", State.Instance.Outcome);
+        SetInkVariable("Drink", State.Instance.Drink);
     }
 
     private void SetInkVariable(string varName, object toAssign)

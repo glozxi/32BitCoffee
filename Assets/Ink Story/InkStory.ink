@@ -5,23 +5,23 @@ VAR Drink = "Latte"
 === start ===
 -> Tutorial
 === Tutorial ===
-...#Char:None
-Oh! Hi! Welcome!#Char:Arity #MODEL:arity,arity_default,default,MM 
-Thank you for starting the game.#Char:Arity#MODEL:arity,arity_default,default,MM
-Well, let me not hold you back any further, I'll..#Char:Arity #FX:phone_vibrate#MODEL:arity,arity_default,default,MM 
-Phone rings#Char:None#MODEL:arity,HIDE,,
+...#Char:None #BGM:cafe
+Oh! Hi! Welcome!#Char:Arity #MODEL:Arity,arity_default,default,MM #BGM:menu
+Thank you for starting the game.#Char:Arity
+Well, let me not hold you back any further, I'll..#Char:Arity #FX:phone_vibrate
+Phone rings#Char:None#MODEL:Arity,HIDE,,
 Hold on let me get this.#Char:Arity #MODEL:Arity,arity_default,blank,MM 
 Sorry.#Char:Arity
 Hey whats up.#Char:Arity #MODEL:Arity,arity_default,stare,MM #FX:phone_pick 
-Yeah milestone 2?#Char:Arity#MODEL:Arity,arity_default,stare,MM #FX:phone_pick
+Yeah milestone 2?#Char:Arity #FX:phone_pick
 What do you mean we ain't ready yet?#Char:Arity #MODEL:Arity,arity_default,angry,MM 
 But the people are...#Char:Arity #MODEL:Arity,arity_default,sad,MM 
-Alright alright...#Char:Arity#MODEL:Arity,arity_default,sad,MM
-I'll do something about it.#Char:Arity#MODEL:Arity,arity_default,sad,MM
+Alright alright...#Char:Arity
+I'll do something about it.#Char:Arity
 Phone closes#Char:None#MODEL:Arity,HIDE,,
 Sorry to keep you waiting.#Char:Arity #MODEL:Arity,arity_default,default,MM 
 It appears the story isn't ready yet.#Char:Arity#MODEL:Arity,arity_default,default,MM
-And whatever you will see after this doesn't make sense.#Char:Arity#MODEL:Arity,arity_default,default,MM
+And whatever you will see after this doesn't make sense.#Char:Arity
 -> Brew_Req
 === Brew_Req ===
 {But perhaps maybe you would like to have a try at brewing coffee? | Eh, can you brew again?}#Char:Arity #TOBREW:tut_MS2#MODEL:Arity,arity_default,default,MM
@@ -48,7 +48,7 @@ Huh, a {Drink}?#Char:Arity#MODEL:Arity,arity_default,default,MM
 Not what I ordered, but...#Char:Arity#Char:Arity #MODEL:Arity,arity_default,blank,MM
 He sips.#Char:None#MODEL:Arity,HIDE,,
 Wow, it's really good.#Char:Arity#MODEL:Arity,arity_default,default,MM
-You can go on to enjoy the unready story!#Char:Arity#MODEL:Arity,arity_default,default,MM
+You can go on to enjoy the unready story!#Char:Arity
 -> Day_1_pt_1_1
 === Tutorial_Nor_MS2 ===
 Cool, a {Drink}, just what I ordered.#Char:Arity#MODEL:Arity,arity_default,default,MM
@@ -87,7 +87,7 @@ Who are you? And what do yo-#Char:You
 Bright lights flood my vision.#Char:None 
 As if, someone, somewhere had just switched on the lights.#Char:None 
 Rather, it felt more like as if I had suddenly gained awareness of the concept of light, and the ability to perceive it.#Char:None 
-Where am I?#Char:None #BG:evening #BGM:two
+Where am I?#Char:None #BG:evening
 
 Unfamiliar walls, unfamiliar smell, unfamiliar sounds.#Char:None 
 No sorry, scratch that.#Char:None 
