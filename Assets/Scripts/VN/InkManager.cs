@@ -73,6 +73,11 @@ public class InkManager : MonoBehaviour
             _story?.state?.LoadJson(_loadedState);
             SetInkVariables();
             _textLog.Log = _textInLog;
+            if (State.Instance.BGMFile != null)
+            {
+                AudioManager.instance.PlayBGM(State.Instance.BGMFile);
+            }
+            CharacterManager.instance.DisplayCharacters(State.Instance.CharDatas);
             DisplayThisLine();
         }
         // New story
@@ -151,10 +156,6 @@ public class InkManager : MonoBehaviour
 
     private void HandleTags(List<string> currentTags)
     {
-        //where to retrieve
-        float volume = 1f;
-        float pitch = 1f;
-
         foreach (string tag in currentTags)
         {
             
