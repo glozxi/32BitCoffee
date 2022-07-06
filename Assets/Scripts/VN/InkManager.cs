@@ -257,7 +257,7 @@ public class InkManager : MonoBehaviour
         State.Instance.NextBrewLevel = level;
         State.Instance.InkStoryState = GetStoryState();
         State.Instance.TextLog = GetTextLog();
-
+        State.Instance.CharDatas = CharacterManager.instance.GetEnabledCharDatas();
         UnityEngine.SceneManagement.SceneManager.LoadScene("BrewScene");
     }
 
