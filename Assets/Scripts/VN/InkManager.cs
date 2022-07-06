@@ -190,12 +190,12 @@ public class InkManager : MonoBehaviour
                     break;
 
                 case FX:
-                    AudioManager.instance.PlaySFX(tagValue, volume, pitch);
+                    AudioManager.instance.PlaySFX(tagValue); //, volume, pitch);
                     break;
 
                 case BGM:
                     State.Instance.BGMFile = tagValue;
-                    PlayBGM(tagValue);
+                    AudioManager.instance.PlayBGM(tagValue); //, volume, pitch, startingVolume,playOnStart,loop);
                     break;
 
                 case BACKGROUND:
