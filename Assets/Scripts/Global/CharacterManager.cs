@@ -26,7 +26,7 @@ public class CharacterManager : MonoBehaviour
     }
 
     public Character GetCharacter(string characterName)
-    {      
+    {
         int index = -1;
         if (characterDictionary.TryGetValue(characterName, out index))
         {
@@ -55,7 +55,7 @@ public class CharacterManager : MonoBehaviour
         float speed = 1f;
 
         Character character = GetCharacter(characterName);
-        character.TransitBoth(character.GetSprite(body), character.GetSprite(expr), speed, false);
+        character.TransitBoth(body, expr, speed, false);
         character.MoveTo(pos);
         character.enabled = enabled;
     }
@@ -70,12 +70,13 @@ public class CharacterManager : MonoBehaviour
         float speed = 1f;
 
         Character character = GetCharacter(characterName);
-        character.TransitBoth(character.GetSprite(body), character.GetSprite(expr), speed, false);
+        character.TransitBoth(body, expr, speed, false);
         character.MoveTo(pos);
         character.enabled = enabled;
     }
 
-    public void CMEnableChar(string charName, bool TF= true){
+    public void CMEnableChar(string charName, bool TF = true)
+    {
         GetCharacter(charName).enabled = TF;
     }
 
@@ -84,6 +85,24 @@ public class CharacterManager : MonoBehaviour
         for (int i = 0; i < onScreen.Count; i++)
         {
             onScreen[i].enabled = false;
+        }
+    }
+
+    public List<CharData> GetEnabledCharDatas()
+    {
+        List<CharData> list = new();
+        foreach (Character c in onScreen.FindAll(c => c.enabled))
+        {
+            list.Add(c.GetCharData());
+        }
+        return list;
+    }
+
+    public void DisplayCharacters(List<CharData> charDatas)
+    {
+        foreach (CharData c in charDatas)
+        {
+            CMChar(c.Name, c.Body, c.Expr, c.Pos);
         }
     }
 }

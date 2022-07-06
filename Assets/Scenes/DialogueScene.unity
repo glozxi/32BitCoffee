@@ -1370,7 +1370,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: DNDOL
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8930070098001790517, guid: fea5decdb5a1ca74e988a3725b48e602, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: fea5decdb5a1ca74e988a3725b48e602, type: 3}
 --- !u!1 &335213965
 GameObject:

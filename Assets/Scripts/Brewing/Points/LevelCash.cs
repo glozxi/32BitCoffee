@@ -10,15 +10,13 @@ public class LevelCash : MonoBehaviour
     private float _cashGoal;
     public float CurrentCash
     { get; set; } = 0;
-    private State _state;
     [SerializeField]
     private CashCurrentUI _ui;
 
     // Start is called before the first frame update
     void Start()
     {
-        _state = FindObjectOfType<State>();
-        _cashGoal = LevelsData.GetCashGoal(_state.NextBrewLevel);
+        _cashGoal = LevelsData.GetCashGoal(State.Instance.NextBrewLevel);
         _ui.Goal = _cashGoal;
     }
 

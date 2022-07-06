@@ -5,17 +5,21 @@ using UnityEngine.UI;
 
 [System.Serializable]
 public class Character
-    // TO IMPLEMENT: RAndom Character Generation
-{  
-    [HideInInspector] 
+// TO IMPLEMENT: RAndom Character Generation
+{
+    [HideInInspector]
     public RectTransform root; //root of characer img.
     public string charaName;
     public string globalPath = "Images/Characters/";
-    
+
+    private string _body;
+    private string _expr;
+
     /* Positional related variables/stuff
      */
     //Position
     Vector2 targetPos;
+    string targetPosStr;
     Coroutine moving;
 
     // To add specific location (anchor percentage)
@@ -57,6 +61,7 @@ public class Character
 
     public void MoveTo(string Target)
     {
+        targetPosStr = Target;
         MoveTo(fixedPos[Target]);
     }
 
@@ -89,7 +94,7 @@ public class Character
         }
         stopMoving();
     }
-    
+
 
     /** Character class is where we get the items needed
      */
@@ -139,7 +144,7 @@ public class Character
     public Sprite GetSprite(string retrieve)
     {
         string temporaryFormat = globalPath + charaName + "/";
-        Sprite sprite = Resources.Load<Sprite>(temporaryFormat + retrieve); 
+        Sprite sprite = Resources.Load<Sprite>(temporaryFormat + retrieve);
         return sprite;
 
         /**
@@ -147,7 +152,6 @@ public class Character
         //Sprite location needs to be the same as for body (or at most one directory different)
         
         Sprite[] sprites = Resources.LoadAll<Sprite>(path + charaName);
-
         return sprites[index];
         */
     }
@@ -169,12 +173,19 @@ public class Character
         renderers.expresionRenderer.sprite = GetSprite(retrieve);
     }
     **/
-    
+
     //body trans
     Coroutine transitioningBody = null;
     bool isTransitBody { get { return transitioningBody != null; } }
 
-    public void TransitBoth(Sprite body, Sprite expr, float speed, bool smooth)
+    public void TransitBoth(string body, string expr, float speed, bool smooth)
+    {
+        _body = body;
+        _expr = expr;
+        TransitBoth(GetSprite(body), GetSprite(expr), speed, smooth);
+    }
+
+    private void TransitBoth(Sprite body, Sprite expr, float speed, bool smooth)
     {
         TransitionBody(body, speed, smooth);
         TransitionExpr(expr, speed, smooth);
@@ -260,5 +271,16 @@ public class Character
             yield return new WaitForEndOfFrame();
         }
         StopTransitionExpr();
+    }
+
+    public CharData GetCharData()
+    {
+        return new CharData()
+        {
+            Pos = targetPosStr,
+            Name = charaName,
+            Body = _body,
+            Expr = _expr
+        };
     }
 }
