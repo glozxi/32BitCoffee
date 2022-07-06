@@ -77,5 +77,5 @@ public class CustomerManager : MonoBehaviour
     {
         return _customerList.TrueForAll(customer => !customer.IsActive());
     }
- 
+
 }

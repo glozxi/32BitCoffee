@@ -26,7 +26,7 @@ public class CharacterManager : MonoBehaviour
     }
 
     public Character GetCharacter(string characterName)
-    {      
+    {
         int index = -1;
         if (characterDictionary.TryGetValue(characterName, out index))
         {
@@ -75,7 +75,8 @@ public class CharacterManager : MonoBehaviour
         character.enabled = enabled;
     }
 
-    public void CMEnableChar(string charName, bool TF= true){
+    public void CMEnableChar(string charName, bool TF = true)
+    {
         GetCharacter(charName).enabled = TF;
     }
 

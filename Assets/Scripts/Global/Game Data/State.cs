@@ -43,7 +43,7 @@ public class State : MonoBehaviour
     {
         UnityEngine.SceneManagement.SceneManager.LoadScene("DialogueScene");
         yield return null;
-        InkManager inkManager = (InkManager) FindObjectOfType(typeof(InkManager));
+        InkManager inkManager = (InkManager)FindObjectOfType(typeof(InkManager));
         inkManager.LoadStateFromBrew(InkStoryState, TextLog);
     }
 

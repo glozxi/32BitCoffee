@@ -36,7 +36,6 @@ public class Points : MonoBehaviour
         _cash = cash;
         _networkPoints = networkPoints;
     }
-
     public void ResetPoints()
     {
         _cash = 0f;

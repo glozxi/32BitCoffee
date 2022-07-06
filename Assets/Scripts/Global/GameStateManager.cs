@@ -47,7 +47,7 @@ public class GameStateManager : MonoBehaviour
 
         BinaryFormatter bf = new();
         int i = 0;
-        for (; File.Exists(Application.persistentDataPath + "/savedata" + i + ".save"); i++) {}
+        for (; File.Exists(Application.persistentDataPath + "/savedata" + i + ".save"); i++) { }
         string savePath = Application.persistentDataPath + "/savedata" + i + ".save";
         string picSavePath = Application.persistentDataPath + "/savedata" + i + ".png";
 
@@ -73,7 +73,7 @@ public class GameStateManager : MonoBehaviour
         State.Instance.Drink = saveData.Drink;
         State.Instance.BGMFile = saveData.BGMFile;
         State.Instance.CharDatas = saveData.CharDatas;
-        
+
         StartGame();
 
 

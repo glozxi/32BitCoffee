@@ -32,7 +32,7 @@ public class SavePrefab : MonoBehaviour
         }
     }
 
-    
+
 
     private void SetText()
     {
@@ -72,5 +72,5 @@ public class SavePrefab : MonoBehaviour
         _gameStateManager.LoadGame(_saveData);
     }
 
-    
+
 }

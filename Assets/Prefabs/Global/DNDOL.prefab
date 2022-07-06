@@ -48,6 +48,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb7f01910338a9f47b1310a92cd8f0e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  masterMixer: {fileID: 0}
   bgmTransitionSpeed: 1
   bgmTransitionSmooth: 1
 --- !u!114 &3077984909497291581

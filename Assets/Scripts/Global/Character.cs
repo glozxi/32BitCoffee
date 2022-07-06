@@ -5,9 +5,9 @@ using UnityEngine.UI;
 
 [System.Serializable]
 public class Character
-    // TO IMPLEMENT: RAndom Character Generation
-{  
-    [HideInInspector] 
+// TO IMPLEMENT: RAndom Character Generation
+{
+    [HideInInspector]
     public RectTransform root; //root of characer img.
     public string charaName;
     public string globalPath = "Images/Characters/";
@@ -94,7 +94,7 @@ public class Character
         }
         stopMoving();
     }
-    
+
 
     /** Character class is where we get the items needed
      */
@@ -144,7 +144,7 @@ public class Character
     public Sprite GetSprite(string retrieve)
     {
         string temporaryFormat = globalPath + charaName + "/";
-        Sprite sprite = Resources.Load<Sprite>(temporaryFormat + retrieve); 
+        Sprite sprite = Resources.Load<Sprite>(temporaryFormat + retrieve);
         return sprite;
 
         /**
@@ -152,7 +152,6 @@ public class Character
         //Sprite location needs to be the same as for body (or at most one directory different)
         
         Sprite[] sprites = Resources.LoadAll<Sprite>(path + charaName);
-
         return sprites[index];
         */
     }
@@ -174,7 +173,7 @@ public class Character
         renderers.expresionRenderer.sprite = GetSprite(retrieve);
     }
     **/
-    
+
     //body trans
     Coroutine transitioningBody = null;
     bool isTransitBody { get { return transitioningBody != null; } }

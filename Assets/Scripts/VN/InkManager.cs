@@ -47,19 +47,11 @@ public class InkManager : MonoBehaviour
     private const string PRELOAD = "PRELOAD";
     private const string TOBREW = "TOBREW";
 
-
-    //where to retrieve
-    float volume = 1f;
-    float pitch = 1f;
-
     void Awake()
     {
         ChoiceButtonScript.Choices += OnChoicePicked;
         NextButtonScript.Next += OnNext;
-
-    }
-    private void Start()
-    {
+        
         StartStory();
     }
 
@@ -83,7 +75,7 @@ public class InkManager : MonoBehaviour
             _textLog.Log = _textInLog;
             if (State.Instance.BGMFile != null)
             {
-                PlayBGM(State.Instance.BGMFile);
+                AudioManager.instance.PlayBGM(State.Instance.BGMFile);
             }
             CharacterManager.instance.DisplayCharacters(State.Instance.CharDatas);
             DisplayThisLine();
@@ -190,12 +182,12 @@ public class InkManager : MonoBehaviour
                     break;
 
                 case FX:
-                    AudioManager.instance.PlaySFX(tagValue, volume, pitch);
+                    AudioManager.instance.PlaySFX(tagValue); //, volume, pitch);
                     break;
 
                 case BGM:
                     State.Instance.BGMFile = tagValue;
-                    PlayBGM(tagValue);
+                    AudioManager.instance.PlayBGM(tagValue); //, volume, pitch, startingVolume,playOnStart,loop);
                     break;
 
                 case BACKGROUND:
@@ -217,13 +209,6 @@ public class InkManager : MonoBehaviour
         }
     }
     
-    private void PlayBGM(string file)
-    {
-        float startingVolume = 0.8f;
-        bool playOnStart = true;
-        bool loop = true;
-        AudioManager.instance.PlayBGM(file, volume, pitch, startingVolume, playOnStart, loop);
-    }    
 
     private void SetName(string name)
     {
