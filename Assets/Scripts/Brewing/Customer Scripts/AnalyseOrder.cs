@@ -1,14 +1,18 @@
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.EventSystems;
+using System.Collections.Generic;
 
 public class AnalyseOrder : MonoBehaviour
 {
-    private SpriteRenderer _spriteRenderer;
-    private Collider2D _collider;
+    [SerializeField]
+    GraphicRaycaster m_Raycaster;
+    PointerEventData m_PointerEventData;
+
+    private Image _image;
 
     [SerializeField]
     private GameObject _altOrder;
-
-    private Ray _ray;
 
     private bool _isAltOrderDisplayed = false;
     private bool _isAlreadyAnalysed = false;
@@ -19,36 +23,51 @@ public class AnalyseOrder : MonoBehaviour
 
     private void Awake()
     {
-        _spriteRenderer = GetComponent<SpriteRenderer>();
-        _spriteRenderer.enabled = false;
-        _collider = GetComponent<Collider2D>();
+        _image = GetComponent<Image>();
+        Color tempColor = _image.color;
+        tempColor.a = 0f;
+        _image.color = tempColor;
 
         _altOrder.SetActive(false);
     }
 
     private void Update()
     {
-        _ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        if (IsMouseHovering(_ray))
+        //Set up the new Pointer Event
+        m_PointerEventData = new PointerEventData(EventSystem.current);
+        //Set the Pointer Event Position to that of the mouse position
+        m_PointerEventData.position = Input.mousePosition;
+        //Check if the left Mouse button is clicked
+        List<RaycastResult> results = new List<RaycastResult>();
+
+        //Raycast using the Graphics Raycaster and mouse click position
+        m_Raycaster.Raycast(m_PointerEventData, results);
+
+        //For every result returned, output the name of the GameObject on the Canvas hit by the Ray
+        foreach (RaycastResult result in results)
         {
-            OnHover();
+            if (result.gameObject == gameObject)
+            {
+                Debug.Log("Hit " + result.gameObject.name);
+                OnHover();
+            }
+            
         }
-        else
-        {
-            OnStopHover();
-        }
+        
+
     }
 
     private bool IsMouseHovering(Ray ray)
     {
-        RaycastHit2D[] hits = Physics2D.RaycastAll(ray.origin, ray.direction);
-        foreach (RaycastHit2D hit in hits)
+        if (EventSystem.current.IsPointerOverGameObject())
         {
-            if (hit.collider == _collider)
+            if (EventSystem.current.currentSelectedGameObject == this)
             {
+                print("hovering");
                 return true;
             }
         }
+        
         return false;
         
     }
@@ -56,8 +75,6 @@ public class AnalyseOrder : MonoBehaviour
 
     private void OnHover()
     {
-        _spriteRenderer.enabled = true;
-
         // 0 for primary button
         // Button clicked
         if (Input.GetMouseButtonDown(0))
@@ -84,9 +101,7 @@ public class AnalyseOrder : MonoBehaviour
 
     private void OnStopHover()
     {
-        _spriteRenderer.enabled = false;
+        _image.enabled = false;
     }
-
-
 
 }
