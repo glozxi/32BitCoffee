@@ -24,9 +24,7 @@ public class AnalyseOrder : MonoBehaviour
     private void Awake()
     {
         _image = GetComponent<Image>();
-        Color tempColor = _image.color;
-        tempColor.a = 0f;
-        _image.color = tempColor;
+        EnableImage(false);
 
         _altOrder.SetActive(false);
     }
@@ -37,10 +35,7 @@ public class AnalyseOrder : MonoBehaviour
         m_PointerEventData = new PointerEventData(EventSystem.current);
         //Set the Pointer Event Position to that of the mouse position
         m_PointerEventData.position = Input.mousePosition;
-        //Check if the left Mouse button is clicked
         List<RaycastResult> results = new List<RaycastResult>();
-
-        //Raycast using the Graphics Raycaster and mouse click position
         m_Raycaster.Raycast(m_PointerEventData, results);
 
         //For every result returned, output the name of the GameObject on the Canvas hit by the Ray
@@ -48,28 +43,14 @@ public class AnalyseOrder : MonoBehaviour
         {
             if (result.gameObject == gameObject)
             {
-                Debug.Log("Hit " + result.gameObject.name);
                 OnHover();
+                EnableImage(true);
+                return;
             }
             
         }
-        
+        EnableImage(false);
 
-    }
-
-    private bool IsMouseHovering(Ray ray)
-    {
-        if (EventSystem.current.IsPointerOverGameObject())
-        {
-            if (EventSystem.current.currentSelectedGameObject == this)
-            {
-                print("hovering");
-                return true;
-            }
-        }
-        
-        return false;
-        
     }
 
 
@@ -104,4 +85,10 @@ public class AnalyseOrder : MonoBehaviour
         _image.enabled = false;
     }
 
+    private void EnableImage(bool value)
+    {
+        Color tempColor = _image.color;
+        tempColor.a = value ? 255f : 0f;
+        _image.color = tempColor;
+    }
 }
