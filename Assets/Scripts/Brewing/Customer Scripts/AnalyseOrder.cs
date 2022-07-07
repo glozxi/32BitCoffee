@@ -1,14 +1,18 @@
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.EventSystems;
+using System.Collections.Generic;
 
 public class AnalyseOrder : MonoBehaviour
 {
-    private SpriteRenderer _spriteRenderer;
-    private Collider2D _collider;
+    [SerializeField]
+    GraphicRaycaster m_Raycaster;
+    PointerEventData m_PointerEventData;
+
+    private Image _image;
 
     [SerializeField]
     private GameObject _altOrder;
-
-    private Ray _ray;
 
     private bool _isAltOrderDisplayed = false;
     private bool _isAlreadyAnalysed = false;
@@ -19,45 +23,39 @@ public class AnalyseOrder : MonoBehaviour
 
     private void Awake()
     {
-        _spriteRenderer = GetComponent<SpriteRenderer>();
-        _spriteRenderer.enabled = false;
-        _collider = GetComponent<Collider2D>();
+        _image = GetComponent<Image>();
+        EnableImage(false);
 
         _altOrder.SetActive(false);
     }
 
     private void Update()
     {
-        _ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        if (IsMouseHovering(_ray))
-        {
-            OnHover();
-        }
-        else
-        {
-            OnStopHover();
-        }
-    }
+        //Set up the new Pointer Event
+        m_PointerEventData = new PointerEventData(EventSystem.current);
+        //Set the Pointer Event Position to that of the mouse position
+        m_PointerEventData.position = Input.mousePosition;
+        List<RaycastResult> results = new List<RaycastResult>();
+        m_Raycaster.Raycast(m_PointerEventData, results);
 
-    private bool IsMouseHovering(Ray ray)
-    {
-        RaycastHit2D[] hits = Physics2D.RaycastAll(ray.origin, ray.direction);
-        foreach (RaycastHit2D hit in hits)
+        //For every result returned, output the name of the GameObject on the Canvas hit by the Ray
+        foreach (RaycastResult result in results)
         {
-            if (hit.collider == _collider)
+            if (result.gameObject == gameObject)
             {
-                return true;
+                OnHover();
+                EnableImage(true);
+                return;
             }
+            
         }
-        return false;
-        
+        EnableImage(false);
+
     }
 
 
     private void OnHover()
     {
-        _spriteRenderer.enabled = true;
-
         // 0 for primary button
         // Button clicked
         if (Input.GetMouseButtonDown(0))
@@ -84,9 +82,13 @@ public class AnalyseOrder : MonoBehaviour
 
     private void OnStopHover()
     {
-        _spriteRenderer.enabled = false;
+        _image.enabled = false;
     }
 
-
-
+    private void EnableImage(bool value)
+    {
+        Color tempColor = _image.color;
+        tempColor.a = value ? 255f : 0f;
+        _image.color = tempColor;
+    }
 }
