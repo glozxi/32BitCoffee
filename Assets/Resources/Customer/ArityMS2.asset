@@ -23,5 +23,5 @@ MonoBehaviour:
   _orderTalk: Can I get a Latte?
   _analyseInformation: Arity. I should give him a Chocolate instead.
   _bonusTime: 10
-  _bonusMult: 1.5
+  _bonusMult: 2
   _isStoryAffected: 1

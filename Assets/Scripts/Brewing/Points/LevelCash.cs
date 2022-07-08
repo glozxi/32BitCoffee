@@ -5,8 +5,6 @@ using UnityEngine;
 // Current amount of cash
 public class LevelCash : MonoBehaviour
 {
-    private const float BONUS_MULTIPLIER = 2;
-
     private float _cashGoal;
     public float CurrentCash
     { get; set; } = 0;
@@ -21,9 +19,9 @@ public class LevelCash : MonoBehaviour
     }
 
     // Adds cash to current cash
-    public void AddCash(IOrder order, ITimer timer)
+    public void AddCash(IOrder order, ITimer timer, float bonusMult)
     {
-        CurrentCash += timer.HasBonus ? order.GetPrice() * BONUS_MULTIPLIER : order.GetPrice();
+        CurrentCash += timer.HasBonus ? order.GetPrice() * bonusMult : order.GetPrice();
         _ui.CurrentCash = CurrentCash;
     }
 

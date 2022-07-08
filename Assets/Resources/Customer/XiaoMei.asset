@@ -23,5 +23,5 @@ MonoBehaviour:
   _orderTalk: Ok, try making Latte.
   _analyseInformation: Needs Chocolate.
   _bonusTime: 10
-  _bonusMult: 1.5
+  _bonusMult: 1
   _isStoryAffected: 1

@@ -66,6 +66,7 @@ public class Customer : MonoBehaviour
 
         _isStoryAffected = data.IsStoryAffected;
         _timer.ResetTime();
+        _timer.BonusDuration = data.BonusTime;
         _analysis.IsAlreadyAnalysed = false;
     }
 
@@ -86,7 +87,7 @@ public class Customer : MonoBehaviour
     private void OnServed(Cup cup)
     {
         LevelCash currCash = FindObjectOfType<LevelCash>();
-        currCash.AddCash(CheckDrink(cup.Contents), _timer);
+        currCash.AddCash(CheckDrink(cup.Contents), _timer, _data.BonusMult);
         cup.ResetCup();
         CustomerServed?.Invoke(this, _outcome, _outcomeDrink);
     }

@@ -56,9 +56,13 @@ public class CustomerData : ScriptableObject
 
     [SerializeField]
     private float _bonusTime = 10f;
+    public float BonusTime
+    { get => _bonusTime; }
 
     [SerializeField]
     private float _bonusMult = 1.5f;
+    public float BonusMult
+    { get => _bonusMult; }
 
     // True if order served affects the story
     [SerializeField]
