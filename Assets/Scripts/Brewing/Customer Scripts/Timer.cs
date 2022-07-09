@@ -7,6 +7,9 @@ public class Timer : MonoBehaviour, ITimer
     public float BonusDuration
     { get; set; } = 7.0f;
 
+    public float TimeRate
+    { get; set; } = 1f;
+
     private bool _hasBonus = true;
     public bool HasBonus
     { get => _hasBonus; }
@@ -16,7 +19,7 @@ public class Timer : MonoBehaviour, ITimer
     {
         if (_hasBonus)
         {
-            _timer += Time.deltaTime;
+            _timer += Time.deltaTime * TimeRate;
             if (_timer > BonusDuration)
             {
                 print(BonusDuration + " seconds");
