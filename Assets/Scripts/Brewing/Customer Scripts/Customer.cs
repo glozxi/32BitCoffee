@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+using System.Linq;
 public class Customer : MonoBehaviour
 {
     public delegate void ServedEventHandler(Customer sender, int outcome, Drinks drink);
@@ -44,11 +44,11 @@ public class Customer : MonoBehaviour
     [SerializeField]
     private AnalyseOrder _analysis;
 
-    [SerializeField]
     private List<TimeUpgrade> _timeUpgrades;
 
     private void OnEnable()
     {
+        _timeUpgrades = State.Instance.Upgrades.OfType<TimeUpgrade>().ToList();
         _servebox.CupCollision += OnServed;
     }
 

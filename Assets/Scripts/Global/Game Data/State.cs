@@ -18,7 +18,14 @@ public class State : MonoBehaviour
     public string BGMFile
     { get; set; }
     public List<CharData> CharDatas
-    { get; set; }
+    { get; set; } = new();
+
+    [SerializeField]
+    private List<Upgrade> _upgrades = new();
+    public List<Upgrade> Upgrades
+    {
+        get => _upgrades;
+    }
 
     public static State Instance { get; private set; }
     private void Awake()
