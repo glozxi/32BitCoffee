@@ -44,6 +44,9 @@ public class Customer : MonoBehaviour
     [SerializeField]
     private AnalyseOrder _analysis;
 
+    [SerializeField]
+    private List<TimeUpgrade> _timeUpgrades;
+
     private void OnEnable()
     {
         _servebox.CupCollision += OnServed;
@@ -67,6 +70,10 @@ public class Customer : MonoBehaviour
         _isStoryAffected = data.IsStoryAffected;
         _timer.ResetTime();
         _timer.BonusDuration = data.BonusTime;
+        foreach (var item in _timeUpgrades)
+        {
+            item.UseUpgrade(_timer);
+        }
         _analysis.IsAlreadyAnalysed = false;
     }
 
