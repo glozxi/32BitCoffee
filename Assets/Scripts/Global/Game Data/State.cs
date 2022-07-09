@@ -25,6 +25,7 @@ public class State : MonoBehaviour
     public List<Upgrade> Upgrades
     {
         get => _upgrades;
+        set => _upgrades = value;
     }
 
     public static State Instance { get; private set; }

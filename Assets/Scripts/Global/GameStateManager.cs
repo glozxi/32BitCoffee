@@ -42,7 +42,8 @@ public class GameStateManager : MonoBehaviour
             Drink = State.Instance.Drink,
             BGMFile = State.Instance.BGMFile,
             Time = DateTime.Now,
-            CharDatas = CharacterManager.instance.GetEnabledCharDatas()
+            CharDatas = CharacterManager.instance.GetEnabledCharDatas(),
+            ActiveUpgrades = UpgradesData.GetStrFromUpgrades(State.Instance.Upgrades)
         };
 
         BinaryFormatter bf = new();
@@ -73,6 +74,7 @@ public class GameStateManager : MonoBehaviour
         State.Instance.Drink = saveData.Drink;
         State.Instance.BGMFile = saveData.BGMFile;
         State.Instance.CharDatas = saveData.CharDatas;
+        State.Instance.Upgrades = UpgradesData.GetUpgradesFromStr(saveData.ActiveUpgrades);
 
         StartGame();
 

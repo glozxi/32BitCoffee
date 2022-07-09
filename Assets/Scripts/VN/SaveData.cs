@@ -27,4 +27,6 @@ public class SaveData
     { get; set; }
     public List<CharData> CharDatas
     { get; set; }
+    public List<string> ActiveUpgrades
+    { get; set; }
 }
