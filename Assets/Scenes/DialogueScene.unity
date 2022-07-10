@@ -550,7 +550,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: -0.002335204, y: -0.0015258789}
+  m_AnchoredPosition: {x: -0.002335204, y: -0.0014648438}
   m_SizeDelta: {x: 1920, y: 390.7492}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &162552148
@@ -1446,6 +1446,7 @@ GameObject:
   - component: {fileID: 298454124}
   - component: {fileID: 298454126}
   - component: {fileID: 298454125}
+  - component: {fileID: 298454127}
   m_Layer: 5
   m_Name: Upgrades
   m_TagString: Untagged
@@ -1512,6 +1513,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 298454123}
   m_CullTransparentMesh: 1
+--- !u!114 &298454127
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 298454123}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03eed9f00b4c08946aadce5ecf0d9870, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _upgradePrefab: {fileID: 4629515247007424035, guid: 1c9cf6dce396e56498f077afbc044afe, type: 3}
+  _upgradeGrid: {fileID: 1350284332}
+  _name: {fileID: 628705755}
+  _description: {fileID: 1457816620}
 --- !u!1001 &310994480
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1985,7 +2002,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0.98585784}
-  m_AnchoredPosition: {x: -0.002380371, y: 7.635742}
+  m_AnchoredPosition: {x: -0.0024414062, y: 7.635742}
   m_SizeDelta: {x: 0, y: 15.274}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &393686414
@@ -3892,7 +3909,7 @@ GameObject:
   - component: {fileID: 1015800200}
   - component: {fileID: 1015800199}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Title
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4503,7 +4520,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1350284333}
   - component: {fileID: 1350284334}
-  - component: {fileID: 1350284335}
   m_Layer: 5
   m_Name: Grid
   m_TagString: Untagged
@@ -4556,19 +4572,6 @@ MonoBehaviour:
   m_Spacing: {x: 100, y: 100}
   m_Constraint: 0
   m_ConstraintCount: 2
---- !u!114 &1350284335
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1350284332}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 03eed9f00b4c08946aadce5ecf0d9870, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _upgradePrefab: {fileID: 4629515247007424035, guid: 1c9cf6dce396e56498f077afbc044afe, type: 3}
 --- !u!1 &1361216953
 GameObject:
   m_ObjectHideFlags: 0
@@ -7171,11 +7174,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1390535763924721452, guid: f9475f010bd90804aa0d10788f3dbcbb, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 140.95412
+      value: 140.9541
       objectReference: {fileID: 0}
     - target: {fileID: 1390535763924721452, guid: f9475f010bd90804aa0d10788f3dbcbb, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -49.27043
+      value: -49.270386
       objectReference: {fileID: 0}
     - target: {fileID: 1390535763924721452, guid: f9475f010bd90804aa0d10788f3dbcbb, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
