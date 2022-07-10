@@ -6,6 +6,8 @@ using System.Linq;
 public class UpgradesData : MonoBehaviour
 {
     private static Dictionary<string, Upgrade> _data = new();
+    public static Dictionary<string, Upgrade> Data
+    { get => _data; }
 
     static UpgradesData()
     {

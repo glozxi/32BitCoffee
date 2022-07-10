@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55ebc3b94aca31b49b14af736758fe88, type: 3}
   m_Name: Scale time
   m_EditorClassIdentifier: 
-  _name: 
-  _description: 
-  _cost: 0
+  _name: Scale time
+  _description: Scales time by 0.7
+  _cost: 1
   _addedTime: 0
   _timeScale: 0.7
