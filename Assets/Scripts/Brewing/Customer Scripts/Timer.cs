@@ -22,7 +22,7 @@ public class Timer : MonoBehaviour, ITimer
             _timer += Time.deltaTime * TimeRate;
             if (_timer > BonusDuration)
             {
-                print(BonusDuration + " seconds");
+                print(BonusDuration + " seconds, " + TimeRate + " rate");
                 _hasBonus = false;
             }
         }
