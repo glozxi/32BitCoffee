@@ -14,6 +14,7 @@ public class Points : MonoBehaviour
         get => _cash;
     }
 
+    [SerializeField]
     private float _networkPoints = 0f;
     public float NetworkPoints
     {
@@ -40,5 +41,11 @@ public class Points : MonoBehaviour
     {
         _cash = 0f;
         _networkPoints = 0f;
+    }
+
+    public void RemoveAnalysePoints(float cost)
+    {
+        _networkPoints -= cost;
+        NetworkPointsUpdated?.Invoke(_networkPoints);
     }
 }

@@ -6,7 +6,7 @@ using TMPro;
 
 public class UpgradeInShop : MonoBehaviour
 {
-    public delegate void ButtonClickedEventHandler(Upgrade upgrade);
+    public delegate void ButtonClickedEventHandler(GameObject clicked, Upgrade upgrade);
     public static event ButtonClickedEventHandler UpgradeClicked;
 
     [SerializeField]
@@ -31,6 +31,6 @@ public class UpgradeInShop : MonoBehaviour
     {
         _priceText.text = "$" + Upgrade.Cost.ToString();
         _name.text = Upgrade.Name;
-        _button.onClick.AddListener(() => UpgradeClicked?.Invoke(_upgrade));
+        _button.onClick.AddListener(() => UpgradeClicked?.Invoke(gameObject, _upgrade));
     }
 }
