@@ -1526,6 +1526,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _upgradePrefab: {fileID: 4629515247007424035, guid: 1c9cf6dce396e56498f077afbc044afe, type: 3}
+  _boughtUpgradePrefab: {fileID: 4629515247007424035, guid: adf0c33a2d51ada488a022221317f135, type: 3}
   _upgradeGrid: {fileID: 1623372111}
   _name: {fileID: 628705755}
   _description: {fileID: 1457816620}

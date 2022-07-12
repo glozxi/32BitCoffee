@@ -10,6 +10,8 @@ public class UpgradesPanel : MonoBehaviour
     [SerializeField]
     private GameObject _upgradePrefab;
     [SerializeField]
+    private GameObject _boughtUpgradePrefab;
+    [SerializeField]
     private GameObject _upgradeGrid;
     [SerializeField]
     private TMP_Text _name;
@@ -18,7 +20,6 @@ public class UpgradesPanel : MonoBehaviour
     [SerializeField]
     private Button _buyButton;
     private Upgrade _chosenUpgrade;
-    private GameObject _clickedUpgradeObj;
 
     private void OnEnable()
     {
@@ -34,10 +35,8 @@ public class UpgradesPanel : MonoBehaviour
     private void RefreshUpgrades()
     {
         _chosenUpgrade = null;
-        _clickedUpgradeObj = null;
         ClearDisplays();
         InstantiatePrefabs();
-        InactiveButtonIfNoUpgrades();
     }
 
     private void ClearDisplays()
@@ -46,12 +45,14 @@ public class UpgradesPanel : MonoBehaviour
         {
             Destroy(child.transform.gameObject);
         }
+        _buyButton.transform.gameObject.SetActive(false);
         _name.text = "";
         _description.text = "";
     }
 
     private void InstantiatePrefabs()
     {
+        List<Upgrade> bought = new();
         foreach (Upgrade val in UpgradesData.Data.Values)
         {
             if (!State.Instance.Upgrades.Contains(val))
@@ -59,24 +60,30 @@ public class UpgradesPanel : MonoBehaviour
                 GameObject obj = Instantiate(_upgradePrefab, _upgradeGrid.transform);
                 obj.GetComponent<UpgradeInShop>().Upgrade = val;
             }
+            else
+            {
+                bought.Add(val);
+            }
+        }
+        foreach (Upgrade val in bought)
+        {
+            GameObject obj = Instantiate(_boughtUpgradePrefab, _upgradeGrid.transform);
+            obj.GetComponent<UpgradeInShop>().Upgrade = val;
         }
     }
 
-    private void InactiveButtonIfNoUpgrades()
+    private bool IsAllUpgradesBought()
     {
         // Checks if there are any upgrades in State's list that are not in UpgradesData's list
-        if (!UpgradesData.Data.Values.Except(State.Instance.Upgrades).Any())
-        {
-            _buyButton.transform.gameObject.SetActive(false);
-        }
+        return !UpgradesData.Data.Values.Except(State.Instance.Upgrades).Any();
     }
 
-    private void OnUpgradeClicked(GameObject obj, Upgrade upgrade)
+    private void OnUpgradeClicked(GameObject clickedObj, Upgrade upgrade)
     {
         _name.text = upgrade.Name;
         _description.text = upgrade.Description;
         _chosenUpgrade = upgrade;
-        _clickedUpgradeObj = obj;
+        _buyButton.transform.gameObject.SetActive(!State.Instance.Upgrades.Contains(upgrade));
     }
 
     // Buy using network points
