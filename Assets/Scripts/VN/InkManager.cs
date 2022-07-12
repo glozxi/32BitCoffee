@@ -17,9 +17,13 @@ public class InkManager : MonoBehaviour
 
     // Prevents brew repeating after returning to VN
     private static bool _loadedFromBrew = false;
+    // Prevents opening upgrade screen again
+    private static bool _upgradeFinished = false;
 
     // Determines if brew or not on next button pressed
     private bool _isBrewNext = false;
+    // Determines if upgrade or not on next button pressed
+    private bool _isUpgradeNext = false;
     // Name of next brew level
     private string _nextLevel;
 
@@ -38,6 +42,9 @@ public class InkManager : MonoBehaviour
     [SerializeField]
     private VerticalLayoutGroup _choiceButtonContainer;
 
+    [SerializeField]
+    private GameObject _upgradeScreen;
+
     // private const string SPEAKERNAME = "SPEAKER";
     private const string SPEAKERNAME = "Char";
     private const string MODEL = "MODEL";
@@ -46,6 +53,7 @@ public class InkManager : MonoBehaviour
     private const string FX = "FX";
     private const string PRELOAD = "PRELOAD";
     private const string TOBREW = "TOBREW";
+    private const string UPGRADE = "UPGRADE";
 
     void Awake()
     {
@@ -110,6 +118,13 @@ public class InkManager : MonoBehaviour
         if (_isBrewNext)
         {
             TransitToBrew(_nextLevel);
+            return;
+        }
+        if (_isUpgradeNext)
+        {
+            // open upgrade screen
+            _upgradeScreen.SetActive(true);
+            _isUpgradeNext = false;
             return;
         }
         RecordLineInLog();
@@ -204,6 +219,9 @@ public class InkManager : MonoBehaviour
                     }
                     _isBrewNext = true;
                     _nextLevel = tagValue;
+                    break;
+                case UPGRADE:
+                    _isUpgradeNext = true;
                     break;
             }
         }
