@@ -54,7 +54,7 @@ public class Points : MonoBehaviour
 
     public void AddAnalysePoints()
     {
-        _networkPoints += POINTS_TO_ADD + AddedPoints;
+        _networkPoints += (POINTS_TO_ADD + AddedPoints) * PointsScale;
         NetworkPointsUpdated?.Invoke(_networkPoints);
     }
 

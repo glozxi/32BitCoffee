@@ -3549,16 +3549,20 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3077984909497291580, guid: fea5decdb5a1ca74e988a3725b48e602, type: 3}
       propertyPath: _upgrades.Array.size
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3077984909497291580, guid: fea5decdb5a1ca74e988a3725b48e602, type: 3}
       propertyPath: _upgrades.Array.data[0]
       value: 
-      objectReference: {fileID: 11400000, guid: 662966eaf844dc4448a802ca77d83304, type: 2}
+      objectReference: {fileID: 11400000, guid: 1e567af010e394c448090f8da8acc449, type: 2}
     - target: {fileID: 3077984909497291580, guid: fea5decdb5a1ca74e988a3725b48e602, type: 3}
       propertyPath: _upgrades.Array.data[1]
       value: 
-      objectReference: {fileID: 11400000, guid: 0d1284abf2e63834abb7945a84dc06a8, type: 2}
+      objectReference: {fileID: 11400000, guid: 3c96214a309702f4cb85b6682f43272a, type: 2}
+    - target: {fileID: 3077984909497291580, guid: fea5decdb5a1ca74e988a3725b48e602, type: 3}
+      propertyPath: _upgrades.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: ddfcbadddf4b51f4ab6a56d5941562c1, type: 2}
     - target: {fileID: 3077984909497291583, guid: fea5decdb5a1ca74e988a3725b48e602, type: 3}
       propertyPath: m_Name
       value: DNDOL
