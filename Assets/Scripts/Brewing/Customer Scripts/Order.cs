@@ -14,6 +14,11 @@ public class Order: IOrder
         get => _emptyOrder;
     }
 
+    public float AddedCash
+    { get; set; } = 0;
+    public float CashScale
+    { get; set; } = 1;
+
     public Order(Drinks drink, OrderTypes type)
     {
         _drink = drink;
@@ -27,11 +32,22 @@ public class Order: IOrder
 
     public float GetPrice()
     {
+        ResetUpgrades();
+        foreach (var upgrade in State.Instance.Upgrades.OfType<CashUpgrade>().ToList())
+        {
+            upgrade.UseUpgrade(this);
+        }
+
         if (_type == OrderTypes.Needed || _type == OrderTypes.Wanted)
         {
-            return Recipes.GetPrice(_drink);
+            return (Recipes.GetPrice(_drink) + AddedCash) * CashScale;
         }
         return 0f;
     }
 
+    private void ResetUpgrades()
+    {
+        AddedCash = 0;
+        CashScale = 1;
+    }
 }

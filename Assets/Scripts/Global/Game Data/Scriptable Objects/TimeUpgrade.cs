@@ -24,6 +24,6 @@ public class TimeUpgrade : Upgrade
     public void UseUpgrade(Timer timer)
     {
         timer.BonusDuration += _addedTime;
-        timer.TimeRate = _timeScale;
+        timer.TimeRate *= _timeScale;
     }
 }
