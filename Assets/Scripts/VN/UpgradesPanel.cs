@@ -52,19 +52,37 @@ public class UpgradesPanel : MonoBehaviour
 
     private void InstantiatePrefabs()
     {
+        // To display after unbought
         List<Upgrade> bought = new();
+
+        // Display all base upgrades not bought and next level for bought if it exists
+        // Display all unbought base
+        // Display for bought all upgrade
         foreach (Upgrade val in UpgradesData.Data.Values)
         {
             if (!State.Instance.Upgrades.Contains(val))
             {
-                GameObject obj = Instantiate(_upgradePrefab, _upgradeGrid.transform);
-                obj.GetComponent<UpgradeInShop>().Upgrade = val;
+                // Display
+                if (val.IsBaseUpgrade())
+                {
+                    GameObject obj = Instantiate(_upgradePrefab, _upgradeGrid.transform);
+                    obj.GetComponent<UpgradeInShop>().Upgrade = val;
+                }
             }
             else
             {
+                // already bought, add to bought list
                 bought.Add(val);
+                // Display upgrade if possible
+                if (val.NextUpgrade != null)
+                {
+                    GameObject obj = Instantiate(_upgradePrefab, _upgradeGrid.transform);
+                    obj.GetComponent<UpgradeInShop>().Upgrade = val.NextUpgrade;
+                }
             }
         }
+
+        // Display bought upgrades
         foreach (Upgrade val in bought)
         {
             GameObject obj = Instantiate(_boughtUpgradePrefab, _upgradeGrid.transform);
