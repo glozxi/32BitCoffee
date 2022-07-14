@@ -4,6 +4,7 @@ using TMPro;
 using UnityEngine.UI;
 using System.IO;
 using UnityEngine.SceneManagement;
+using Newtonsoft.Json;
 
 public class SavePrefab : MonoBehaviour
 {
@@ -53,14 +54,7 @@ public class SavePrefab : MonoBehaviour
 
     private void DeserializeData()
     {
-        BinaryFormatter bf = new();
-        FileStream file = File.Open(_path, FileMode.Open);
-
-        // Start reading byte sequence from start
-        file.Position = 0;
-        _saveData = (SaveData)bf.Deserialize(file);
-        file.Close();
-
+        _saveData = JsonConvert.DeserializeObject<SaveData>(File.ReadAllText(_path));
     }
 
     public void DeleteSave()

@@ -2,6 +2,7 @@ using System;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 using UnityEngine;
+using Newtonsoft.Json;
 
 // TODO: Separate into new classes
 public class GameStateManager : MonoBehaviour
@@ -47,16 +48,13 @@ public class GameStateManager : MonoBehaviour
             ActiveUpgrades = UpgradesData.GetStrFromUpgrades(State.Instance.Upgrades)
         };
 
-        BinaryFormatter bf = new();
         int i = 0;
         for (; File.Exists(Application.persistentDataPath + "/savedata" + i + ".save"); i++) { }
         string savePath = Application.persistentDataPath + "/savedata" + i + ".save";
         string picSavePath = Application.persistentDataPath + "/savedata" + i + ".png";
 
-        FileStream file = File.Create(savePath);
-        bf.Serialize(file, saveData);
+        File.WriteAllText(savePath, JsonConvert.SerializeObject(saveData));
 
-        file.Close();
         ScreenshotNow _screenshotter = FindObjectOfType<ScreenshotNow>();
         _screenshotter.Screenshot(picSavePath);
 
