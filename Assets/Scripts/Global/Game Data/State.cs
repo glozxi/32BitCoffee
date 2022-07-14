@@ -15,6 +15,8 @@ public class State : MonoBehaviour
     { get; set; }
     public string TextLog
     { get; set; }
+    public string Day
+    { get; set; }
     public string BGMFile
     { get; set; }
     public List<CharData> CharDatas

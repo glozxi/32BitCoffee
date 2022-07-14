@@ -10,7 +10,8 @@ public class SaveData
 
     public string TextLog
     { get; set; }
-
+    public string Day
+    { get; set; }
     public float Cash
     { get; set; }
     public float NetworkPoints

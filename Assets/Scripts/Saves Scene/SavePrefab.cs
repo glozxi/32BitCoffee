@@ -36,7 +36,11 @@ public class SavePrefab : MonoBehaviour
 
     private void SetText()
     {
-        _text.text = _saveData.Time.ToString();
+        string text = $"{_saveData.Time}\n" +
+            $"Day {_saveData.Day}\n" +
+            $"Cash: {_saveData.Cash}\n" +
+            $"NPoints: {_saveData.NetworkPoints}";
+        _text.text = text;
     }
 
     private void SetImage()

@@ -35,6 +35,7 @@ public class GameStateManager : MonoBehaviour
         {
             InkStoryState = _inkManager.GetStoryState(),
             TextLog = _inkManager.GetTextLog(), //This may cause issues in future for TextLog, also this loads the entire story.
+            Day = State.Instance.Day,
             Cash = _points.Cash,
             NetworkPoints = _points.NetworkPoints,
             NextBrewLevel = State.Instance.NextBrewLevel,
@@ -67,8 +68,8 @@ public class GameStateManager : MonoBehaviour
     public void LoadGame(SaveData saveData)
     {
         InkManager.LoadState(saveData.InkStoryState, saveData.TextLog);
+        State.Instance.Day = saveData.Day;
         _points.LoadPoints(saveData.Cash, saveData.NetworkPoints);
-
         State.Instance.NextBrewLevel = saveData.NextBrewLevel;
         State.Instance.Outcome = saveData.Outcome;
         State.Instance.Drink = saveData.Drink;

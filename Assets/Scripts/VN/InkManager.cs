@@ -17,8 +17,6 @@ public class InkManager : MonoBehaviour
 
     // Prevents brew repeating after returning to VN
     private static bool _loadedFromBrew = false;
-    // Prevents opening upgrade screen again
-    private static bool _upgradeFinished = false;
 
     // Determines if brew or not on next button pressed
     private bool _isBrewNext = false;
@@ -43,6 +41,9 @@ public class InkManager : MonoBehaviour
     private VerticalLayoutGroup _choiceButtonContainer;
 
     [SerializeField]
+    private TMP_Text _dayField;
+
+    [SerializeField]
     private GameObject _upgradeScreen;
 
     // private const string SPEAKERNAME = "SPEAKER";
@@ -54,6 +55,7 @@ public class InkManager : MonoBehaviour
     private const string PRELOAD = "PRELOAD";
     private const string TOBREW = "TOBREW";
     private const string UPGRADE = "UPGRADE";
+    private const string DAY = "DAY";
 
     void Awake()
     {
@@ -223,10 +225,18 @@ public class InkManager : MonoBehaviour
                 case UPGRADE:
                     _isUpgradeNext = true;
                     break;
+                case DAY:
+                    SetDay(tagValue);
+                    break;
             }
         }
     }
     
+    private void SetDay(string day)
+    {
+        _dayField.text = "Day " + day;
+        State.Instance.Day = day;
+    }
 
     private void SetName(string name)
     {

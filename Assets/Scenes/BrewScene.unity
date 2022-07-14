@@ -7109,14 +7109,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4192675117303471695, guid: 2b0b726d5f129974484a3909e0e21c92, type: 3}
-      propertyPath: _timeUpgrades.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4192675117303471695, guid: 2b0b726d5f129974484a3909e0e21c92, type: 3}
-      propertyPath: _timeUpgrades.Array.data[0]
-      value: 
-      objectReference: {fileID: 11400000, guid: 0d1284abf2e63834abb7945a84dc06a8, type: 2}
     - target: {fileID: 4192675117759160744, guid: 2b0b726d5f129974484a3909e0e21c92, type: 3}
       propertyPath: m_Raycaster
       value: 
