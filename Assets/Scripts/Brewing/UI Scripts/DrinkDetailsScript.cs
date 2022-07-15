@@ -18,11 +18,12 @@ public class DrinkDetailsScript : MonoBehaviour
 
     private void SetName(Drinks drinkEnum)
     {
-
+        int stepNum = 1;
         string descriptionText = "";
         foreach (Ingredients ingredient in Recipes.GetRecipe(drinkEnum))
         {
-            descriptionText += ingredient.ToString() + "\n";
+            descriptionText += stepNum + ". " + Recipes.GetIngredientDescription(ingredient) + "\n";
+            stepNum++;
         }
         _text.text = descriptionText;
     }
