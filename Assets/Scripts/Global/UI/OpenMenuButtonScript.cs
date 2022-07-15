@@ -18,5 +18,6 @@ public class OpenMenuButtonScript : MonoBehaviour
         {
             _menu.SetActive(true);
         }
+        Time.timeScale = 0;
     }
 }

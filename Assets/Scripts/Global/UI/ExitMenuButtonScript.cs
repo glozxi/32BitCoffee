@@ -25,6 +25,7 @@ public class ExitMenuButtonScript : MonoBehaviour
         if (_menu.activeSelf)
         {
             _menu.SetActive(false);
+            Time.timeScale = 1;
         }
     }
 }
