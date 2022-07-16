@@ -57,6 +57,11 @@ public class Machine : MonoBehaviour
         return _contents[0];
     }
 
+    public bool HasIngredient()
+    {
+        return (_contents.Count > 0);
+    }
+
     private void DisplayContent(IngredientScriptableObject ingredient)
     {
         InstantiateContent(ingredient);

@@ -48,10 +48,18 @@ public class Grouphead : MonoBehaviour
     {
         print("dispense");
         Cup cup = IsCupUnder();
-        if (cup != null)
+        if (cup == null)
         {
-            cup.Add(_machine.DispenseContent());
+            print(" no cup under.");
+            return;
         }
+        if (!_machine.HasIngredient())
+        {
+            print("nothing in machine");
+            return;
+        }
+        cup.Add(_machine.DispenseContent());
+        
     }
 
     private Cup IsCupUnder()
