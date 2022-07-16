@@ -7,7 +7,7 @@ public class Bin : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         GameObject collidedObject = collision.gameObject;
-        Cup cup = collidedObject.GetComponent<Cup>();
+        IBinnable cup = collidedObject.GetComponent<IBinnable>();
         cup.Clear();
     }
 }

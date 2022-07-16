@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Timer : MonoBehaviour, ITimer
+public class Timer : MonoBehaviour
 {
     public delegate void TimeEventHandler();
     public event TimeEventHandler TimeEnd;

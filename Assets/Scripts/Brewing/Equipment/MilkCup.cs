@@ -1,12 +1,12 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.EventSystems;
-using BrewingData;
-using System;
 
-public class Cup : MonoBehaviour, IBinnable
+public class MilkCup : MonoBehaviour, IBinnable
 {
-    private const string INGREDIENT_TAG = "Ingredient";
+    [SerializeField]
+    private IngredientScriptableObject _milk;
+
     private const int MAX_CONTENT = 4;
     private const string CUP_CONTENT_TAG = "cupContent";
 
@@ -41,10 +41,11 @@ public class Cup : MonoBehaviour, IBinnable
             {
                 return;
             }
-            
+
             foreach (RaycastHit2D hit in hits)
             {
-                if (hit.collider.gameObject.CompareTag(INGREDIENT_TAG))
+                IngredientScriptableObject ing = hit.collider.gameObject.GetComponent<Ingredient>()?.IngScriptable;
+                if (ing == _milk)
                 {
                     Ingredient ingredient = hit.collider.gameObject.GetComponent<Ingredient>();
                     Add(ingredient.IngScriptable);
@@ -84,7 +85,7 @@ public class Cup : MonoBehaviour, IBinnable
             _contents.Add(ingredientType);
             DisplayContent(ingredientType);
         }
-        
+
     }
 
     // Display additional cup content
@@ -96,7 +97,7 @@ public class Cup : MonoBehaviour, IBinnable
     private void InstantiateContent(IngredientScriptableObject ingredientType)
     {
         SpriteRenderer contentSpriteRenderer = _cupContent.GetComponent<SpriteRenderer>();
-        contentSpriteRenderer.color =  ingredientType.ContentColor;
+        contentSpriteRenderer.color = ingredientType.ContentColor;
 
         // Finding position of new content
         float contentHeight = _cupContent.GetComponent<SpriteRenderer>().bounds.size.y;

@@ -19,7 +19,7 @@ public class LevelCash : MonoBehaviour
     }
 
     // Adds cash to current cash
-    public void AddCash(Order order, ITimer timer, float bonusMult)
+    public void AddCash(Order order, Timer timer, float bonusMult)
     {
         CurrentCash += timer.IsWithinDuration ? order.GetPrice() * bonusMult : order.GetPrice();
         _ui.CurrentCash = CurrentCash;

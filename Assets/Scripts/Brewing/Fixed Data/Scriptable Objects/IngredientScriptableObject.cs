@@ -1,14 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using BrewingData;
 
 [CreateAssetMenu(fileName = "New Ingredient", menuName = "Ingredient")]
 public class IngredientScriptableObject : ScriptableObject
 {
     [SerializeField]
-    private Ingredients _ingredientType;
-    public Ingredients IngredientType
+    private string _ingredientType;
+    public string IngredientType
     { get => _ingredientType; }
 
     [SerializeField]

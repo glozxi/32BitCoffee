@@ -1,11 +1,5 @@
 namespace BrewingData
 {
-    public enum Ingredients
-    {
-        Espresso,
-        Chocolate
-    }
-
     public enum Drinks
     {
         None,

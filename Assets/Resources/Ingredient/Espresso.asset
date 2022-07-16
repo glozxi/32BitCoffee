@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79d540a757d3e7f439a42c83cc44c7be, type: 3}
   m_Name: Espresso
   m_EditorClassIdentifier: 
-  _ingredientType: 0
+  _ingredientType: Expresso
   _step: Make espresso using the espresso machine.
   _contentColor:
     serializedVersion: 2
