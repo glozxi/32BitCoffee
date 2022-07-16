@@ -1,6 +1,7 @@
 using UnityEngine;
 using BrewingData;
 
+// Ingredient box
 public class Ingredient : DragOutItem
 {
     [SerializeField]

@@ -8,6 +8,9 @@ public class DragItem : MonoBehaviour
     private bool _isDragging = false;
     private static GameObject _selectedObject;
 
+    [SerializeField]
+    private float _maxX = 0.7f;
+
     private void Update()
     {
         if (PointerIsOverUI(Input.mousePosition)) return;
@@ -46,7 +49,7 @@ public class DragItem : MonoBehaviour
     private void ClampPosition()
     {
         Vector3 pos = Camera.main.WorldToViewportPoint(transform.position);
-        pos.x = Mathf.Clamp01(pos.x);
+        pos.x = Mathf.Clamp(pos.x, 0, _maxX);
         pos.y = Mathf.Clamp01(pos.y);
         transform.position = Camera.main.ViewportToWorldPoint(pos);
     }

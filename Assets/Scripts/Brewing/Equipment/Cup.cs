@@ -1,14 +1,17 @@
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.EventSystems;
-using BrewingData;
 using System;
+using System.Linq;
 
 public class Cup : MonoBehaviour, IBinnable
 {
     private const string INGREDIENT_TAG = "Ingredient";
+    private const string MILK_CUP_TAG = "MilkCup";
     private const int MAX_CONTENT = 4;
     private const string CUP_CONTENT_TAG = "cupContent";
+
+    private bool _isMilkCupStillOverlapping = false;
+    private MilkCup[] _milkCups;
 
     public Vector2 SpawnPosition
     { get; set; }
@@ -27,12 +30,19 @@ public class Cup : MonoBehaviour, IBinnable
 
     private void Start()
     {
+        _milkCups = FindObjectsOfType<MilkCup>();
         SpawnPosition = transform.position;
         Clear();
     }
 
     private void Update()
     {
+
+        if (!IsMilkCupOverlapping())
+        {
+            _isMilkCupStillOverlapping = false;
+        }
+
         if (Input.GetMouseButtonUp(0))
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -41,7 +51,23 @@ public class Cup : MonoBehaviour, IBinnable
             {
                 return;
             }
-            
+
+            if (IsMilkCupOverlapping())
+            {
+                if (!_isMilkCupStillOverlapping)
+                {
+                    foreach (RaycastHit2D hit in hits)
+                    {
+                        if (hit.collider.gameObject.CompareTag(MILK_CUP_TAG))
+                        {
+                            AddMilk(hit.collider.GetComponent<MilkCup>());
+                            _isMilkCupStillOverlapping = true;
+                            break;
+
+                        }
+                    }
+                }
+            }
             foreach (RaycastHit2D hit in hits)
             {
                 if (hit.collider.gameObject.CompareTag(INGREDIENT_TAG))
@@ -111,5 +137,17 @@ public class Cup : MonoBehaviour, IBinnable
             Quaternion.identity);
         newContent.transform.parent = gameObject.transform;
         newContent.GetComponent<SpriteRenderer>().sortingOrder = gameObject.GetComponent<SpriteRenderer>().sortingOrder + 1;
+    }
+
+    private void AddMilk(MilkCup milkCup)
+    {
+        print("add");
+        IngredientScriptableObject ing = milkCup.Remove();
+        if (ing != null) Add(ing);
+    }
+
+    private bool IsMilkCupOverlapping()
+    {
+        return _milkCups.Any(m => m.GetComponent<Collider2D>().bounds.Intersects(GetComponent<Collider2D>().bounds));
     }
 }

@@ -1,44 +1,49 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-// Dispenses what is put inside. Starts dispensing when
-// button is pressed and cup is below. Dispensing
-// interruped when cup not below (detected using raycast).
-public class Grouphead : MonoBehaviour
+// Press the button to start steam.
+// Only starts if milk cup touches collider and there is milk inside the cup.
+// Stops if milk cup moved outside collider.
+public class Steamwand : MonoBehaviour
 {
-    [SerializeField]
-    private Machine _machine;
     [SerializeField]
     private Collider2D buttonCollider;
     private bool _isButtonPressed = false;
     [SerializeField]
     private Timer _timer;
-    private Cup _cup;
+    [SerializeField]
+    private List<GameObject> _milkCups;
+    // Current milk cup
+    private MilkCup _milkCup;
+    RaycastHit2D[] _hits;
 
-    private bool _isDispensing = false;
+    private bool _isSteaming = false;
 
     private void OnEnable()
     {
-        _timer.TimeEnd += EndDispense;
+        _timer.TimeEnd += EndSteam;
     }
     private void OnDisable()
     {
-        _timer.TimeEnd -= EndDispense;
+        _timer.TimeEnd -= EndSteam;
     }
     private void Update()
     {
-        if (_isDispensing)
+        if (_isSteaming)
         {
             if (!CupUnder())
             {
-                InterruptDispense();
+                InterruptSteam();
                 return;
             }
         }
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        RaycastHit2D[] hits = Physics2D.RaycastAll(ray.origin, ray.direction, Mathf.Infinity);
-        ButtonClick(hits);
+        _hits = Physics2D.RaycastAll(ray.origin, ray.direction, Mathf.Infinity);
+        ButtonClick(_hits);
     }
+
 
     private void ButtonClick(RaycastHit2D[] hits)
     {
@@ -60,53 +65,52 @@ public class Grouphead : MonoBehaviour
             if (Array.Exists(hits, hit => hit.collider == buttonCollider) && _isButtonPressed)
             {
                 _isButtonPressed = false;
-                StartDispense();
+                StartSteam();
             }
         }
     }
 
-    private void StartDispense()
+    private void StartSteam()
     {
-        _isDispensing = true;
-        _cup = CupUnder();
-        if (_cup == null)
+        _isSteaming = true;
+        _milkCup = CupUnder();
+        if (_milkCup == null)
         {
             print(" no cup under.");
             return;
         }
-        if (!_machine.HasIngredient())
+        if (_milkCup.ContentCount == 0)
         {
-            print("nothing in machine");
+            print("no milk.");
             return;
         }
-        print("start dispense");
+        print("start steam");
         _timer.StartTime();
-        
+
     }
 
-    private Cup CupUnder()
+    private MilkCup CupUnder()
     {
-        RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position, -transform.up, Mathf.Infinity);
-        foreach (var hit in hits)
+        foreach (var milkCup in _milkCups)
         {
-            if (hit.collider.GetComponent<Cup>() != null)
+            if (GetComponent<Collider2D>().bounds.Intersects(milkCup.GetComponent<Collider2D>().bounds))
             {
-                return hit.collider.GetComponent<Cup>();
+                return milkCup.GetComponent<MilkCup>();
             }
         }
         return null;
     }
 
-    private void EndDispense()
+    private void EndSteam()
     {
-        _isDispensing = false;
+        _isSteaming = false;
         _timer.ResetTime();
-        _cup.Add(_machine.DispenseContent());
+        _milkCup.Steam();
     }
 
-    private void InterruptDispense()
+    private void InterruptSteam()
     {
-        _isDispensing = false;
+        _isSteaming = false;
         _timer.ResetTime();
     }
 }

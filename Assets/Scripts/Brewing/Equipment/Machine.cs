@@ -38,7 +38,7 @@ public class Machine : MonoBehaviour
         
     }
 
-    // Adds an item if possible and displays it
+    // Adds an ingredient if possible
     private void Add(IngredientScriptableObject ingredient)
     {
         if (_contents.Count < MAX_CONTENT)
@@ -64,12 +64,13 @@ public class Machine : MonoBehaviour
         InstantiateContent(ingredient);
     }
 
+    // TODO: Add symbol to show what is inside
     private void InstantiateContent(IngredientScriptableObject ingredient)
     {
         
     }
 
-    // Clears contents and displayed cup contents
+    // Clears contents
     public void Clear()
     {
         foreach (Transform child in transform)
