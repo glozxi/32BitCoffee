@@ -1,13 +1,10 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.EventSystems;
-using BrewingData;
 using System;
 
 public class Machine : MonoBehaviour
 {
-    private const string INGREDIENT_TAG = "Ingredient";
+    private const string INGREDIENT_TAG = "MachineIngredient";
     private const int MAX_CONTENT = 1;
     private const string CUP_CONTENT_TAG = "cupContent";
     private List<IngredientScriptableObject> _contents = new();

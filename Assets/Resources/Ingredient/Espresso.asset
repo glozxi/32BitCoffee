@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Espresso
   m_EditorClassIdentifier: 
   _ingredientType: 0
-  _step: Place coffee bean into the cup.
+  _step: Make espresso using the espresso machine.
   _contentColor:
     serializedVersion: 2
     rgba: 4278190080

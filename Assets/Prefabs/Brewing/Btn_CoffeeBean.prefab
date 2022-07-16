@@ -100,11 +100,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _newSprite: {fileID: 21300000, guid: 4a4b896ba81a5ee4d9dccc6dcd38fed0, type: 3}
   _dontDestroyIfOver:
-  - Cup
-  _ingredientType: 0
-  _contentColor:
-    serializedVersion: 2
-    rgba: 4278190080
+  - Machine
+  _ing: {fileID: 11400000, guid: 0eefee1f8036e9942b093d1ea213484b, type: 2}
+  _draggedOutTag: MachineIngredient
 --- !u!61 &6648988421897541840
 BoxCollider2D:
   m_ObjectHideFlags: 0

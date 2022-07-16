@@ -101,10 +101,8 @@ MonoBehaviour:
   _newSprite: {fileID: 21300000, guid: d18397ad36e96c24498d72b68241528a, type: 3}
   _dontDestroyIfOver:
   - Cup
-  _ingredientType: 1
-  _contentColor:
-    serializedVersion: 2
-    rgba: 4281086050
+  _ing: {fileID: 11400000, guid: f97236a93761a5e44958891e623cd131, type: 2}
+  _draggedOutTag: Ingredient
 --- !u!61 &691386443111422328
 BoxCollider2D:
   m_ObjectHideFlags: 0

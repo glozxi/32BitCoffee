@@ -8,9 +8,13 @@ public class Ingredient : DragOutItem
     public IngredientScriptableObject IngScriptable
     { get => _ing; }
 
-    private const string INGREDIENT_TAG = "Ingredient";
+    [SerializeField]
+    private string _draggedOutTag = "Ingredient";
     protected override string DraggedOutTag
-    { get; set; } = INGREDIENT_TAG;
+    { 
+        get => _draggedOutTag; 
+        set => _draggedOutTag = value; 
+    }
 
 
 

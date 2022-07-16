@@ -6400,7 +6400,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0.10920429, y: -3.33432}
+  m_AnchoredPosition: {x: 0.10920429, y: -3.3342896}
   m_SizeDelta: {x: 402.0868, y: -88.980774}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &3343008289477351875
@@ -7263,11 +7263,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5287740134542836420, guid: 4340c0b9485e350469f9c57a33af7ea9, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -15
+      value: 5.58
       objectReference: {fileID: 0}
     - target: {fileID: 5287740134542836420, guid: 4340c0b9485e350469f9c57a33af7ea9, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -5
+      value: -5.44
       objectReference: {fileID: 0}
     - target: {fileID: 5287740134542836420, guid: 4340c0b9485e350469f9c57a33af7ea9, type: 3}
       propertyPath: m_LocalPosition.z
@@ -7304,18 +7304,6 @@ PrefabInstance:
     - target: {fileID: 5287740134542836473, guid: 4340c0b9485e350469f9c57a33af7ea9, type: 3}
       propertyPath: m_Name
       value: test_CoffeeBeanBox
-      objectReference: {fileID: 0}
-    - target: {fileID: 5287740134542836474, guid: 4340c0b9485e350469f9c57a33af7ea9, type: 3}
-      propertyPath: _ing
-      value: 
-      objectReference: {fileID: 11400000, guid: 0eefee1f8036e9942b093d1ea213484b, type: 2}
-    - target: {fileID: 5287740134542836474, guid: 4340c0b9485e350469f9c57a33af7ea9, type: 3}
-      propertyPath: _dontDestroyIfOver.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5287740134542836474, guid: 4340c0b9485e350469f9c57a33af7ea9, type: 3}
-      propertyPath: _dontDestroyIfOver.Array.data[1]
-      value: Machine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4340c0b9485e350469f9c57a33af7ea9, type: 3}
@@ -7397,29 +7385,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: Btn_Chocolate
       objectReference: {fileID: 0}
-    - target: {fileID: 2070649021597123410, guid: 515324f6ebd1a554993e48e0baf4c7e3, type: 3}
-      propertyPath: _ing
-      value: 
-      objectReference: {fileID: 11400000, guid: f97236a93761a5e44958891e623cd131, type: 2}
-    - target: {fileID: 2070649021597123410, guid: 515324f6ebd1a554993e48e0baf4c7e3, type: 3}
-      propertyPath: _dontDestroyIfOver.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2070649021597123410, guid: 515324f6ebd1a554993e48e0baf4c7e3, type: 3}
-      propertyPath: _dontDestroyIfOver.Array.data[1]
-      value: Machine
-      objectReference: {fileID: 0}
     - target: {fileID: 2070649021597123436, guid: 515324f6ebd1a554993e48e0baf4c7e3, type: 3}
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2070649021597123436, guid: 515324f6ebd1a554993e48e0baf4c7e3, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -13
+      value: -13.16
       objectReference: {fileID: 0}
     - target: {fileID: 2070649021597123436, guid: 515324f6ebd1a554993e48e0baf4c7e3, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -5
+      value: -4.85
       objectReference: {fileID: 0}
     - target: {fileID: 2070649021597123436, guid: 515324f6ebd1a554993e48e0baf4c7e3, type: 3}
       propertyPath: m_LocalPosition.z
@@ -7845,6 +7821,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8678019956927133252}
     m_Modifications:
+    - target: {fileID: 950317774, guid: f01919817ea38bb4c9ee0f57179dbe91, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 954535256, guid: f01919817ea38bb4c9ee0f57179dbe91, type: 3}
       propertyPath: m_Camera
       value: 
