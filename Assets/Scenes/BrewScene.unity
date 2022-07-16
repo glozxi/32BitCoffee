@@ -3853,11 +3853,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 77b4b29d96a0d814f8cd3d8a07cb366c, type: 3}
---- !u!61 &1297216382 stripped
-BoxCollider2D:
-  m_CorrespondingSourceObject: {fileID: 5031489324742867768, guid: f01919817ea38bb4c9ee0f57179dbe91, type: 3}
-  m_PrefabInstance: {fileID: 1448999440}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1346302076
 GameObject:
   m_ObjectHideFlags: 0
@@ -4054,14 +4049,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8678019956927133252}
     m_Modifications:
+    - target: {fileID: 950317774, guid: f01919817ea38bb4c9ee0f57179dbe91, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1961168318, guid: f01919817ea38bb4c9ee0f57179dbe91, type: 3}
       propertyPath: _machine
       value: 
       objectReference: {fileID: 2350263746502825806}
-    - target: {fileID: 1961168318, guid: f01919817ea38bb4c9ee0f57179dbe91, type: 3}
-      propertyPath: buttonCollider
-      value: 
-      objectReference: {fileID: 1297216382}
     - target: {fileID: 1707382477998374413, guid: f01919817ea38bb4c9ee0f57179dbe91, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -6405,7 +6400,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0.10920429, y: -3.3342285}
+  m_AnchoredPosition: {x: 0.10920429, y: -3.33432}
   m_SizeDelta: {x: 402.0868, y: -88.980774}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &3343008289477351875
@@ -7146,11 +7141,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &4078990315807254683 stripped
-BoxCollider2D:
-  m_CorrespondingSourceObject: {fileID: 5031489324742867768, guid: f01919817ea38bb4c9ee0f57179dbe91, type: 3}
-  m_PrefabInstance: {fileID: 9027479706643256227}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4192675116920166374
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7855,14 +7845,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8678019956927133252}
     m_Modifications:
+    - target: {fileID: 954535256, guid: f01919817ea38bb4c9ee0f57179dbe91, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 1634479348}
     - target: {fileID: 1961168318, guid: f01919817ea38bb4c9ee0f57179dbe91, type: 3}
       propertyPath: _machine
       value: 
       objectReference: {fileID: 2350263746502825806}
-    - target: {fileID: 1961168318, guid: f01919817ea38bb4c9ee0f57179dbe91, type: 3}
-      propertyPath: buttonCollider
-      value: 
-      objectReference: {fileID: 4078990315807254683}
     - target: {fileID: 1707382477998374413, guid: f01919817ea38bb4c9ee0f57179dbe91, type: 3}
       propertyPath: m_RootOrder
       value: 0

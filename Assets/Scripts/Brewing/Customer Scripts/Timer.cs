@@ -2,43 +2,54 @@ using UnityEngine;
 
 public class Timer : MonoBehaviour, ITimer
 {
+    public delegate void TimeEventHandler();
+    public event TimeEventHandler TimeEnd;
+
     private float _timer = 0.0f;
 
-    public float BonusDuration
+    public float Duration
     { get; set; } = 7.0f;
 
     public float TimeRate
     { get; set; } = 1f;
 
-    private bool _hasBonus = true;
-    public bool HasBonus
-    { get => _hasBonus; }
+    // Has started and not ended
+    private bool _isWithinDuration = false;
+    public bool IsWithinDuration
+    { get => _isWithinDuration; }
 
     // Update is called once per frame
     void Update()
     {
-        if (_hasBonus)
+        if (_isWithinDuration)
         {
             _timer += Time.deltaTime * TimeRate;
-            if (_timer > BonusDuration)
+            if (_timer > Duration)
             {
-                _hasBonus = false;
+                _isWithinDuration = false;
+                TimeEnd?.Invoke();
             }
         }
     }
 
+    public void StartTime()
+    {
+        _isWithinDuration = true;
+    }
+
+    // Set time back to 0
     public void ResetTime()
     {
         _timer = 0.0f;
-        _hasBonus = true;
+        _isWithinDuration = false;
     }
 
     // Remaining/Total
-    public float GetRatioOfBonusTimeRemaining()
+    public float GetRatioOfTimeRemaining()
     {
-        if (_hasBonus)
+        if (_isWithinDuration)
         {
-            return 1 - _timer / BonusDuration;
+            return 1 - _timer / Duration;
         }
         return 0f;
     }

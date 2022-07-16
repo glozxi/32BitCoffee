@@ -9,9 +9,6 @@ public class CountdownBar : MonoBehaviour
     private Timer _timer;
 
     [SerializeField]
-    private GameObject _textObject;
-
-    [SerializeField]
     private Slider _slider;
 
     private bool _isActive = true;
@@ -19,16 +16,16 @@ public class CountdownBar : MonoBehaviour
     private void Update()
     {
         // is active but shouldnt be, or not active but should be
-        if (_isActive == _timer.GetRatioOfBonusTimeRemaining() <= 0)
+        if (_isActive != _timer.IsWithinDuration)
         {
-            SetActiveAllChildren(transform, !(_timer.GetRatioOfBonusTimeRemaining() <= 0));
-            _isActive = !(_timer.GetRatioOfBonusTimeRemaining() <= 0);
+            SetActiveAllChildren(transform, _timer.IsWithinDuration);
         }
-        _slider.value = _timer.GetRatioOfBonusTimeRemaining();
+        _slider.value = _timer.GetRatioOfTimeRemaining();
     }
 
     private void SetActiveAllChildren(Transform transform, bool value)
     {
+        _isActive = value;
         foreach (Transform child in transform)
         {
             child.gameObject.SetActive(value);

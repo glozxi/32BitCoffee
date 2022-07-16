@@ -10,9 +10,30 @@ public class Grouphead : MonoBehaviour
     [SerializeField]
     private Collider2D buttonCollider;
     private bool _isButtonPressed = false;
+    [SerializeField]
+    private Timer _timer;
+    private Cup _cup;
 
+    private bool _isDispensing = false;
+
+    private void OnEnable()
+    {
+        _timer.TimeEnd += EndDispense;
+    }
+    private void OnDisable()
+    {
+        _timer.TimeEnd -= EndDispense;
+    }
     private void Update()
     {
+        if (_isDispensing)
+        {
+            if (!IsCupUnder())
+            {
+                InterruptDispense();
+                return;
+            }
+        }
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit2D[] hits = Physics2D.RaycastAll(ray.origin, ray.direction, Mathf.Infinity);
         ButtonClick(hits);
@@ -39,16 +60,17 @@ public class Grouphead : MonoBehaviour
             if (Array.Exists(hits, hit => hit.collider == buttonCollider) && _isButtonPressed)
             {
                 _isButtonPressed = false;
-                Dispense();
+                StartDispense();
             }
         }
     }
 
-    private void Dispense()
+    private void StartDispense()
     {
-        print("dispense");
-        Cup cup = IsCupUnder();
-        if (cup == null)
+        print("start dispense");
+        _isDispensing = true;
+        _cup = IsCupUnder();
+        if (_cup == null)
         {
             print(" no cup under.");
             return;
@@ -58,7 +80,7 @@ public class Grouphead : MonoBehaviour
             print("nothing in machine");
             return;
         }
-        cup.Add(_machine.DispenseContent());
+        _timer.StartTime();
         
     }
 
@@ -73,5 +95,18 @@ public class Grouphead : MonoBehaviour
             }
         }
         return null;
+    }
+
+    private void EndDispense()
+    {
+        _isDispensing = false;
+        _timer.ResetTime();
+        _cup.Add(_machine.DispenseContent());
+    }
+
+    private void InterruptDispense()
+    {
+        _isDispensing = false;
+        _timer.ResetTime();
     }
 }

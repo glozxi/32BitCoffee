@@ -69,7 +69,8 @@ public class Customer : MonoBehaviour
 
         _isStoryAffected = data.IsStoryAffected;
         _timer.ResetTime();
-        _timer.BonusDuration = data.BonusTime;
+        _timer.Duration = data.BonusTime;
+        _timer.StartTime();
         foreach (var item in _timeUpgrades)
         {
             item.UseUpgrade(_timer);

@@ -4,10 +4,10 @@ using UnityEngine;
 
 public interface ITimer
 {
-    bool HasBonus 
+    bool IsWithinDuration 
     { get; }
 
     public void ResetTime();
 
-    public float GetRatioOfBonusTimeRemaining();
+    public float GetRatioOfTimeRemaining();
 }

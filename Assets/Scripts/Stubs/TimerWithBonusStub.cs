@@ -5,7 +5,7 @@ using UnityEngine;
 public class TimerWithBonusStub : ITimer
 {
     private bool _hasBonus = true;
-    public bool HasBonus
+    public bool IsWithinDuration
     { get => _hasBonus; }
 
     public void ResetTime()
@@ -13,7 +13,7 @@ public class TimerWithBonusStub : ITimer
         _hasBonus = true;
     }
 
-    public float GetRatioOfBonusTimeRemaining()
+    public float GetRatioOfTimeRemaining()
     {
         return 0.6f;
     }
