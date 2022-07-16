@@ -7,6 +7,8 @@ using System;
 public class Grouphead : MonoBehaviour
 {
     [SerializeField]
+    private float _time;
+    [SerializeField]
     private Machine _machine;
     [SerializeField]
     private Collider2D buttonCollider;
@@ -19,6 +21,7 @@ public class Grouphead : MonoBehaviour
 
     private void OnEnable()
     {
+        _timer.Duration = _time;
         _timer.TimeEnd += EndDispense;
     }
     private void OnDisable()

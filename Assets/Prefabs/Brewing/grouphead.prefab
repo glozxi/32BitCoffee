@@ -509,6 +509,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19e465980fa969743870b1aa93ad76e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _time: 1
   _machine: {fileID: 0}
   buttonCollider: {fileID: 5031489324742867768}
   _timer: {fileID: 634053118}

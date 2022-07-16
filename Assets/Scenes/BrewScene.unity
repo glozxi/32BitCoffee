@@ -8121,6 +8121,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26ed3245291e77d4aa16e240ea2cf061, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _maxX: 0.7
 --- !u!114 &5819806637152892619
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8620,6 +8621,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66e1bf5b41be28843bef0280c8f5da99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _time: 2
   buttonCollider: {fileID: 1221969195}
   _timer: {fileID: 375071297}
   _milkCups:

@@ -9,6 +9,8 @@ using System;
 public class Steamwand : MonoBehaviour
 {
     [SerializeField]
+    private float _time;
+    [SerializeField]
     private Collider2D buttonCollider;
     private bool _isButtonPressed = false;
     [SerializeField]
@@ -23,6 +25,7 @@ public class Steamwand : MonoBehaviour
 
     private void OnEnable()
     {
+        _timer.Duration = _time;
         _timer.TimeEnd += EndSteam;
     }
     private void OnDisable()
