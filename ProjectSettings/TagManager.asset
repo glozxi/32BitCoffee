@@ -8,6 +8,7 @@ TagManager:
   - Ingredient
   - DNDOL
   - Cup
+  - Machine
   layers:
   - Default
   - TransparentFX

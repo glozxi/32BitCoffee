@@ -14,4 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _drinkType: 3
   _price: 3
-  _recipe: 01000000010000000000000000000000
+  _recipe:
+  - {fileID: 11400000, guid: f97236a93761a5e44958891e623cd131, type: 2}
+  - {fileID: 11400000, guid: f97236a93761a5e44958891e623cd131, type: 2}
+  - {fileID: 11400000, guid: 0eefee1f8036e9942b093d1ea213484b, type: 2}
+  - {fileID: 11400000, guid: 0eefee1f8036e9942b093d1ea213484b, type: 2}

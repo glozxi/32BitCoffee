@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using BrewingData;
 
-public class Order: IOrder
+public class Order
 {
     private Drinks _drink;
 
@@ -25,7 +25,7 @@ public class Order: IOrder
         _type = type;
     }
 
-    public bool DoesDrinkMatch(List<Ingredients> actualIngredients)
+    public bool DoesDrinkMatch(List<IngredientScriptableObject> actualIngredients)
     {
         return Recipes.GetRecipe(_drink).SequenceEqual(actualIngredients);
     }

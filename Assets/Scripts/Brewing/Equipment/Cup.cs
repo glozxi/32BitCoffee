@@ -13,8 +13,8 @@ public class Cup : MonoBehaviour
     public Vector2 SpawnPosition
     { get; set; }
 
-    private List<Ingredients> _contents = new();
-    public List<Ingredients> Contents
+    private List<IngredientScriptableObject> _contents = new();
+    public List<IngredientScriptableObject> Contents
     {
         get => _contents;
     }
@@ -47,7 +47,7 @@ public class Cup : MonoBehaviour
                 if (hit.collider.gameObject.CompareTag(INGREDIENT_TAG))
                 {
                     Ingredient ingredient = hit.collider.gameObject.GetComponent<Ingredient>();
-                    Add(ingredient);
+                    Add(ingredient.IngScriptable);
                     Destroy(hit.collider.gameObject);
                     break;
                 }
@@ -58,7 +58,7 @@ public class Cup : MonoBehaviour
     public void ResetCup()
     {
         var newcup = Instantiate(gameObject, SpawnPosition, Quaternion.identity);
-        newcup.transform.parent = this.transform.parent;
+        newcup.transform.parent = transform.parent;
         Destroy(gameObject);
     }
 
@@ -77,26 +77,26 @@ public class Cup : MonoBehaviour
     }
 
     // Adds an item to the cup if possible and displays it
-    private void Add(Ingredient ingredient)
+    public void Add(IngredientScriptableObject ingredientType)
     {
         if (_contents.Count < MAX_CONTENT)
         {
-            _contents.Add(ingredient.IngredientType);
-            DisplayContent(ingredient);
+            _contents.Add(ingredientType);
+            DisplayContent(ingredientType);
         }
         
     }
 
     // Display additional cup content
-    private void DisplayContent(Ingredient ingredient)
+    private void DisplayContent(IngredientScriptableObject ingredientType)
     {
-        InstantiateContent(ingredient);
+        InstantiateContent(ingredientType);
     }
 
-    private void InstantiateContent(Ingredient ingredient)
+    private void InstantiateContent(IngredientScriptableObject ingredientType)
     {
         SpriteRenderer contentSpriteRenderer = _cupContent.GetComponent<SpriteRenderer>();
-        contentSpriteRenderer.color = ingredient.ContentColor;
+        contentSpriteRenderer.color =  ingredientType.ContentColor;
 
         // Finding position of new content
         float contentHeight = _cupContent.GetComponent<SpriteRenderer>().bounds.size.y;

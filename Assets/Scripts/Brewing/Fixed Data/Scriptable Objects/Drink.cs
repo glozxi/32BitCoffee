@@ -17,7 +17,7 @@ public class Drink : ScriptableObject
     { get => _price; }
 
     [SerializeField]
-    private List<Ingredients> _recipe;
-    public List<Ingredients> Recipe
+    private List<IngredientScriptableObject> _recipe;
+    public List<IngredientScriptableObject> Recipe
     { get => _recipe; }
 }

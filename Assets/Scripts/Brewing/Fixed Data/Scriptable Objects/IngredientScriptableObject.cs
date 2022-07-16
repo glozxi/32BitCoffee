@@ -16,4 +16,12 @@ public class IngredientScriptableObject : ScriptableObject
     private string _step;
     public string Step
     { get => _step; }
+
+
+    [SerializeField]
+    private Color32 _contentColor;
+    public Color32 ContentColor
+    {
+        get => _contentColor;
+    }
 }

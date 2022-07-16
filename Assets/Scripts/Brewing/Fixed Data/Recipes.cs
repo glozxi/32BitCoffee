@@ -6,7 +6,7 @@ using UnityEditor;
 public class Recipes : MonoBehaviour
 {
     private static Dictionary<Drinks, Drink> _recipes = new();
-    private static Dictionary<Ingredients, IngredientScriptableObject> _ingredientDict = new();
+    private static List<IngredientScriptableObject> _ingredientList = new();
 
     static Recipes()
     {
@@ -16,16 +16,12 @@ public class Recipes : MonoBehaviour
         }
         foreach (IngredientScriptableObject ing in Resources.LoadAll<IngredientScriptableObject>("Ingredient"))
         {
-            _ingredientDict.Add(ing.IngredientType, ing);
+            _ingredientList.Add(ing);
         }
 
     }
 
-    public static string GetIngredientDescription(Ingredients ing)
-    {
-        return _ingredientDict[ing].Step;
-    }
-    public static List<Ingredients> GetRecipe(Drinks drinkName)
+    public static List<IngredientScriptableObject> GetRecipe(Drinks drinkName)
     {
         return _recipes[drinkName].Recipe;
     }

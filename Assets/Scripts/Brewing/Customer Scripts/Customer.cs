@@ -99,7 +99,7 @@ public class Customer : MonoBehaviour
         CustomerServed?.Invoke(this, _outcome, _outcomeDrink);
     }
 
-    private Order CheckDrink(List<Ingredients> contents)
+    private Order CheckDrink(List<IngredientScriptableObject> contents)
     {
         Order order;
         if (_wantedOrder.DoesDrinkMatch(contents))

@@ -20,9 +20,9 @@ public class DrinkDetailsScript : MonoBehaviour
     {
         int stepNum = 1;
         string descriptionText = "";
-        foreach (Ingredients ingredient in Recipes.GetRecipe(drinkEnum))
+        foreach (IngredientScriptableObject ingredient in Recipes.GetRecipe(drinkEnum))
         {
-            descriptionText += stepNum + ". " + Recipes.GetIngredientDescription(ingredient) + "\n";
+            descriptionText += stepNum + ". " + ingredient.Step + "\n";
             stepNum++;
         }
         _text.text = descriptionText;

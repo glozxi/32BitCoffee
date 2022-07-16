@@ -14,3 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _ingredientType: 1
   _step: Place chocolate into the cup.
+  _contentColor:
+    serializedVersion: 2
+    rgba: 4282797691
