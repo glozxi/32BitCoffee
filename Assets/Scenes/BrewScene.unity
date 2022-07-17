@@ -5055,7 +5055,7 @@ PrefabInstance:
       objectReference: {fileID: 7482667652216324306, guid: d25f08d8c1f4df8499dbf7535d9731b3, type: 3}
     - target: {fileID: 5287740134542836474, guid: 4340c0b9485e350469f9c57a33af7ea9, type: 3}
       propertyPath: _draggedOutTag
-      value: Milk
+      value: Ingredient
       objectReference: {fileID: 0}
     - target: {fileID: 5287740134542836474, guid: 4340c0b9485e350469f9c57a33af7ea9, type: 3}
       propertyPath: _dontDestroyIfOver.Array.size

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Steamed milk
   m_EditorClassIdentifier: 
   _ingredientType: Steamed milk
-  _step: nil
+  _step: Steam milk.
   _contentColor:
     serializedVersion: 2
     rgba: 4294962621
