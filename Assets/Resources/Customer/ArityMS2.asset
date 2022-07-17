@@ -16,7 +16,7 @@ MonoBehaviour:
   _wanted: 1
   _needed: 2
   _disliked: 3
-  _mainSprite: {fileID: 21300000, guid: 2414bda853c4ed848932a4241cb439a5, type: 3}
+  _mainSprite: {fileID: 21300000, guid: 81deb4f708bf28946923cfb66cd8132a, type: 3}
   _expression: {fileID: 21300000, guid: c6b5b252463a2304ea48d30021c1812a, type: 3}
   _mood: normal
   _promptDialogue: Where's my drink?

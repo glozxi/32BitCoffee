@@ -429,7 +429,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _timer: {fileID: 9137849043939770429}
-  _textObject: {fileID: 651849719}
   _slider: {fileID: 1523200736}
 --- !u!1 &433031807305252714
 GameObject:
@@ -602,7 +601,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -481.71997, y: -246.935}
+  m_AnchoredPosition: {x: -443, y: -249.48}
   m_SizeDelta: {x: 280.66, y: 498.96}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4192675116722634783
