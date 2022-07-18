@@ -9,7 +9,7 @@ public class SceneTransitionUnity : MonoBehaviour
     public float transitTime = 1f;
 
     public void LoadNextLevel(string scene)
-    { 
+    {
         StartCoroutine(LoadLevel(scene));
     }
 

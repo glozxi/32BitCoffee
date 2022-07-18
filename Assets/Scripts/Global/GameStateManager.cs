@@ -1,5 +1,4 @@
 using System;
-using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 using UnityEngine;
 using Newtonsoft.Json;
@@ -87,5 +86,9 @@ public class GameStateManager : MonoBehaviour
         Application.Quit();
     }
 
+    public void ToMainMenu()
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene("MainMenu");
+    }
 
 }
