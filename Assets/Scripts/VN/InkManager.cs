@@ -223,7 +223,7 @@ public class InkManager : MonoBehaviour
                     _nextLevel = tagValue;
                     break;
                 case UPGRADE:
-                    FindObjectOfType<GameStateManager>().SaveGame();
+                    // FindObjectOfType<GameStateManager>().SaveGame();
                     _isUpgradeNext = true;
                     break;
                 case DAY:
