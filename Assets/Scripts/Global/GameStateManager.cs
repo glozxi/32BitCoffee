@@ -86,9 +86,10 @@ public class GameStateManager : MonoBehaviour
         Application.Quit();
     }
 
-    public void ToMainMenu()
+    public void ToScene(string sceneName)
     {
-        UnityEngine.SceneManagement.SceneManager.LoadScene("MainMenu");
+        Time.timeScale = 1;
+        UnityEngine.SceneManagement.SceneManager.LoadScene(sceneName);
     }
 
 }
