@@ -24,13 +24,6 @@ public class Customer : MonoBehaviour
     private Drinks _outcomeDrink;
 
     [SerializeField]
-    private GameObject _imageObject;
-    [SerializeField]
-    private GameObject _mainImage;
-    [SerializeField]
-    private GameObject _expressionImage;
-
-    [SerializeField]
     private WantedOrderText _wantedText;
     [SerializeField]
     private NeededOrderText _neededText;
@@ -43,6 +36,10 @@ public class Customer : MonoBehaviour
 
     [SerializeField]
     private AnalyseOrder _analysis;
+
+    [SerializeField]
+    private string pos;
+    private string _prevName;
 
     private List<TimeUpgrade> _timeUpgrades;
 
@@ -64,8 +61,9 @@ public class Customer : MonoBehaviour
         SetDrinks();
         SetText();
 
-        _mainImage.GetComponent<Image>().sprite = _data.MainSprite;
-        _expressionImage.GetComponent<Image>().sprite = _data.Expression;
+        CharacterManager.instance.CMDisableCharBrew(_prevName);
+        CharacterManager.instance.CMCharBrew(_data.Name, _data.MainSprite, _data.Expression, pos);
+        _prevName = _data.Name;
 
         _isStoryAffected = data.IsStoryAffected;
         _timer.ResetTime();
@@ -133,7 +131,7 @@ public class Customer : MonoBehaviour
 
     public void SetObjectActive(bool value)
     {
-        _imageObject?.SetActive(value);
+        // _imageObject?.SetActive(value);
         gameObject.SetActive(value);
     }
 

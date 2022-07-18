@@ -36,6 +36,17 @@ public class CharacterManager : MonoBehaviour
         return CreateCharacter(characterName);
     }
 
+    public Character GetCharacterBrew(string characterName)
+    {
+        int index = -1;
+        if (characterDictionary.TryGetValue(characterName, out index))
+        {
+            return onScreen[index];
+        }
+
+        return CreateCharacterBrew(characterName);
+    }
+
     public Character CreateCharacter(string characterName)
     {
         Character newChar = new Character(characterName);
@@ -44,6 +55,13 @@ public class CharacterManager : MonoBehaviour
         return newChar;
     }
 
+    public Character CreateCharacterBrew(string characterName)
+    {
+        Character newChar = new Character();
+        characterDictionary.Add(characterName, onScreen.Count);
+        onScreen.Add(newChar);
+        return newChar;
+    }
 
     public void CMPreLoadChar(string characterName)
     {
@@ -73,6 +91,25 @@ public class CharacterManager : MonoBehaviour
         character.TransitBoth(body, expr, speed, false);
         character.MoveTo(pos);
         character.enabled = enabled;
+    }
+
+    public void CMCharBrew(string characterName, Sprite body, Sprite expr, string pos, bool enabled = true)
+    {
+        float speed = 1f;
+        Character character = GetCharacterBrew(characterName);
+        character.TransitBoth(body, expr, speed, false);
+        character.MoveTo(pos);
+        character.enabled = enabled;
+    }
+
+    public void CMDisableCharBrew(string charName)
+    {
+        int index = -1;
+        if (charName == null) return;
+        if (characterDictionary.TryGetValue(charName, out index))
+        {
+            onScreen[index].enabled = false;
+        }
     }
 
     public void CMEnableChar(string charName, bool TF = true)

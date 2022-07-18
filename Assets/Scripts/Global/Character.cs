@@ -121,6 +121,25 @@ public class Character
         renderers.allExpresionRenderer.Add(renderers.expresionRenderer);
     }
 
+    // For brew
+    public Character()
+    {
+        string temporaryFormat = globalPath + "arity/arity";
+        GameObject prefab = Resources.Load(temporaryFormat) as GameObject;
+
+        CharacterManager cm = CharacterManager.instance;
+        GameObject ob = GameObject.Instantiate(prefab, cm.characterPanel);
+
+        // Save renderer
+        root = ob.GetComponent<RectTransform>();
+        renderers.bodyRenderer = ob.transform.Find("BodyLayer").GetComponentInChildren<Image>();
+        renderers.expresionRenderer = ob.transform.Find("ExpressionLayer").GetComponentInChildren<Image>();
+
+        // Add to Master List
+        renderers.allBodyRenderer.Add(renderers.bodyRenderer);
+        renderers.allExpresionRenderer.Add(renderers.expresionRenderer);
+    }
+
     /** For renders */
     class Renderers
     {
@@ -185,7 +204,7 @@ public class Character
         TransitBoth(GetSprite(body), GetSprite(expr), speed, smooth);
     }
 
-    private void TransitBoth(Sprite body, Sprite expr, float speed, bool smooth)
+    public void TransitBoth(Sprite body, Sprite expr, float speed, bool smooth)
     {
         TransitionBody(body, speed, smooth);
         TransitionExpr(expr, speed, smooth);
