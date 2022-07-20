@@ -61,6 +61,8 @@ public class Customer : MonoBehaviour
         SetDrinks();
         SetText();
 
+        CharacterManager.instance.CMDisableCharBrew(_prevName);
+        CharacterManager.instance.CMCharBrew(_data.Name, _data.MainSprite, _data.Expression, pos);
         _prevName = _data.Name;
 
         _isStoryAffected = data.IsStoryAffected;
@@ -130,7 +132,6 @@ public class Customer : MonoBehaviour
     public void SetObjectActive(bool value)
     {
         if (!value) CharacterManager.instance.CMDisableCharBrew(_prevName);
-        else CharacterManager.instance.CMCharBrew(_data.Name, _data.MainSprite, _data.Expression, pos);
         gameObject.SetActive(value);
     }
 
