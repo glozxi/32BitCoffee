@@ -12,16 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86251f7ded1e6cc488fc871633ce1048, type: 3}
   m_Name: Jane
   m_EditorClassIdentifier: 
-  _name: 
-  _wanted: 0
-  _needed: 0
-  _disliked: 0
-  _mainSprite: {fileID: 0}
-  _expression: {fileID: 0}
+  _name: Jane
+  _wanted: 1
+  _needed: 2
+  _disliked: 3
+  _mainSprite: {fileID: 21300000, guid: a378eeb25baeb894d94b087398d40ce9, type: 3}
+  _expression: {fileID: 21300000, guid: ca583fbc49df9ad48b3eaa38da6505fe, type: 3}
   _mood: normal
   _promptDialogue: Where's my drink?
-  _orderTalk: 
-  _analyseInformation: 
+  _orderTalk: Latte pls
+  _analyseInformation: Chocolate
   _bonusTime: 10
   _bonusMult: 1.5
   _isStoryAffected: 0
