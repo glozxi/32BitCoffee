@@ -1,8 +1,8 @@
 ﻿using BrewingData;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using System.Linq;
+
 public class Customer : MonoBehaviour
 {
     public delegate void ServedEventHandler(Customer sender, int outcome, Drinks drink);
@@ -41,11 +41,11 @@ public class Customer : MonoBehaviour
     private string pos;
     private string _prevName;
 
-    private List<TimeUpgrade> _timeUpgrades;
+    private List<CustomerTimeUpgrade> _timeUpgrades;
 
     private void OnEnable()
     {
-        _timeUpgrades = State.Instance.Upgrades.OfType<TimeUpgrade>().ToList();
+        _timeUpgrades = State.Instance.Upgrades.OfType<CustomerTimeUpgrade>().ToList();
         _servebox.CupCollision += OnServed;
     }
 

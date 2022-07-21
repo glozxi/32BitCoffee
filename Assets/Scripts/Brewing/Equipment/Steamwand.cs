@@ -1,7 +1,7 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using System.Linq;
 
 // Press the button to start steam.
 // Only starts if milk cup touches collider and there is milk inside the cup.
@@ -28,6 +28,16 @@ public class Steamwand : MonoBehaviour
         _timer.Duration = _time;
         _timer.TimeEnd += EndSteam;
     }
+
+    private void Start()
+    {
+
+        foreach (var item in State.Instance.Upgrades.OfType<MilkSteamTimeUpgrade>())
+        {
+            item.UseUpgrade(_timer);
+        }
+    }
+
     private void OnDisable()
     {
         _timer.TimeEnd -= EndSteam;

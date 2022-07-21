@@ -1,5 +1,6 @@
 using UnityEngine;
 using System;
+using System.Linq;
 
 // Dispenses what is put inside. Starts dispensing when
 // button is pressed and cup is below. Dispensing
@@ -23,7 +24,17 @@ public class Grouphead : MonoBehaviour
     {
         _timer.Duration = _time;
         _timer.TimeEnd += EndDispense;
+        
     }
+
+    private void Start()
+    {
+        foreach (var item in State.Instance.Upgrades.OfType<GroupheadTimeUpgrade>().ToList())
+        {
+            item.UseUpgrade(_timer);
+        }
+    }
+
     private void OnDisable()
     {
         _timer.TimeEnd -= EndDispense;
