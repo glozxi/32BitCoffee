@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9fecd3d9bc1a174d9e82b69cbdfe5e7, type: 3}
   m_Name: Scale espresso time 2
   m_EditorClassIdentifier: 
-  _name: Espresso time 1
+  _name: Espresso time 2
   _nextUpgrade: {fileID: 0}
   _prevUpgrade: {fileID: 11400000, guid: 0db4831766b709c41a0af1dd42fbcdac, type: 2}
   _description: Halves espresso making time.
