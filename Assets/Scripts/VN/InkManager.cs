@@ -2,6 +2,7 @@ using Ink.Runtime;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System.Collections;
 using System.Collections.Generic;
 
 // Changes dialogue and characters
@@ -30,6 +31,7 @@ public class InkManager : MonoBehaviour
 
     [SerializeField]
     private TMP_Text _dialogueTextField;
+    private bool _isTyping = false;
 
     [SerializeField]
     private TMP_Text _nameTextField;
@@ -129,8 +131,16 @@ public class InkManager : MonoBehaviour
             _isUpgradeNext = false;
             return;
         }
-        RecordLineInLog();
-        DisplayNextLine();
+        if (_isTyping)
+        {
+            StopCoroutine("TypewriterEffect");
+            ShowFullLine();
+        }
+        else
+        {
+            RecordLineInLog();
+            DisplayNextLine();
+        }
     }
 
     private void DisplayNextLine()
@@ -151,8 +161,30 @@ public class InkManager : MonoBehaviour
         string text = _story.currentText.Trim();
 
         _dialogueTextField.text = text;
+        StartCoroutine("TypewriterEffect");
         HandleTags(_story.currentTags);
         HandleChoices();
+    }
+
+    private IEnumerator TypewriterEffect()
+    {
+        _isTyping = true;
+        for (int i = 0; i <= _dialogueTextField.text.Length; i++)
+        {
+            _dialogueTextField.maxVisibleCharacters = i;
+            if (i == _dialogueTextField.text.Length)
+            {
+                _isTyping = false;
+                yield return null;
+            }
+            yield return new WaitForSeconds(0.05f);
+        }
+    }
+
+    private void ShowFullLine()
+    {
+        _isTyping = false;
+        _dialogueTextField.maxVisibleCharacters = _dialogueTextField.text.Length;
     }
 
     private void HandleChoices()
