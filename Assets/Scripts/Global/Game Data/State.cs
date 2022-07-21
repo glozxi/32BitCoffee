@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-// Combine with SaveData and GameStateManager?
 public class State : MonoBehaviour
 {
     public string NextBrewLevel
@@ -54,6 +53,7 @@ public class State : MonoBehaviour
         UnityEngine.SceneManagement.SceneManager.LoadScene("DialogueScene");
         yield return null;
         InkManager inkManager = (InkManager)FindObjectOfType(typeof(InkManager));
+        print(TextLog);
         inkManager.LoadStateFromBrew(InkStoryState, TextLog);
     }
 

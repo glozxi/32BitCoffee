@@ -90,7 +90,16 @@ public class InkManager : MonoBehaviour
                 AudioManager.instance.PlayBGM(State.Instance.BGMFile);
             }
             CharacterManager.instance.DisplayCharacters(State.Instance.CharDatas);
-            DisplayThisLine();
+            if (_loadedFromBrew)
+            {
+                // This line has already been shown, so show next
+                DisplayNextLine();
+            }
+            else
+            {
+                DisplayThisLine();
+            }
+            
         }
         // New story
         else
@@ -119,8 +128,17 @@ public class InkManager : MonoBehaviour
     // Called when next button clicked
     private void OnNext()
     {
+        // Not all text displayed yet, display all
+        // Must check if is typing first
+        if (_isTyping)
+        {
+            StopCoroutine("TypewriterEffect");
+            ShowFullLine();
+            return;
+        }
         if (_isBrewNext)
         {
+            RecordLineInLog();
             TransitToBrew(_nextLevel);
             return;
         }
@@ -131,16 +149,8 @@ public class InkManager : MonoBehaviour
             _isUpgradeNext = false;
             return;
         }
-        if (_isTyping)
-        {
-            StopCoroutine("TypewriterEffect");
-            ShowFullLine();
-        }
-        else
-        {
-            RecordLineInLog();
-            DisplayNextLine();
-        }
+        RecordLineInLog();
+        DisplayNextLine();
     }
 
     private void DisplayNextLine()

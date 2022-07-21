@@ -3,6 +3,8 @@ using TMPro;
 using Ink.Runtime;
 using System.Collections.Generic;
 
+// When new line added to queue, save in Log string
+// When new line added to string, save in queue
 public class TextLog : MonoBehaviour
 {
 
@@ -16,7 +18,18 @@ public class TextLog : MonoBehaviour
     // but might need to change it.
 
     public string Log
-    { get; set; }
+    {
+        get => QueueToString();
+        set
+        {
+            string[] splitStr = value.TrimEnd('\n').Split('\n');
+            foreach (string str in splitStr)
+            {
+                FixedSizeEnqueue(str + "\n");
+
+            }
+        }
+    }
 
     // prolly need to rethink this entire thing. Queue does not get saved 
     const int CAPACITY = 20;
@@ -58,23 +71,29 @@ public class TextLog : MonoBehaviour
             toInsert = name + ": " + dialogue + "\n";
         }
 
-        //Log += toInsert;
-
         //Does not work across jumps
         
-        if (LogQueue.Count >= CAPACITY)
-            LogQueue.Dequeue();
-        LogQueue.Enqueue(toInsert);
+        FixedSizeEnqueue(toInsert);
         
     }
 
     private void ChangeTextField()
     {
-        //_textField.text = Log;
+        _textField.text = QueueToString();
         
-        Log = "";
-        foreach (string s in LogQueue) { Log += s; }
-        _textField.text = Log;
-        
+    }
+
+    private string QueueToString()
+    {
+        string str = "";
+        foreach (string s in LogQueue) { str += s; }
+        return str;
+    }
+
+    private void FixedSizeEnqueue(string toInsert)
+    {
+        if (LogQueue.Count >= CAPACITY)
+            LogQueue.Dequeue();
+        LogQueue.Enqueue(toInsert);
     }
 }
