@@ -57,9 +57,9 @@ TagManager:
   - name: Cup
     uniqueID: 2414397225
     locked: 0
-  - name: UI
-    uniqueID: 2560599915
-    locked: 0
   - name: EquipmentUI
     uniqueID: 3609743277
+    locked: 0
+  - name: UI
+    uniqueID: 2560599915
     locked: 0

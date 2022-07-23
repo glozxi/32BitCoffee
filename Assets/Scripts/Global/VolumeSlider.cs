@@ -13,11 +13,13 @@ public class VolumeSlider : MonoBehaviour
     public Slider BGMSlider;
     public Slider SFXSlider;
 
-    public void start()
+    public void Start()
     {
         //set slider position
         BGMSlider.value = PlayerPrefs.HasKey("BGMVolume") ? PlayerPrefs.GetFloat("BGMVolume") : 1f;
+        SetBGMVolume();
         SFXSlider.value = PlayerPrefs.HasKey("FXVolume") ? PlayerPrefs.GetFloat("FXVolume") : 1f;
+        SetFXVolume();
     }
 
     public void SetBGMVolume()

@@ -6,7 +6,6 @@ VAR Drink = "Latte"
 -> Tutorial
 === Tutorial ===
 ...#Char:None #BGM:cafe#DAY:1
-->Brew_Req
 Oh! Hi! Welcome!#Char:Arity #MODEL:Arity,arity_default,default,MM #BGM:menu
 ododhfsfahfdhdkf#MODEL:Xiaomei,xiaomei_default,default,LL
 // Thank you for starting the game.#Char:Arity#UPGRADE:

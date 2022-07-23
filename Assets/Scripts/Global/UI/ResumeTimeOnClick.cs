@@ -1,11 +1,8 @@
-using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine;
 
-public class ExitMenuButtonScript : MonoBehaviour
+public class ResumeTimeOnClick : MonoBehaviour
 {
-    [SerializeField]
-    private GameObject _menu;
-
     void Awake()
     {
         Button thisButton = gameObject.GetComponent<Button>();
@@ -22,9 +19,6 @@ public class ExitMenuButtonScript : MonoBehaviour
 
     private void OnClick()
     {
-        if (_menu.activeSelf)
-        {
-            _menu.SetActive(false);
-        }
+        Time.timeScale = 1;
     }
 }

@@ -48,6 +48,9 @@ public class InkManager : MonoBehaviour
     [SerializeField]
     private GameObject _upgradeScreen;
 
+    public float TypewriterDelay
+    { get; set; } = 0.05f;
+
     // private const string SPEAKERNAME = "SPEAKER";
     private const string SPEAKERNAME = "Char";
     private const string MODEL = "MODEL";
@@ -178,6 +181,11 @@ public class InkManager : MonoBehaviour
 
     private IEnumerator TypewriterEffect()
     {
+        if (TypewriterDelay == 0f)
+        {
+            ShowFullLine();
+            yield break;
+        }
         _isTyping = true;
         for (int i = 0; i <= _dialogueTextField.text.Length; i++)
         {
@@ -187,7 +195,7 @@ public class InkManager : MonoBehaviour
                 _isTyping = false;
                 yield return null;
             }
-            yield return new WaitForSeconds(0.05f);
+            yield return new WaitForSeconds(TypewriterDelay);
         }
     }
 
