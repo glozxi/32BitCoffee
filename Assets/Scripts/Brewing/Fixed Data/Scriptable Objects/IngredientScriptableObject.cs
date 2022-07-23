@@ -16,6 +16,11 @@ public class IngredientScriptableObject : ScriptableObject
 
 
     [SerializeField]
+    private Sprite _sprite;
+    public Sprite Sprite
+    { get => _sprite; }
+
+    [SerializeField]
     private Color32 _contentColor;
     public Color32 ContentColor
     {

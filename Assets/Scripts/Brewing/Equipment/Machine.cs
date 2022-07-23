@@ -13,6 +13,9 @@ public class Machine : MonoBehaviour
         get => _contents;
     }
 
+    [SerializeField]
+    private GameObject _content;
+
     private void Update()
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -64,10 +67,9 @@ public class Machine : MonoBehaviour
         InstantiateContent(ingredient);
     }
 
-    // TODO: Add symbol to show what is inside
     private void InstantiateContent(IngredientScriptableObject ingredient)
     {
-        
+        _content.GetComponent<SpriteRenderer>().sprite = ingredient.Sprite;
     }
 
     // Clears contents
