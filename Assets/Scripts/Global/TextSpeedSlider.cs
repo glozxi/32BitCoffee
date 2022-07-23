@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -17,7 +15,8 @@ public class TextSpeedSlider : MonoBehaviour
     public void SetTextSpeed()
     {
         float delay = (_slider.maxValue - _slider.value) / 10;
-        FindObjectOfType<InkManager>().TypewriterDelay = delay;
+        InkManager inkManager = FindObjectOfType<InkManager>();
+        if (inkManager != null) inkManager.TypewriterDelay = delay;
         PlayerPrefs.SetFloat("TextSpeed", _slider.value);
         PlayerPrefs.Save();
     }

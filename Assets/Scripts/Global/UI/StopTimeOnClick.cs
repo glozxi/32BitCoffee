@@ -1,11 +1,8 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class OpenMenuButtonScript : MonoBehaviour
+public class StopTimeOnClick : MonoBehaviour
 {
-    [SerializeField]
-    GameObject _menu;
-
     void Awake()
     {
         Button thisButton = gameObject.GetComponent<Button>();
@@ -14,9 +11,6 @@ public class OpenMenuButtonScript : MonoBehaviour
 
     private void OnClick()
     {
-        if (!_menu.activeSelf)
-        {
-            _menu.SetActive(true);
-        }
+        Time.timeScale = 0;
     }
 }
