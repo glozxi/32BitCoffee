@@ -10,18 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 86251f7ded1e6cc488fc871633ce1048, type: 3}
-  m_Name: John
+  m_Name: C004
   m_EditorClassIdentifier: 
-  _name: 
-  _wanted: 2
-  _needed: 1
+  _name: Xiao Mei
+  _wanted: 1
+  _needed: 2
   _disliked: 3
-  _mainSprite: {fileID: 21300000, guid: 5130f2b1d5f809e4a9ef83ffd9e3de78, type: 3}
-  _expression: {fileID: 21300000, guid: 074e313052b20f844ab859537a697c4b, type: 3}
+  _mainSprite: {fileID: 21300000, guid: a6b72fe002773bb429ded2c96539fe3c, type: 3}
+  _expression: {fileID: 21300000, guid: a3e4b6a57e98ef14f851f39df6e88bed, type: 3}
   _mood: normal
   _promptDialogue: Where's my drink?
-  _orderTalk: I want Chocolate.
-  _analyseInformation: John needs a Latte
-  _bonusTime: 6
-  _bonusMult: 1.5
-  _isStoryAffected: 0
+  _orderTalk: Ok, try making Latte.
+  _analyseInformation: Needs Chocolate.
+  _bonusTime: 10
+  _bonusMult: 1
+  _isStoryAffected: 1
