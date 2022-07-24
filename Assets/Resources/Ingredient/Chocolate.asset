@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Chocolate
   m_EditorClassIdentifier: 
   _ingredientType: Chocolate
-  _step: Place chocolate into the cup.
+  _step: Place Chocolate into the cup.
   _sprite: {fileID: 21300000, guid: d18397ad36e96c24498d72b68241528a, type: 3}
   _contentColor:
     serializedVersion: 2

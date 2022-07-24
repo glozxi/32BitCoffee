@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86251f7ded1e6cc488fc871633ce1048, type: 3}
+  m_Name: Axel
+  m_EditorClassIdentifier: 
+  _name: Axel
+  _wanted: 13
+  _needed: 3
+  _disliked: 4
+  _mainSprite: {fileID: 21300000, guid: 5db05d15b0f656841a543032878afc4f, type: 3}
+  _expression: {fileID: 21300000, guid: 81d3246d34e594f49bbe2c36473164a3, type: 3}
+  _mood: happy
+  _promptDialogue: My drink should be easy to make.
+  _orderTalk: Yuan Yang. Take away.
+  _analyseInformation: Needs Mocha.
+  _bonusTime: 10
+  _bonusMult: 1
+  _isStoryAffected: 1

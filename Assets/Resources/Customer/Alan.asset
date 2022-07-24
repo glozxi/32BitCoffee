@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86251f7ded1e6cc488fc871633ce1048, type: 3}
+  m_Name: Alan
+  m_EditorClassIdentifier: 
+  _name: Alan
+  _wanted: 6
+  _needed: 12
+  _disliked: 27
+  _mainSprite: {fileID: 21300000, guid: 52d62be435a558740ae7c2f078ffca80, type: 3}
+  _expression: {fileID: 21300000, guid: 741ee5572bb1d0649b70831d00d58d51, type: 3}
+  _mood: normal
+  _promptDialogue: Hmmmm....
+  _orderTalk: One Americano please.
+  _analyseInformation: She has always wanted to try Tea Expresso.
+  _bonusTime: 10
+  _bonusMult: 1.5
+  _isStoryAffected: 0

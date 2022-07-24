@@ -4,8 +4,41 @@ namespace BrewingData
     {
         None,
         Latte,
-        Chocolate,
-        ChocoLatte
+        Cocoa,
+        Mocha,
+        Expresso,
+        DoubleExpresso,
+        LongBlack,
+        PureCoffee,
+
+        Macha,
+        MachaLatte,
+        Tea,
+        MilkTea,
+        TeaXpresso,
+        YuanYang,
+
+        iLatte,
+        iCocoa,
+        iExpresso,
+        iDExpresso,
+        iCoffee,
+        iMacha,
+        iMachaLatte,
+        iTea,
+        iMilkTea,
+        iTeaXpresso,
+
+        NewDrink,
+        Ice,
+        IceWater,
+        Green,
+        BlobOChocolate,
+        iBOC,
+        FourSeasons,
+        Milk,
+        iMilk,
+        FoamyMilk
     }
 
     public enum OrderTypes

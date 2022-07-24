@@ -13,9 +13,8 @@ MonoBehaviour:
   m_Name: Latte
   m_EditorClassIdentifier: 
   _drinkType: 1
-  _price: 4
+  _price: 5
   _recipe:
   - {fileID: 11400000, guid: 0eefee1f8036e9942b093d1ea213484b, type: 2}
-  - {fileID: 11400000, guid: 0eefee1f8036e9942b093d1ea213484b, type: 2}
-  - {fileID: 11400000, guid: 0eefee1f8036e9942b093d1ea213484b, type: 2}
-  - {fileID: 11400000, guid: 0eefee1f8036e9942b093d1ea213484b, type: 2}
+  - {fileID: 11400000, guid: fe6b1d4534728624d8ee4620e0202a3e, type: 2}
+  - {fileID: 11400000, guid: fe6b1d4534728624d8ee4620e0202a3e, type: 2}

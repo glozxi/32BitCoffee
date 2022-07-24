@@ -13,15 +13,15 @@ MonoBehaviour:
   m_Name: XiaoMei
   m_EditorClassIdentifier: 
   _name: Xiao Mei
-  _wanted: 1
-  _needed: 2
-  _disliked: 3
+  _wanted: 6
+  _needed: 1
+  _disliked: 30
   _mainSprite: {fileID: 21300000, guid: a6b72fe002773bb429ded2c96539fe3c, type: 3}
   _expression: {fileID: 21300000, guid: a3e4b6a57e98ef14f851f39df6e88bed, type: 3}
   _mood: normal
   _promptDialogue: Where's my drink?
-  _orderTalk: Ok, try making Latte.
-  _analyseInformation: Needs Chocolate.
+  _orderTalk: Ok, try making Long Black.
+  _analyseInformation: Latte would make her smile.
   _bonusTime: 10
   _bonusMult: 1
   _isStoryAffected: 1

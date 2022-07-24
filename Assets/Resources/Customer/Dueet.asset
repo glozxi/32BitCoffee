@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86251f7ded1e6cc488fc871633ce1048, type: 3}
+  m_Name: Dueet
+  m_EditorClassIdentifier: 
+  _name: Rhaul Dueet
+  _wanted: 5
+  _needed: 7
+  _disliked: 3
+  _mainSprite: {fileID: 21300000, guid: 765b6359af11d5c409dcc067042f1197, type: 3}
+  _expression: {fileID: 21300000, guid: e5f151ef2d8269b4d8d28ed2fcb65956, type: 3}
+  _mood: normal
+  _promptDialogue: Do I really have to hack you to get my drink?
+  _orderTalk: Double Expresso on the double.
+  _analyseInformation: Caffine addict. Let's get him Pure Coffee.
+  _bonusTime: 10
+  _bonusMult: 1.5
+  _isStoryAffected: 0

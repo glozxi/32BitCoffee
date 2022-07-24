@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86251f7ded1e6cc488fc871633ce1048, type: 3}
+  m_Name: Sofia
+  m_EditorClassIdentifier: 
+  _name: Sofia
+  _wanted: 18
+  _needed: 23
+  _disliked: 27
+  _mainSprite: {fileID: 21300000, guid: 044d5720a021e524db90268ffe234c7a, type: 3}
+  _expression: {fileID: 21300000, guid: 260c50300499a21499c1dc08205c7b90, type: 3}
+  _mood: normal
+  _promptDialogue: Where's my drink?
+  _orderTalk: 
+  _analyseInformation: 
+  _bonusTime: 10
+  _bonusMult: 1.5
+  _isStoryAffected: 0

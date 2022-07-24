@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86251f7ded1e6cc488fc871633ce1048, type: 3}
+  m_Name: Ahmed
+  m_EditorClassIdentifier: 
+  _name: Ahmed
+  _wanted: 7
+  _needed: 6
+  _disliked: 3
+  _mainSprite: {fileID: 21300000, guid: 356ddcbc84dd2a540a8953c0ba4605a1, type: 3}
+  _expression: {fileID: 21300000, guid: aeae373c103acaf42a8d55132bd8f3c3, type: 3}
+  _mood: tired
+  _promptDialogue: Where's my drink?
+  _orderTalk: Coffee, super extra strong.
+  _analyseInformation: Long Black would be better for him.
+  _bonusTime: 10
+  _bonusMult: 1.5
+  _isStoryAffected: 0

@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86251f7ded1e6cc488fc871633ce1048, type: 3}
+  m_Name: SysRed
+  m_EditorClassIdentifier: 
+  _name: SYSTEM
+  _wanted: 31
+  _needed: 31
+  _disliked: 33
+  _mainSprite: {fileID: 21300000, guid: 15ff70470ff7c53488ef0b2e62f0ffe9, type: 3}
+  _expression: {fileID: 21300000, guid: 4c9c0d4f2d26d484abc80612436718f0, type: 3}
+  _mood: normal
+  _promptDialogue: It's just pouring out of the carton.
+  _orderTalk: I'll make it simple. Milk please.
+  _analyseInformation: I can't get a read on SYSTEM.
+  _bonusTime: 10
+  _bonusMult: 1.5
+  _isStoryAffected: 0
