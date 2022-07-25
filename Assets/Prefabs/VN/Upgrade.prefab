@@ -228,8 +228,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 34
-  m_fontSizeBase: 34
+  m_fontSize: 30
+  m_fontSizeBase: 30
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -412,6 +412,7 @@ MonoBehaviour:
   _priceText: {fileID: 8938686442047733990}
   _name: {fileID: 4629515246165300971}
   _button: {fileID: 4125934543715593199}
+  _image: {fileID: 4629515246593734524}
 --- !u!114 &6126261316255708803
 MonoBehaviour:
   m_ObjectHideFlags: 0

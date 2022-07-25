@@ -9,6 +9,11 @@ public abstract class Upgrade : ScriptableObject
     public string Name
     { get => _name; }
 
+    [SerializeField]
+    private Sprite _sprite;
+    public Sprite Sprite
+    { get => _sprite; }
+
     // Next upgrade stacks
     [SerializeField]
     private Upgrade _nextUpgrade;

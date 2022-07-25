@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: Scale espresso time 1
   m_EditorClassIdentifier: 
   _name: Espresso time 1
+  _sprite: {fileID: 21300000, guid: 561f23104ca00064daac9e7877456dcf, type: 3}
   _nextUpgrade: {fileID: 11400000, guid: 4ee7c8120dc80a3489d81eff74c3aa61, type: 2}
   _prevUpgrade: {fileID: 0}
-  _description: Halves espresso making time.
+  _description: 50% faster espresso.
   _cost: 0
   _addedTime: 0
   _timeScale: 1.5

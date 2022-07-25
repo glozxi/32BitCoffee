@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: Add cash 1
   m_EditorClassIdentifier: 
   _name: Add cash 1
+  _sprite: {fileID: -2114774672, guid: 4e6cbf1cfa140224780f27c75a9bdb9c, type: 3}
   _nextUpgrade: {fileID: 11400000, guid: dfb15060a6b06464484eee5123311712, type: 2}
   _prevUpgrade: {fileID: 0}
-  _description: Add 5 cash per successful serve
+  _description: Add 5 cash per successful serve.
   _cost: 0
   _addedCash: 5
   _cashScale: 1

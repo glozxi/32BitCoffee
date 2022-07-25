@@ -7,8 +7,7 @@ VAR Drink = "Latte"
 === Tutorial ===
 ...#Char:None #BGM:cafe#DAY:1
 Oh! Hi! Welcome!#Char:Arity #MODEL:Arity,arity_default,default,MM #BGM:menu
-ododhfsfahfdhdkf#MODEL:Xiaomei,xiaomei_default,default,LL
-// Thank you for starting the game.#Char:Arity#UPGRADE:
+Thank you for starting the game.#Char:Arity#UPGRADE:
 Well, let me not hold you back any further, I'll..#Char:Arity #FX:phone_vibrate
 Phone rings#Char:None#MODEL:Arity,HIDE,,
 Hold on let me get this.#Char:Arity #MODEL:Arity,arity_default,blank,MM

@@ -15,6 +15,8 @@ public class UpgradeInShop : MonoBehaviour
     private TMP_Text _name;
     [SerializeField]
     private Button _button;
+    [SerializeField]
+    private Image _image;
 
     private Upgrade _upgrade;
     public Upgrade Upgrade
@@ -32,5 +34,9 @@ public class UpgradeInShop : MonoBehaviour
         _priceText.text = "$" + Upgrade.Cost.ToString();
         _name.text = Upgrade.Name;
         _button.onClick.AddListener(() => UpgradeClicked?.Invoke(gameObject, _upgrade));
+        if (_upgrade != null)
+        {
+            _image.sprite = _upgrade.Sprite;
+        }
     }
 }

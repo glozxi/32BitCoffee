@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: Scale milk time 1
   m_EditorClassIdentifier: 
   _name: Steam milk time 1
+  _sprite: {fileID: 21300000, guid: 8ae6991e798cdc142b2adc7962d7583b, type: 3}
   _nextUpgrade: {fileID: 11400000, guid: 6b0032e0979c7d845ae25560b442a798, type: 2}
   _prevUpgrade: {fileID: 0}
-  _description: Milk steaming time reduced by 10%.
+  _description: 10% faster milk steaming.
   _cost: 0
   _addedTime: 0
   _timeScale: 1.1

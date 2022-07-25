@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Add points
   m_EditorClassIdentifier: 
   _name: Add points
+  _sprite: {fileID: 21300000, guid: b2a2ab38faee28641ba672e8da6df189, type: 3}
   _nextUpgrade: {fileID: 0}
   _prevUpgrade: {fileID: 0}
   _description: Add 5 extra network points per analyse.
