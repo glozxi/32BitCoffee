@@ -22,6 +22,6 @@ MonoBehaviour:
   _promptDialogue: Do I really have to hack you to get my drink?
   _orderTalk: Double Expresso on the double.
   _analyseInformation: Caffine addict. Let's get him Pure Coffee.
-  _bonusTime: 15
+  _bonusTime: 50
   _bonusMult: 1.5
   _isStoryAffected: 0

@@ -22,6 +22,6 @@ MonoBehaviour:
   _promptDialogue: My drink should be easy to make.
   _orderTalk: Hey, Cocoa please!
   _analyseInformation: The network says he wants a Blob of Chocolate.
-  _bonusTime: 10
+  _bonusTime: 50
   _bonusMult: 1
   _isStoryAffected: 1

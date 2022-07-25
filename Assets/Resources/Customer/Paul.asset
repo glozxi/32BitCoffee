@@ -22,6 +22,6 @@ MonoBehaviour:
   _promptDialogue: It's .... just ice....
   _orderTalk: Hey, could I get some Ice?
   _analyseInformation: Looks like he wants Iced Water
-  _bonusTime: 15
+  _bonusTime: 50
   _bonusMult: 1.5
   _isStoryAffected: 0

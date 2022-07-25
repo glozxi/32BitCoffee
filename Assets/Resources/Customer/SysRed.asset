@@ -22,6 +22,6 @@ MonoBehaviour:
   _promptDialogue: It's just pouring out of the carton.
   _orderTalk: I'll make it simple. Milk please.
   _analyseInformation: I can't get a read on SYSTEM.
-  _bonusTime: 10
+  _bonusTime: 50
   _bonusMult: 1.5
   _isStoryAffected: 0

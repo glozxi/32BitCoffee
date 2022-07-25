@@ -7,7 +7,7 @@ VAR Drink = "Latte"
 === Tutorial ===
 ...#Char:None #BGM:cafe#DAY:1
 Oh! Hi! Welcome!#Char:Arity #MODEL:Arity,arity_default,default,MM #BGM:menu
-Thank you for starting the game.#Char:Arity#UPGRADE:
+Thank you for starting the game.#Char:Arity
 Well, let me not hold you back any further, I'll..#Char:Arity #FX:phone_vibrate
 Phone rings#Char:None#MODEL:Arity,HIDE,,
 Hold on let me get this.#Char:Arity #MODEL:Arity,arity_default,blank,MM
@@ -20,9 +20,10 @@ Dammit! #Char:Arity
 Phone closes#Char:None#MODEL:Arity,HIDE,,
 Sorry to keep you waiting.#Char:Arity #MODEL:Arity,arity_default,default,MM
 It appears the story isn't ready yet.#Char:Arity#MODEL:Arity,arity_default,default,MM
+But we can demonstrate our features. 
 -> Brew_Req
 === Brew_Req ===
-{But perhaps maybe you would like to have a try at brewing coffee? | Eh, can you brew again?}#Char:Arity #TOBREW:tut_MS2#MODEL:Arity,arity_default,default,MM
+{Be sure to read the tutorial! | Eh, can you brew again?}#Char:Arity #TOBREW:tut_MS3#MODEL:Arity,arity_default,default,MM
 
 //Go to brew
 //Comeback
@@ -67,5 +68,13 @@ He peers inside the cup.#Char:None#MODEL:Arity,HIDE,,
 -> Brew_Req
 
 === Day_1_pt_1_1 ===
+Alright, cool.#Char:Arity#MODEL:Arity,arity_default,default,MM
+*   Sure.
+*   Yep.
+- Now, let's try something harder.#TOBREW:Level1
+You passed.
+Good job.
+Before you try brewing again, how about upgrading your parts?#UPGRADE:
+Now try a real challenge!#TOBREW:Level2
 #MODEL:Arity,HIDE,,
 -> END

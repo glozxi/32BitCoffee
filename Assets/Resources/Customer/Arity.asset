@@ -22,6 +22,6 @@ MonoBehaviour:
   _promptDialogue: Yo yo, where's my drink?
   _orderTalk: Can I get a Latte?
   _analyseInformation: I should give him Cocoa.
-  _bonusTime: 15
+  _bonusTime: 40
   _bonusMult: 2
   _isStoryAffected: 1

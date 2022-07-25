@@ -22,6 +22,6 @@ MonoBehaviour:
   _promptDialogue: Hi sorry, I need to deliver this quickly.
   _orderTalk: I want Milk Tea.
   _analyseInformation: He is buying this for someone else. Milk Tea.
-  _bonusTime: 15
+  _bonusTime: 50
   _bonusMult: 1.5
   _isStoryAffected: 0

@@ -22,6 +22,6 @@ MonoBehaviour:
   _promptDialogue: Are you lagging or something?
   _orderTalk: Hey could you make me some Tea?
   _analyseInformation: Macha Latte would suit her.
-  _bonusTime: 15
+  _bonusTime: 50
   _bonusMult: 1.5
   _isStoryAffected: 0

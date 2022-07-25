@@ -22,6 +22,6 @@ MonoBehaviour:
   _promptDialogue: Hmmmm....
   _orderTalk: One Americano please.
   _analyseInformation: She has always wanted to try Tea Expresso.
-  _bonusTime: 15
+  _bonusTime: 40
   _bonusMult: 1.5
   _isStoryAffected: 0

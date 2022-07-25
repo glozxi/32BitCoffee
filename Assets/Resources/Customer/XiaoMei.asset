@@ -22,6 +22,6 @@ MonoBehaviour:
   _promptDialogue: Where's my drink?
   _orderTalk: Ok, try making Long Black.
   _analyseInformation: Latte would make her smile.
-  _bonusTime: 20
+  _bonusTime: 50
   _bonusMult: 1.2
   _isStoryAffected: 1
