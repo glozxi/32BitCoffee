@@ -1963,7 +1963,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c0d3357289b3ea4198740429baca185, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _slider: {fileID: 1548655103}
+  _slider: {fileID: 1757529112}
 --- !u!1 &999076581
 GameObject:
   m_ObjectHideFlags: 0
@@ -3135,8 +3135,8 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: VolumeSlider, GameAssembly
+      - m_Target: {fileID: 1849161879}
+        m_TargetAssemblyTypeName: VolumeSlider, Assembly-CSharp
         m_MethodName: SetBGMVolume
         m_Mode: 1
         m_Arguments:
@@ -3238,8 +3238,8 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: VolumeSlider, GameAssembly
+      - m_Target: {fileID: 1849161879}
+        m_TargetAssemblyTypeName: VolumeSlider, Assembly-CSharp
         m_MethodName: SetFXVolume
         m_Mode: 1
         m_Arguments:
@@ -3661,7 +3661,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 961555233}
         m_TargetAssemblyTypeName: TextSpeedSlider, Assembly-CSharp
         m_MethodName: SetTextSpeed
         m_Mode: 1
