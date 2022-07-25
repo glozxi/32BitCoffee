@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Water
   m_EditorClassIdentifier: 
   _ingredientType: Tea
-  _step: Place Water into the cup.
+  _step: Dispense hot water into the cup.
   _sprite: {fileID: 21300000, guid: be8f9849a8722a247bf50d23b45d79f3, type: 3}
   _contentColor:
     serializedVersion: 2
