@@ -170,7 +170,7 @@ public class AudioManager : MonoBehaviour
             //source.pitch = pitch;
             //maxVolume = desiredMaxVolume;
             //source.pitch = pitch;
-            //source.loop = loop;
+            source.loop = true;
 
             AudioManager.allBGM.Add(this);
 
