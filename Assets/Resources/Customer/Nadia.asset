@@ -22,6 +22,6 @@ MonoBehaviour:
   _promptDialogue: Perhaps I should go somewhere else...
   _orderTalk: Can I get a Macha Latte?
   _analyseInformation: Macha Latte would suit her today.
-  _bonusTime: 10
+  _bonusTime: 15
   _bonusMult: 1.5
   _isStoryAffected: 0

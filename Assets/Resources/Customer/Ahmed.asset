@@ -22,6 +22,6 @@ MonoBehaviour:
   _promptDialogue: Where's my drink?
   _orderTalk: Coffee, super extra strong.
   _analyseInformation: Long Black would be better for him.
-  _bonusTime: 10
+  _bonusTime: 15
   _bonusMult: 1.5
   _isStoryAffected: 0

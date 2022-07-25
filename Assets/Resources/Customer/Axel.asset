@@ -22,6 +22,6 @@ MonoBehaviour:
   _promptDialogue: My drink should be easy to make.
   _orderTalk: Yuan Yang. Take away.
   _analyseInformation: Needs Mocha.
-  _bonusTime: 10
-  _bonusMult: 1
+  _bonusTime: 15
+  _bonusMult: 1.2
   _isStoryAffected: 1

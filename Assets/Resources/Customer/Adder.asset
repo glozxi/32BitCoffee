@@ -22,6 +22,6 @@ MonoBehaviour:
   _promptDialogue: Are you stuck in a recursive loop or something?
   _orderTalk: 'Coffee. Black. No milk. '
   _analyseInformation: Let's just give him Four Seasons.
-  _bonusTime: 10
+  _bonusTime: 15
   _bonusMult: 1.5
   _isStoryAffected: 0

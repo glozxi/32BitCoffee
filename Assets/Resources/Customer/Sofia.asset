@@ -22,6 +22,6 @@ MonoBehaviour:
   _promptDialogue: Where's my drink?
   _orderTalk: 
   _analyseInformation: 
-  _bonusTime: 10
+  _bonusTime: 15
   _bonusMult: 1.5
   _isStoryAffected: 0

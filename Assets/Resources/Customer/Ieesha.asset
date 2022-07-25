@@ -22,6 +22,6 @@ MonoBehaviour:
   _promptDialogue: Where's my drink?
   _orderTalk: Yuan Yang please.
   _analyseInformation: Tea Xpresso would be best for her.
-  _bonusTime: 10
+  _bonusTime: 15
   _bonusMult: 1.5
   _isStoryAffected: 0
