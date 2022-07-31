@@ -41,8 +41,7 @@ public class ChoiceLayoutScript : MonoBehaviour
     // Creates new choice button in layout
     private void CreateChoiceButton(Choice choice)
     {
-        Button button = Instantiate(_choiceButtonPrefab);
-        button.transform.SetParent(_choiceButtonContainer.transform);
+        Button button = Instantiate(_choiceButtonPrefab, _choiceButtonContainer.transform);
 
         ButtonMade?.Invoke(choice);
     }

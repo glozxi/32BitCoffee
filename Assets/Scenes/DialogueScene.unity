@@ -2493,7 +2493,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8556069763279635422, guid: fea5decdb5a1ca74e988a3725b48e602, type: 3}
       propertyPath: _networkPoints
-      value: 5
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 8930070098001790517, guid: fea5decdb5a1ca74e988a3725b48e602, type: 3}
