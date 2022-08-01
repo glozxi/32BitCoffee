@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 567e400fd716c814fb8d76ca221b5b1e, type: 3}
-  m_Name: New Drink
+  m_Name: Water
   m_EditorClassIdentifier: 
   _drinkType: 24
   _price: 3

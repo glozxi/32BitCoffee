@@ -2,6 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.UI;
 using BrewingData;
+using System.Linq;
 
 public class RecipeButtons : MonoBehaviour
 {
@@ -13,7 +14,10 @@ public class RecipeButtons : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        foreach (Drinks drink in Enum.GetValues(typeof(Drinks)))
+        Drinks[] allDrinks = Enum.GetValues(typeof(Drinks)).Cast<Drinks>().ToArray();
+        var sortedDrinks = allDrinks.OrderBy(l => l.ToString());
+
+        foreach (Drinks drink in sortedDrinks)
         {
             if (drink == Drinks.None) continue;
             Instantiate(_button, this.transform);
