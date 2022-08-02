@@ -116,6 +116,7 @@ public class Grouphead : MonoBehaviour
         _isDispensing = false;
         _timer.ResetTime();
         _cup.Add(_machine.DispenseContent());
+        _machine.Clear();
     }
 
     private void InterruptDispense()

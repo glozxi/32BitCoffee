@@ -11,6 +11,7 @@ TagManager:
   - Machine
   - MachineIngredient
   - MilkCup
+  - HybridIngredient
   layers:
   - Default
   - TransparentFX

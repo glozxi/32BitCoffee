@@ -4,7 +4,8 @@ using System;
 
 public class Machine : MonoBehaviour
 {
-    private const string INGREDIENT_TAG = "MachineIngredient";
+    private const string INGREDIENT_TAG_A = "MachineIngredient";
+    private const string INGREDIENT_TAG_B = "HybridIngredient";
     private const int MAX_CONTENT = 1;
     private const string CUP_CONTENT_TAG = "cupContent";
     private List<IngredientScriptableObject> _contents = new();
@@ -29,10 +30,20 @@ public class Machine : MonoBehaviour
 
             foreach (RaycastHit2D hit in hits)
             {
-                if (hit.collider.gameObject.CompareTag(INGREDIENT_TAG))
+                if (hit.collider.gameObject.CompareTag(INGREDIENT_TAG_A) || hit.collider.gameObject.CompareTag(INGREDIENT_TAG_B))
                 {
                     Ingredient ingredient = hit.collider.gameObject.GetComponent<Ingredient>();
-                    Add(ingredient.IngScriptable);
+
+                    if (ingredient.IngScriptable.IngredientType == "Tea")
+                    {
+                        IngredientScriptableObject ingredientAlt = Resources.Load("Ingredient/Teaxpresso") as IngredientScriptableObject;
+                        Add(ingredientAlt);
+                    }
+                    else
+                    {
+                        Add(ingredient.IngScriptable);
+                    }
+                    
                     Destroy(hit.collider.gameObject);
                     break;
                 }
@@ -69,7 +80,9 @@ public class Machine : MonoBehaviour
 
     private void InstantiateContent(IngredientScriptableObject ingredient)
     {
+        Debug.Log(ingredient.Sprite);
         _content.GetComponent<SpriteRenderer>().sprite = ingredient.Sprite;
+        // _content.
     }
 
     // Clears contents

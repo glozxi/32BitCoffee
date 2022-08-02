@@ -9,5 +9,6 @@ public class Bin : MonoBehaviour
         GameObject collidedObject = collision.gameObject;
         IBinnable cup = collidedObject.GetComponent<IBinnable>();
         cup.Clear();
+        AudioManager.instance.PlaySFX("bin"); // figure how to selectively do this or tie audio to object variable and read from there.
     }
 }

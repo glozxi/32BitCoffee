@@ -5,7 +5,9 @@ using System.Linq;
 
 public class Cup : MonoBehaviour, IBinnable
 {
-    private const string INGREDIENT_TAG = "Ingredient";
+    private const string INGREDIENT_TAG_A = "MachineIngredient";
+    private const string INGREDIENT_TAG_B = "HybridIngredient";
+    private const string INGREDIENT_TAG_ARR = "Ingredient";
     private const string MILK_CUP_TAG = "MilkCup";
     private const int MAX_CONTENT = 4;
     private const string CUP_CONTENT_TAG = "cupContent";
@@ -70,7 +72,7 @@ public class Cup : MonoBehaviour, IBinnable
             }
             foreach (RaycastHit2D hit in hits)
             {
-                if (hit.collider.gameObject.CompareTag(INGREDIENT_TAG))
+                if (hit.collider.gameObject.CompareTag(INGREDIENT_TAG_A) || hit.collider.gameObject.CompareTag(INGREDIENT_TAG_B))
                 {
                     Ingredient ingredient = hit.collider.gameObject.GetComponent<Ingredient>();
                     Add(ingredient.IngScriptable);
