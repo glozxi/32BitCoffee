@@ -3700,6 +3700,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5287740134542836474, guid: 4340c0b9485e350469f9c57a33af7ea9, type: 3}
+      propertyPath: _dontDestroyIfOver.Array.data[0]
+      value: Cup
+      objectReference: {fileID: 0}
+    - target: {fileID: 5287740134542836474, guid: 4340c0b9485e350469f9c57a33af7ea9, type: 3}
       propertyPath: _dontDestroyIfOver.Array.data[1]
       value: MilkCup
       objectReference: {fileID: 0}
@@ -10931,7 +10935,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5287740134542836474, guid: 4340c0b9485e350469f9c57a33af7ea9, type: 3}
       propertyPath: _dontDestroyIfOver.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5287740134542836474, guid: 4340c0b9485e350469f9c57a33af7ea9, type: 3}
       propertyPath: _dontDestroyIfOver.Array.data[0]
@@ -10939,7 +10943,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5287740134542836474, guid: 4340c0b9485e350469f9c57a33af7ea9, type: 3}
       propertyPath: _dontDestroyIfOver.Array.data[1]
-      value: MilkCup
+      value: Cup
       objectReference: {fileID: 0}
     - target: {fileID: 5287740134542836475, guid: 4340c0b9485e350469f9c57a33af7ea9, type: 3}
       propertyPath: m_Size.x
@@ -14835,6 +14839,14 @@ PrefabInstance:
     - target: {fileID: 6146630900392991570, guid: 4eeb1093967e12549be90e91e8c6747d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6146630900392991596, guid: 4eeb1093967e12549be90e91e8c6747d, type: 3}
+      propertyPath: _dontDestroyIfOver.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6146630900392991596, guid: 4eeb1093967e12549be90e91e8c6747d, type: 3}
+      propertyPath: _dontDestroyIfOver.Array.data[1]
+      value: Machine
       objectReference: {fileID: 0}
     - target: {fileID: 6146630900392991599, guid: 4eeb1093967e12549be90e91e8c6747d, type: 3}
       propertyPath: m_Name

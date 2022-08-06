@@ -72,7 +72,8 @@ public class Cup : MonoBehaviour, IBinnable
             }
             foreach (RaycastHit2D hit in hits)
             {
-                if (hit.collider.gameObject.CompareTag(INGREDIENT_TAG_A) || hit.collider.gameObject.CompareTag(INGREDIENT_TAG_B))
+                if (hit.collider.gameObject.CompareTag(INGREDIENT_TAG_ARR) 
+                    || hit.collider.gameObject.CompareTag(INGREDIENT_TAG_B))
                 {
                     Ingredient ingredient = hit.collider.gameObject.GetComponent<Ingredient>();
                     Add(ingredient.IngScriptable);
